@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.budgetbuddy"
+    namespace = "com.kogelmogel123.budgetbuddy"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.budgetbuddy"
+        applicationId = "com.kogelmogel123.budgetbuddy"
         minSdk = 29
         targetSdk = 34
         versionCode = 1
@@ -38,6 +38,7 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"
@@ -50,6 +51,10 @@ android {
 }
 
 dependencies {
+    val activity_version = "1.8.2"
+    implementation("androidx.activity:activity-ktx:$activity_version")
+
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

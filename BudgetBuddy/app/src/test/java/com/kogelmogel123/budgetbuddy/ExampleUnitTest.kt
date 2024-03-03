@@ -1,4 +1,4 @@
-package com.example.budgetbuddy
+package com.kogelmogel123.budgetbuddy
 
 import org.junit.Test
 
