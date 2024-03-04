@@ -1,5 +1,9 @@
 # BudgetBuddy
 
+<p align="center">
+  <img src="https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/5ff35d5b-7aeb-4526-8187-2e374a689dba" alt="BudgetBuddy">
+</p>
+
 ## O projekcie
 Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona w Kotlinie. Umożliwia użytkownikom skanowanie paragonów, automatyczne rozpoznawanie wydatków, zarządzanie budżetem, analizę wydatków. Celem projektu jest ułatwienie użytkownikom monitorowania ich wydatków i optymalizacja zarządzania finansami.
 
