@@ -61,6 +61,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material:1.6.3")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -75,14 +77,15 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     val camerax_version = "1.3.1"
-    implementation("androidx.camera:camera-core:$camerax_version")
     implementation("androidx.camera:camera-camera2:$camerax_version")
     implementation("androidx.camera:camera-lifecycle:$camerax_version")
-    implementation("androidx.camera:camera-video:$camerax_version")
-
     implementation("androidx.camera:camera-view:$camerax_version")
-    implementation("androidx.camera:camera-extensions:$camerax_version")
+
+    implementation("androidx.concurrent:concurrent-futures-ktx:1.1.0")
+    implementation("io.coil-kt:coil-compose:2.6.0")
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
+
+
 
 }
