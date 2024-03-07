@@ -6,9 +6,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun HomeScreen(onClick: (String) -> Unit) {
+fun DashboardScreen(onClick: (String) -> Unit) {
     Column {
-        Text(text = "Home Screen")
+        Text(text = "Dashboard Screen")
         Button(onClick = { onClick("scanReceipt") }) {
             Text(text = "Scan Receipt")
         }

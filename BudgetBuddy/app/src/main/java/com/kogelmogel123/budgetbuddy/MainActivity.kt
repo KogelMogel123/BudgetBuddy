@@ -8,12 +8,18 @@ import androidx.activity.viewModels
 import com.kogelmogel123.budgetbuddy.ui.theme.BudgetBuddyTheme
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.kogelmogel123.budgetbuddy.screens.DashboardScreen
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -25,6 +31,7 @@ class MainActivity : ComponentActivity() {
             BudgetBuddyTheme {
                 val scaffoldState = rememberScaffoldState()
                 val scope = rememberCoroutineScope()
+                val navController = rememberNavController()
                 Scaffold(
                     scaffoldState = scaffoldState,
                     topBar = {
@@ -48,6 +55,18 @@ class MainActivity : ComponentActivity() {
                                     icon = Icons.Default.Home
                                 ),
                                 MenuItem(
+                                    id = "scanReceipt",
+                                    title = stringResource(id = R.string.scanReceipt),
+                                    contentDescription = "Go to scan receipt screen",
+                                    icon = Icons.Default.Search
+                                ),
+                                MenuItem(
+                                    id = "addExpenses",
+                                    title = stringResource(id = R.string.addExpenses),
+                                    contentDescription = "Go to add expenses screen",
+                                    icon = Icons.Default.Add
+                                ),
+                                MenuItem(
                                     id = "settings",
                                     title = stringResource(id = R.string.settings),
                                     contentDescription = "Go to settings screen",
@@ -60,13 +79,24 @@ class MainActivity : ComponentActivity() {
                                     icon = Icons.Default.Info
                                 ),
                             ),
-                            onItemClick = {
-                                println("Clicked on ${it.title}")
+                            onItemClick = {menuItem ->
+                                println("Clicked on ${menuItem.title}")
+                                navController.navigate(menuItem.id)
                             }
                         )
                     }
                 ) {
-
+                    NavHost(navController, startDestination = "dashboard") {
+                        composable("dashboard") {
+                            DashboardScreen(onClick = {
+                                navController.navigate(it)
+                            })
+                        }
+                        composable("scanReceipt") { /* Display Settings Screen */ }
+                        composable("addExpenses") { /* Display Settings Screen */ }
+                        composable("settings") { /* Display Settings Screen */ }
+                        composable("information") { /* Display Information Screen */ }
+                    }
                 }
             }
         }
