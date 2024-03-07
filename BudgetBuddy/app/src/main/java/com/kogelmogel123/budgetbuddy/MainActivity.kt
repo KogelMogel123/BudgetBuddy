@@ -8,10 +8,12 @@ import androidx.activity.viewModels
 import com.kogelmogel123.budgetbuddy.ui.theme.BudgetBuddyTheme
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -40,21 +42,21 @@ class MainActivity : ComponentActivity() {
                         DrawerBody(
                             items = listOf(
                                 MenuItem(
-                                    id = "home",
-                                    title = "Home",
-                                    contentDescription = "Go to home screen",
+                                    id = "dashboard",
+                                    title = stringResource(id = R.string.dashboard),
+                                    contentDescription = "Go to dashboard screen",
                                     icon = Icons.Default.Home
                                 ),
                                 MenuItem(
                                     id = "settings",
-                                    title = "Settings",
+                                    title = stringResource(id = R.string.settings),
                                     contentDescription = "Go to settings screen",
                                     icon = Icons.Default.Settings
                                 ),
                                 MenuItem(
-                                    id = "help",
-                                    title = "Help",
-                                    contentDescription = "Get help",
+                                    id = "information",
+                                    title = stringResource(id = R.string.information),
+                                    contentDescription = "Get information",
                                     icon = Icons.Default.Info
                                 ),
                             ),

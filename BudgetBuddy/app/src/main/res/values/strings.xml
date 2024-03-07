@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Budget Buddy</string>
-    <string name="title_activity_main">Budget Buddy Dashboard</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="start">Start</string>
+    <string name="dashboard">Dashboard</string>
     <string name="settings">Settings</string>
+    <string name="information">Information</string>
+    <string name="exit">Exit</string>
 </resources>

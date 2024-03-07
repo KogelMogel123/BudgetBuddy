@@ -4,6 +4,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 
 @Composable
 fun AppBar(
@@ -11,9 +13,9 @@ fun AppBar(
 ) {
     TopAppBar(
         title = {
-            Text(text = "Budget Buddy")
+            Text(text = stringResource(id = R.string.app_name))
         },
-        backgroundColor = MaterialTheme.colors.primary,
+        backgroundColor = colorResource(id = R.color.second),
         contentColor = MaterialTheme.colors.onPrimary,
         navigationIcon = {
             IconButton(onClick = onNavigationIconClick) {
