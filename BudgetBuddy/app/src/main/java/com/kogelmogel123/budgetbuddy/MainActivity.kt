@@ -19,7 +19,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.kogelmogel123.budgetbuddy.screens.AddExpensesScreen
 import com.kogelmogel123.budgetbuddy.screens.DashboardScreen
+import com.kogelmogel123.budgetbuddy.screens.InformationScreen
+import com.kogelmogel123.budgetbuddy.screens.ScanReceiptScreen
+import com.kogelmogel123.budgetbuddy.screens.SettingsScreen
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -82,6 +86,9 @@ class MainActivity : ComponentActivity() {
                             onItemClick = {menuItem ->
                                 println("Clicked on ${menuItem.title}")
                                 navController.navigate(menuItem.id)
+                                scope.launch {
+                                    scaffoldState.drawerState.close()
+                                }
                             }
                         )
                     }
@@ -92,10 +99,26 @@ class MainActivity : ComponentActivity() {
                                 navController.navigate(it)
                             })
                         }
-                        composable("scanReceipt") { /* Display Settings Screen */ }
-                        composable("addExpenses") { /* Display Settings Screen */ }
-                        composable("settings") { /* Display Settings Screen */ }
-                        composable("information") { /* Display Information Screen */ }
+                        composable("scanReceipt") {
+                            ScanReceiptScreen(onClick = {
+                                navController.navigate(it)
+                            })
+                        }
+                        composable("addExpenses") {
+                            AddExpensesScreen(onClick = {
+                                navController.navigate(it)
+                            })
+                        }
+                        composable("settings") {
+                            SettingsScreen(onClick = {
+                                navController.navigate(it)
+                            })
+                        }
+                        composable("information") {
+                            InformationScreen(onClick = {
+                                navController.navigate(it)
+                            })
+                        }
                     }
                 }
             }

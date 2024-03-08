@@ -4,6 +4,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun ScanReceiptScreen() {
+fun ScanReceiptScreen(onClick: (String) -> Unit) {
     Text(text = "Scan Receipt Screen")
 }

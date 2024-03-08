@@ -4,6 +4,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 @Composable
-fun DetailScreen() {
+fun AddExpensesScreen(onClick: (String) -> Unit) {
     Text(text = "Add Expenses Screen")
 }
