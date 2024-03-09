@@ -9,7 +9,6 @@ import com.kogelmogel123.budgetbuddy.ui.theme.BudgetBuddyTheme
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Search
@@ -19,6 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navOptions
 import com.kogelmogel123.budgetbuddy.screens.AddExpensesScreen
 import com.kogelmogel123.budgetbuddy.screens.DashboardScreen
 import com.kogelmogel123.budgetbuddy.screens.InformationScreen
@@ -96,27 +96,37 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController, startDestination = "dashboard") {
                         composable("dashboard") {
                             DashboardScreen(onClick = {
-                                navController.navigate(it)
+                                navController.navigate(
+                                    route = it,
+                                    navOptions { popUpTo("dashboard") { inclusive = true } })
                             })
                         }
                         composable("scanReceipt") {
                             ScanReceiptScreen(onClick = {
-                                navController.navigate(it)
+                                navController.navigate(
+                                    route = it,
+                                    navOptions { popUpTo("dashboard") { inclusive = true } })
                             })
                         }
                         composable("addExpenses") {
                             AddExpensesScreen(onClick = {
-                                navController.navigate(it)
+                                navController.navigate(
+                                    route = it,
+                                    navOptions { popUpTo("dashboard") { inclusive = true } })
                             })
                         }
                         composable("settings") {
                             SettingsScreen(onClick = {
-                                navController.navigate(it)
+                                navController.navigate(
+                                    route = it,
+                                    navOptions { popUpTo("dashboard") { inclusive = true } })
                             })
                         }
                         composable("information") {
                             InformationScreen(onClick = {
-                                navController.navigate(it)
+                                navController.navigate(
+                                    route = it,
+                                    navOptions { popUpTo("dashboard") { inclusive = true } })
                             })
                         }
                     }
