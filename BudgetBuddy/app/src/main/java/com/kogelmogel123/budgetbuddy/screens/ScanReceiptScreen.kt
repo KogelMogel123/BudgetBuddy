@@ -29,16 +29,41 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.concurrent.futures.await
 import coil.compose.AsyncImage
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import com.google.accompanist.permissions.rememberPermissionState
+import com.google.accompanist.permissions.shouldShowRationale
 import java.io.File
 import java.util.Calendar
 import java.util.concurrent.Executors
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun ScanReceiptScreen(onClick: (String) -> Unit) {
     val preview = Preview.Builder().build()
     val imageCapture = ImageCapture.Builder().build()
 
-    CameraView(imageCapture = imageCapture, preview = preview)
+    // Camera permission state
+    val cameraPermissionState = rememberMultiplePermissionsState(
+        permissions = listOf(
+            android.Manifest.permission.CAMERA,
+            //android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+    )
+
+    if(!cameraPermissionState.allPermissionsGranted){
+        Column {
+            Button(onClick = { cameraPermissionState.launchMultiplePermissionRequest() }) {
+                Text(text = "Ask for permission")
+            }
+        }
+    }
+
+    if(cameraPermissionState.allPermissionsGranted)
+    {
+        CameraView(imageCapture = imageCapture, preview = preview)
+    }
 }
 
 @Composable

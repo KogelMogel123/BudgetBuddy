@@ -28,6 +28,7 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     private val mainVm by viewModels<MainViewModel>()
+
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
