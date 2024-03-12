@@ -30,10 +30,12 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.concurrent.futures.await
 import coil.compose.AsyncImage
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.permissions.rememberPermissionState
 import com.google.accompanist.permissions.shouldShowRationale
+import com.kogelmogel123.budgetbuddy.ui.features.camera.NoPermissionScreen
 import java.io.File
 import java.util.Calendar
 import java.util.concurrent.Executors
@@ -44,26 +46,34 @@ fun ScanReceiptScreen(onClick: (String) -> Unit) {
     val preview = Preview.Builder().build()
     val imageCapture = ImageCapture.Builder().build()
 
-    // Camera permission state
-    val cameraPermissionState = rememberMultiplePermissionsState(
-        permissions = listOf(
-            android.Manifest.permission.CAMERA,
-            //android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
+    val cameraPermissionState: PermissionState = rememberPermissionState(android.Manifest.permission.CAMERA)
+
+    CameraContent(
+        hasPermission = cameraPermissionState.status.isGranted,
+        onRequestPermission = cameraPermissionState::launchPermissionRequest
     )
+}
 
-    if(!cameraPermissionState.allPermissionsGranted){
-        Column {
-            Button(onClick = { cameraPermissionState.launchMultiplePermissionRequest() }) {
-                Text(text = "Ask for permission")
-            }
-        }
-    }
+@Composable
+private fun CameraContent(
+    hasPermission: Boolean,
+    onRequestPermission: () -> Unit
+) {
 
-    if(cameraPermissionState.allPermissionsGranted)
-    {
-        CameraView(imageCapture = imageCapture, preview = preview)
+    if (hasPermission) {
+        //CameraScreen()
+    } else {
+        NoPermissionScreen(onRequestPermission)
     }
+}
+
+@androidx.compose.ui.tooling.preview.Preview
+@Composable
+private fun Preview_CameraContent() {
+    CameraContent(
+        hasPermission = true,
+        onRequestPermission = {}
+    )
 }
 
 @Composable
