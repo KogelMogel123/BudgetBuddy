@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -63,6 +64,7 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material:1.6.3")
     implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -93,7 +95,12 @@ dependencies {
     // Permissions
     implementation("com.google.accompanist:accompanist-permissions:0.35.0-alpha")
 
-    // Koin
+    // Koin Base
     implementation("io.insert-koin:koin-android:3.5.3")
     implementation("io.insert-koin:koin-androidx-compose:3.5.3")
+    implementation("io.insert-koin:koin-android:3.5.3")
+
+    ////Koin ksp////
+    implementation ("io.insert-koin:koin-annotations:3.5.3")
+    ksp ("io.insert-koin:koin-ksp-compiler:3.5.3")
 }
