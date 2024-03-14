@@ -21,6 +21,7 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - Podstawowy interfejs użytkownika
 
 ## SHOULD HAVE
+ - Możliwość przesyłania zdjęć paragonów z galerii
  - Możliwość stawiania celów budżetowych
  - Statystyki celów
  - Statystyki wydatków
