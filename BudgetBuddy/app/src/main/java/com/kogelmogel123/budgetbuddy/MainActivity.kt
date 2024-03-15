@@ -96,37 +96,27 @@ class MainActivity : ComponentActivity() {
                     NavHost(navController, startDestination = "dashboard") {
                         composable("dashboard") {
                             DashboardScreen(onClick = {
-                                navController.navigate(
-                                    route = it,
-                                    navOptions { popUpTo("dashboard") { inclusive = true } })
+                                navController.navigate(route = it)
                             })
                         }
                         composable("scanReceipt") {
                             ScanReceiptScreen(onClick = {
-                                navController.navigate(
-                                    route = it,
-                                    navOptions { popUpTo("dashboard") { inclusive = true } })
+                                navController.navigate(route = it)
                             })
                         }
                         composable("addExpenses") {
                             AddExpensesScreen(onClick = {
-                                navController.navigate(
-                                    route = it,
-                                    navOptions { popUpTo("dashboard") { inclusive = true } })
+                                navController.navigate(route = it)
                             })
                         }
                         composable("settings") {
                             SettingsScreen(onClick = {
-                                navController.navigate(
-                                    route = it,
-                                    navOptions { popUpTo("dashboard") { inclusive = true } })
+                                navController.navigate(route = it)
                             })
                         }
                         composable("information") {
                             InformationScreen(onClick = {
-                                navController.navigate(
-                                    route = it,
-                                    navOptions { popUpTo("dashboard") { inclusive = true } })
+                                navController.navigate(route = it)
                             })
                         }
                     }
