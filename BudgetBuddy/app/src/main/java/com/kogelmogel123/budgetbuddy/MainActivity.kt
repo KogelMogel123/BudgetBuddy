@@ -19,11 +19,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
-import com.kogelmogel123.budgetbuddy.screens.AddExpensesScreen
-import com.kogelmogel123.budgetbuddy.screens.DashboardScreen
-import com.kogelmogel123.budgetbuddy.screens.InformationScreen
-import com.kogelmogel123.budgetbuddy.screens.ScanReceiptScreen
-import com.kogelmogel123.budgetbuddy.screens.SettingsScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.AddExpensesScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.DashboardScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.ExpensesScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.InformationScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.ScanReceiptScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.SettingsScreen
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -82,6 +83,12 @@ class MainActivity : ComponentActivity() {
                                     contentDescription = "Get information",
                                     icon = Icons.Default.Info
                                 ),
+                                MenuItem(
+                                    id = "expenses",
+                                    title = stringResource(id = R.string.information),
+                                    contentDescription = "Get expenses",
+                                    icon = Icons.Default.Info
+                                ),
                             ),
                             onItemClick = {menuItem ->
                                 println("Clicked on ${menuItem.title}")
@@ -118,6 +125,9 @@ class MainActivity : ComponentActivity() {
                             InformationScreen(onClick = {
                                 navController.navigate(route = it)
                             })
+                        }
+                        composable("expenses") {
+                            ExpensesScreen()
                         }
                     }
                 }

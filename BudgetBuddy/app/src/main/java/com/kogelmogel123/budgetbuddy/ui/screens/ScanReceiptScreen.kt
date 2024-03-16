@@ -1,4 +1,4 @@
-package com.kogelmogel123.budgetbuddy.screens
+package com.kogelmogel123.budgetbuddy.ui.screens
 
 import androidx.compose.runtime.Composable
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
