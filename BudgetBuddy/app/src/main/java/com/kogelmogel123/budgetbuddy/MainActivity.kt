@@ -19,6 +19,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
+import com.kogelmogel123.budgetbuddy.di.appModule
 import com.kogelmogel123.budgetbuddy.ui.screens.AddExpensesScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.DashboardScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ExpensesScreen
@@ -26,12 +27,23 @@ import com.kogelmogel123.budgetbuddy.ui.screens.InformationScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ScanReceiptScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.SettingsScreen
 import kotlinx.coroutines.launch
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
 
 class MainActivity : ComponentActivity() {
 
     @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Koin
+        startKoin {
+            androidLogger()
+            androidContext(this@MainActivity)
+            modules(appModule)
+        }
+
         setContent {
             BudgetBuddyTheme {
                 val scaffoldState = rememberScaffoldState()

@@ -15,8 +15,8 @@ class ExpensesViewModel (private val repo: ExpensesRepository) : ViewModel() {
         _expenses.value = repo.getExpenses()
     }
 
-    fun sayHello(name : String) : String{
+    fun sayHello(name : String) {
         //val foundUser = repository.findUser(name)
-        return "Hello"
+        println("Hello")
     }
 }
