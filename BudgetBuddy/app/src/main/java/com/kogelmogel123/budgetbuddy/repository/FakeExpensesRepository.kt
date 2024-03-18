@@ -8,4 +8,8 @@ class FakeExpensesRepository : ExpensesRepository {
         Expense(2, "Bilet autobusowy", 3.20),
         // Dodaj więcej przykładowych wydatków
     )
+
+   // public fun addExpense(expense: Expense) {
+   //     _expenses.value = _expenses.value?.plus(expense)
+    //}
 }

@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import com.kogelmogel123.budgetbuddy.ui.theme.BudgetBuddyTheme
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
@@ -84,6 +85,12 @@ class MainActivity : ComponentActivity() {
                                     icon = Icons.Default.Add
                                 ),
                                 MenuItem(
+                                    id = "expenses",
+                                    title = stringResource(id = R.string.expenses),
+                                    contentDescription = "Go to expenses screen",
+                                    icon = Icons.Default.AccountBalance
+                                ),
+                                MenuItem(
                                     id = "settings",
                                     title = stringResource(id = R.string.settings),
                                     contentDescription = "Go to settings screen",
@@ -93,12 +100,6 @@ class MainActivity : ComponentActivity() {
                                     id = "information",
                                     title = stringResource(id = R.string.information),
                                     contentDescription = "Get information",
-                                    icon = Icons.Default.Info
-                                ),
-                                MenuItem(
-                                    id = "expenses",
-                                    title = stringResource(id = R.string.information),
-                                    contentDescription = "Get expenses",
                                     icon = Icons.Default.Info
                                 ),
                             ),
@@ -128,6 +129,9 @@ class MainActivity : ComponentActivity() {
                                 navController.navigate(route = it)
                             })
                         }
+                        composable("expenses") {
+                            ExpensesScreen()
+                        }
                         composable("settings") {
                             SettingsScreen(onClick = {
                                 navController.navigate(route = it)
@@ -137,9 +141,6 @@ class MainActivity : ComponentActivity() {
                             InformationScreen(onClick = {
                                 navController.navigate(route = it)
                             })
-                        }
-                        composable("expenses") {
-                            ExpensesScreen()
                         }
                     }
                 }
