@@ -37,10 +37,15 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
 
         OutlinedTextField(
             value = cost,
-            onValueChange = {
-                val newText = it.replace(',', '.')
-                if (newText.isValidMoneyAmount()) {
-                    cost = newText.formatMoney()
+            onValueChange = { newValue ->
+                val processedValue = newValue.replace(',', '.')
+
+                if (processedValue.count { it == '.' } <= 1) {
+                    val dotIndex = processedValue.indexOf('.')
+
+                    if (dotIndex == -1 || processedValue.length - dotIndex - 1 <= 2) {
+                        cost = processedValue
+                    }
                 }
             },
             label = { Text("Amount") },
@@ -48,7 +53,11 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
         )
 
         Button(onClick = {
-            viewModel.addExpense(Expense(0, expenseName, cost.toDoubleOrNull() ?: 0.0))
+            val formattedCost = cost.toDoubleOrNull()?.let {
+                String.format("%.2f", it)
+            } ?: "0.00"
+
+            viewModel.addExpense(Expense(0, expenseName, formattedCost.toDouble()))
         }) {
             Text(text = "Add Expense")
         }
@@ -58,18 +67,5 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
                 ExpenseItem(expense)
             }
         }
-    }
-}
-
-fun String.isValidMoneyAmount(): Boolean {
-    return this.matches("-?\\d*(\\.\\d{0,2})?".toRegex())
-}
-
-fun String.formatMoney(): String {
-    return try {
-        val number = this.toDouble()
-        String.format("%.2f", number)
-    } catch (e: NumberFormatException) {
-        this
     }
 }
