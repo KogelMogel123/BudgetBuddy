@@ -8,12 +8,5 @@ import androidx.compose.runtime.Composable
 @Composable
 fun DashboardScreen(onClick: (String) -> Unit) {
     Column {
-        Text(text = "Dashboard Screen")
-        Button(onClick = { onClick("scanReceipt") }) {
-            Text(text = "Scan Receipt")
-        }
-        Button(onClick = { onClick("addExpenses") }) {
-            Text(text = "Add Expenses")
-        }
     }
 }

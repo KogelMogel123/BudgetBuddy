@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -17,8 +18,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.text.isDigitsOnly
 import com.kogelmogel123.budgetbuddy.model.Expense
+import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
+import com.kogelmogel123.budgetbuddy.ui.components.ExpenseCategorySelector
 
 @Composable
 fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
@@ -26,6 +30,7 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
     val expenses by viewModel.expenses.observeAsState(initial = emptyList())
     var expenseName by remember { mutableStateOf("") }
     var cost by remember { mutableStateOf("") }
+    var selectedCategory by remember { mutableStateOf<ExpenseCategory?>(null) }
 
     Column {
 
@@ -52,12 +57,21 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
         )
 
+        ExpenseCategorySelector(selectedCategory = selectedCategory) { category ->
+            selectedCategory = category
+        }
+
         Button(onClick = {
             val formattedCost = cost.toDoubleOrNull()?.let {
                 String.format("%.2f", it)
             } ?: "0.00"
 
-            viewModel.addExpense(Expense(0, expenseName, formattedCost.toDouble()))
+            viewModel.addExpense(Expense(expenseName, formattedCost.toDouble(), selectedCategory ?: ExpenseCategory.OTHER))
+
+            expenseName = ""
+            cost = ""
+            selectedCategory = null
+
         }) {
             Text(text = "Add Expense")
         }
