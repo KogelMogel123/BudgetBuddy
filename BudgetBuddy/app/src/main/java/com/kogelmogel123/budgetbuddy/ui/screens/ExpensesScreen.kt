@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -19,7 +18,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.text.isDigitsOnly
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 import com.kogelmogel123.budgetbuddy.ui.components.ExpenseCategorySelector
@@ -62,11 +60,13 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
         }
 
         Button(onClick = {
-            val formattedCost = cost.toDoubleOrNull()?.let {
-                String.format("%.2f", it)
-            } ?: "0.00"
-
-            viewModel.addExpense(Expense(expenseName, formattedCost.toDouble(), selectedCategory ?: ExpenseCategory.OTHER))
+            viewModel.addExpense(
+                Expense(
+                    expenseName,
+                    cost.toDouble(),
+                    selectedCategory ?: ExpenseCategory.OTHER
+                )
+            )
 
             expenseName = ""
             cost = ""

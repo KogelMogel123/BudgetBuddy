@@ -98,12 +98,6 @@ dependencies {
 
     // Koin Base
     implementation(platform("io.insert-koin:koin-bom:3.5.3"))
-    //implementation("io.insert-koin:koin-core")
     implementation("io.insert-koin:koin-android")
     implementation("io.insert-koin:koin-androidx-compose")
-
-    ////Koin ksp////
-    //implementation ("io.insert-koin:koin-annotations:3.5.3")
-    //ksp ("io.insert-koin:koin-ksp-compiler:3.5.3")
-    //ksp ("androidx.room:room-compiler:2.6.1")
 }

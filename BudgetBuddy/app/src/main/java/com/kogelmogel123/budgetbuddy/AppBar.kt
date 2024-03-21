@@ -6,6 +6,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun AppBar(
@@ -26,4 +27,10 @@ fun AppBar(
             }
         }
     )
+}
+
+@Preview
+@Composable
+fun AppBarPreview() {
+    AppBar(onNavigationIconClick = {})
 }
