@@ -100,4 +100,8 @@ dependencies {
     implementation(platform("io.insert-koin:koin-bom:3.5.3"))
     implementation("io.insert-koin:koin-android")
     implementation("io.insert-koin:koin-androidx-compose")
+
+    // VICO
+    implementation("com.patrykandpatrick.vico:compose:2.0.0-alpha.12")
+    implementation("com.patrykandpatrick.vico:compose-m3:2.0.0-alpha.12")
 }
