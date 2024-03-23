@@ -115,9 +115,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     NavHost(navController, startDestination = "dashboard") {
                         composable("dashboard") {
-                            DashboardScreen(onClick = {
-                                navController.navigate(route = it)
-                            })
+                            DashboardScreen()
                         }
                         composable("scanReceipt") {
                             ScanReceiptScreen(onClick = {

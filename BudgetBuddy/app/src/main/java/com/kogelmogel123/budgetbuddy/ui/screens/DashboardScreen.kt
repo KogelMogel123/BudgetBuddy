@@ -1,8 +1,6 @@
 package com.kogelmogel123.budgetbuddy.ui.screens
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -16,7 +14,7 @@ import com.patrykandpatrick.vico.core.model.CartesianChartModelProducer
 import com.patrykandpatrick.vico.core.model.columnSeries
 
 @Composable
-fun DashboardScreen(onClick: (String) -> Unit) {
+fun DashboardScreen() {
     val modelProducer = remember { CartesianChartModelProducer.build() }
 
     Column {
@@ -35,5 +33,5 @@ fun DashboardScreen(onClick: (String) -> Unit) {
 @Preview
 @Composable
 fun DashboardScreenPreview() {
-    DashboardScreen {}
+    DashboardScreen()
 }

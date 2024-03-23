@@ -104,4 +104,8 @@ dependencies {
     // VICO
     implementation("com.patrykandpatrick.vico:compose:2.0.0-alpha.12")
     implementation("com.patrykandpatrick.vico:compose-m3:2.0.0-alpha.12")
+
+    // Room
+    implementation("androidx.room:room-runtime:2.6.1")
+    ksp("androidx.room:room-compiler:2.6.1")
 }
