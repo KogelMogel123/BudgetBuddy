@@ -64,7 +64,7 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
                 Expense(
                     expenseName,
                     cost.toDouble(),
-                    selectedCategory ?: ExpenseCategory.OTHER
+                    selectedCategory ?: ExpenseCategory.OTHER,1
                 )
             )
 
