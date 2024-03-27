@@ -12,6 +12,8 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
 ## Wykorzystane Technologie
  - Kotlin
  - Android Studio
+ - Jetpack Compose
+ - Room
 
 ## MUST HAVE
  - Skanowanie paragonów
