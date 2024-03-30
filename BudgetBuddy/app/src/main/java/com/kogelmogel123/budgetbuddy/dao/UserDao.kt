@@ -9,7 +9,6 @@ import androidx.room.Update
 import com.kogelmogel123.budgetbuddy.model.User
 import kotlinx.coroutines.flow.Flow
 
-
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
