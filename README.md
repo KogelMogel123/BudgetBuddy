@@ -42,6 +42,6 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - Personalizacja interfejsu użytkownika
  - Tworzenie grup
  - Zapraszanie innych użytkowników (np. rodzina, partner/ka)
- - Współdzielenie paragonów/wydatków z innymi użytkownikami w ramach grup
- - Rozpoznawanie wzorców w wydatkach użytkownika związanych z porami roku czy świętami i dostarczanie przewidywań budżetowych
- - Notyfikacje dotyczące osiągnięcia celów finansowych
+ - Współdzielenie paragonów/wydatków z innymi użytkownikami w ramach grup.
+ - Rozpoznawanie wzorców w wydatkach użytkownika związanych z porami roku czy świętami i dostarczanie przewidywań budżetowych.
+ - Notyfikacje dotyczące osiągnięcia celów finansowych.
