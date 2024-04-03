@@ -1,13 +1,15 @@
 package com.kogelmogel123.budgetbuddy.ui.screens
 
 import androidx.compose.runtime.Composable
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
-import com.google.accompanist.permissions.PermissionState
-import com.google.accompanist.permissions.isGranted
-import com.google.accompanist.permissions.rememberPermissionState
+import androidx.compose.ui.tooling.preview.Preview
 
-@OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun ScanReceiptScreen(onClick: (String) -> Unit) {
+fun ScanReceiptScreen() {
+    println("ScanReceiptScreen")
+}
 
+@Preview
+@Composable
+fun ScanReceiptScreenPreview() {
+    ScanReceiptScreen()
 }

@@ -3,11 +3,11 @@ package com.kogelmogel123.budgetbuddy.data
 import android.content.Context
 
 interface AppContainer {
-    val itemsRepository: UsersRepository
+    val itemsRepository: ExpensesRepository
 }
 
 class AppDataContainer(private val context: Context) : AppContainer {
-    override val itemsRepository: UsersRepository by lazy {
-        OfflineUsersRepository(BudgetBuddyDatabase.getDatabase(context).userDao())
+    override val itemsRepository: ExpensesRepository by lazy {
+        OfflineExpensesRepository(BudgetBuddyDatabase.getDatabase(context).expenseDao())
     }
 }
