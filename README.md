@@ -14,7 +14,6 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - Android Studio
  - Jetpack Compose
  - Room
- - Dao
 
 ## MUST HAVE
  - Skanowanie paragonów
@@ -26,20 +25,20 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
 ## SHOULD HAVE
  - Możliwość przesyłania zdjęć paragonów z galerii
  - Możliwość stawiania celów budżetowych
- - Statystyki celów
- - Statystyki wydatków
- - Dostosowanie do różnych rozmiarów ekranu
- - Ergonomiczny interfejs użytkownika
+ - Lokalna baza danych
 
 ## COULD HAVE
+ - Statystyki celów
+ - Statystyki wydatków
  - Statystyki cen produktów w czasie
+
+## WON'T HAVE
  - Postawienie API
  - Komunikacja z API
  - Baza danych
  - Logowanie
  - Rejestracja
-
-## WON'T HAVE
+ - Ergonomiczny interfejs użytkownika
  - Personalizacja interfejsu użytkownika
  - Tworzenie grup
  - Zapraszanie innych użytkowników (np. rodzina, partner/ka)
