@@ -1,11 +1,10 @@
 package com.kogelmogel123.budgetbuddy.data
 
-import ExpenseDao
+import androidx.lifecycle.LiveData
 import com.kogelmogel123.budgetbuddy.model.Expense
-import com.kogelmogel123.budgetbuddy.data.ExpensesRepository
 
 class OfflineExpensesRepository(private val expenseDao: ExpenseDao) : ExpensesRepository {
-    //override fun getAllItemsStream(): Flow<List<Expense>> = expenseDao.getAllItems()
+    override fun getAllExpenses(): LiveData<List<Expense>> = expenseDao.getAll()
 
     //override fun getItemStream(id: Int): Flow<Expense?> = expenseDao.getItem(id)
 

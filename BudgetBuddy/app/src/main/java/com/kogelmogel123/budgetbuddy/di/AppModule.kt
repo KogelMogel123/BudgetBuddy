@@ -1,12 +1,21 @@
 package com.kogelmogel123.budgetbuddy.di
 
-import com.kogelmogel123.budgetbuddy.repository.ExpensesRepository
-import com.kogelmogel123.budgetbuddy.repository.FakeExpensesRepository
+import com.kogelmogel123.budgetbuddy.data.BudgetBuddyDatabase
+import com.kogelmogel123.budgetbuddy.data.ExpensesRepository
+import com.kogelmogel123.budgetbuddy.data.OfflineExpensesRepository
 import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
-    single<ExpensesRepository> { FakeExpensesRepository() }
+    single { BudgetBuddyDatabase.getDatabase(androidContext()) }
+
+    single { get<BudgetBuddyDatabase>().expenseDao() }
+
+    single<ExpensesRepository> {
+        OfflineExpensesRepository(expenseDao = get())
+    }
+
     viewModel { ExpensesViewModel(get()) }
 }

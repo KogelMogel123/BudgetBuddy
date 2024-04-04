@@ -61,6 +61,7 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
         Button(onClick = {
             viewModel.addExpense(
                 Expense(
+                    1,
                     expenseName,
                     cost.toDouble(),
                     selectedCategory ?: ExpenseCategory.OTHER,1
@@ -76,8 +77,10 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
         }
 
         LazyColumn {
-            items(expenses) { expense ->
-                ExpenseItem(expense)
+            expenses?.let {
+                items(it) { expense ->
+                    ExpenseItem(expense)
+                }
             }
         }
     }

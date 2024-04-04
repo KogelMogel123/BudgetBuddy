@@ -3,10 +3,12 @@ package com.kogelmogel123.budgetbuddy.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.kogelmogel123.budgetbuddy.data.ExpensesRepository
 import com.kogelmogel123.budgetbuddy.model.Expense
-import com.kogelmogel123.budgetbuddy.repository.ExpensesRepository
+import kotlinx.coroutines.launch
 
-class ExpensesViewModel (private val repo: ExpensesRepository) : ViewModel() {
+class ExpensesViewModel (private val expensesRepository: ExpensesRepository) : ViewModel() {
 
     private val _expenses = MutableLiveData<List<Expense>>()
 
@@ -16,10 +18,14 @@ class ExpensesViewModel (private val repo: ExpensesRepository) : ViewModel() {
     val expenses: LiveData<List<Expense>> = _expenses
     init {
         // Tu można załadować wydatki, na przykład z repozytorium
-        _expenses.value = repo.getExpenses()
+        _expenses.value = expensesRepository.getAllExpenses().value
     }
 
-    public fun addExpense(expense: Expense) {
-        _expenses.value = _expenses.value?.plus(expense)
+    fun addExpense(expense: Expense) {
+        viewModelScope.launch {
+            expensesRepository.insertExpense(expense)
+            // Tutaj możesz zaktualizować _expenses
+            _expenses.value = expensesRepository.getAllExpenses().value
+        }
     }
 }

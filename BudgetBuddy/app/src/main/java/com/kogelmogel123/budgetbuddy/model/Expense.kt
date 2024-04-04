@@ -2,9 +2,13 @@ package com.kogelmogel123.budgetbuddy.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity
 data class Expense(
+    @PrimaryKey
+    val uid: Int,
+
     @ColumnInfo(name = "name")
     val name: String,
 

@@ -30,7 +30,7 @@ fun ExpenseItem(expense: Expense) {
 @Preview
 @Composable
 private fun PreviewExpenseItem() {
-    var expense = Expense("name", 1.00, ExpenseCategory.OTHER,1)
+    var expense = Expense(1, "test", 1.00, ExpenseCategory.OTHER, 1)
     androidx.compose.material.MaterialTheme {
         ExpenseItem(expense);
     }
