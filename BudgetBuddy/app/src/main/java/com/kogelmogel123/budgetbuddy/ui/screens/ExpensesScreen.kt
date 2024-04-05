@@ -61,7 +61,7 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
         Button(onClick = {
             viewModel.addExpense(
                 Expense(
-                    1,
+                    0,
                     expenseName,
                     cost.toDouble(),
                     selectedCategory ?: ExpenseCategory.OTHER,1

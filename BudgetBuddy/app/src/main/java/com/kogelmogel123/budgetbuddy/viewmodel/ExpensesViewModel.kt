@@ -10,22 +10,11 @@ import kotlinx.coroutines.launch
 
 class ExpensesViewModel (private val expensesRepository: ExpensesRepository) : ViewModel() {
 
-    private val _expenses = MutableLiveData<List<Expense>>()
-
-
-    //private val _expenses = mutableListOf<Expense>()
-    //val expenses: MutableList<Expense> = _expenses
-    val expenses: LiveData<List<Expense>> = _expenses
-    init {
-        // Tu można załadować wydatki, na przykład z repozytorium
-        _expenses.value = expensesRepository.getAllExpenses().value
-    }
+    val expenses: LiveData<List<Expense>> = expensesRepository.getAllExpenses()
 
     fun addExpense(expense: Expense) {
         viewModelScope.launch {
             expensesRepository.insertExpense(expense)
-            // Tutaj możesz zaktualizować _expenses
-            _expenses.value = expensesRepository.getAllExpenses().value
         }
     }
 }
