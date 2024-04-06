@@ -12,16 +12,17 @@ import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
 import org.koin.androidx.compose.koinViewModel
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavController
 import com.kogelmogel123.budgetbuddy.ui.components.FloatingActionButtonComponent
 
 @Composable
-fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel()) {
+fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController: NavController) {
 
     val expenses by viewModel.expenses.observeAsState(initial = emptyList())
 
     Scaffold(
         floatingActionButton = {
-            FloatingActionButtonComponent(onFabClicked = { })
+            FloatingActionButtonComponent(onFabClicked = { navController.navigate("addExpense") })
         }
     ) { paddingValues ->
         Column(modifier = Modifier.padding(paddingValues)) {

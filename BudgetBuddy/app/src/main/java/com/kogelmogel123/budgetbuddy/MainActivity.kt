@@ -16,6 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.kogelmogel123.budgetbuddy.di.appModule
+import com.kogelmogel123.budgetbuddy.ui.screens.AddExpenseScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.DashboardScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ExpensesScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ScanReceiptScreen
@@ -95,7 +96,10 @@ class MainActivity : ComponentActivity() {
                             ScanReceiptScreen()
                         }
                         composable("expenses") {
-                            ExpensesScreen()
+                            ExpensesScreen(navController = navController)
+                        }
+                        composable("addExpense") {
+                            AddExpenseScreen()
                         }
                     }
                 }
