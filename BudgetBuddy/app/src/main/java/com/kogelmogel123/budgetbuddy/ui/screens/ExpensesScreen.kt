@@ -12,8 +12,11 @@ import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
 import org.koin.androidx.compose.koinViewModel
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.kogelmogel123.budgetbuddy.ui.components.FloatingActionButtonComponent
+import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockExpensesViewModel
+import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
 
 @Composable
 fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController: NavController) {
@@ -35,4 +38,10 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ExpensesScreenPreview() {
+    ExpensesScreen(viewModel = mockExpensesViewModel(), navController = mockNavController())
 }

@@ -5,7 +5,7 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun AddExpenseScreen() {
-    println("DashboardScreen")
+    println("AddExpenseScreen")
 }
 
 @Preview
