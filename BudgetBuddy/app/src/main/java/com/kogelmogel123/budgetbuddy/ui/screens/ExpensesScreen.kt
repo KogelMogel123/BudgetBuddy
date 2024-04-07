@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import com.kogelmogel123.budgetbuddy.ui.components.ExpenseItem
@@ -23,24 +25,25 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController
 
     val expenses by viewModel.expenses.observeAsState(initial = emptyList())
 
-    Scaffold(
-        floatingActionButton = {
-            FloatingActionButtonComponent(onFabClicked = { navController.navigate("addExpense") })
-        }
-    ) { paddingValues ->
-        Column(modifier = Modifier.padding(paddingValues)) {
-            LazyColumn {
-                expenses?.let {
-                    items(it) { expense ->
-                        ExpenseItem(expense)
+        Scaffold(
+            floatingActionButton = {
+                FloatingActionButtonComponent(onFabClicked = { navController.navigate("addExpense") })
+            }
+        ) { paddingValues ->
+            Column(modifier = Modifier.padding(paddingValues)) {
+                Text(text = "Expenses", style = MaterialTheme.typography.titleLarge)
+                LazyColumn {
+                    expenses?.let {
+                        items(it) { expense ->
+                            ExpenseItem(expense)
+                        }
                     }
                 }
             }
         }
-    }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun ExpensesScreenPreview() {
     ExpensesScreen(viewModel = mockExpensesViewModel(), navController = mockNavController())
