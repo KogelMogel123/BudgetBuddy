@@ -13,15 +13,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 import com.kogelmogel123.budgetbuddy.ui.components.ExpenseCategorySelector
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockExpensesViewModel
+import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
 import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel()) {
+fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navController: NavController) {
     var expenseName by remember { mutableStateOf("") }
     var cost by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf<ExpenseCategory?>(null) }
@@ -69,6 +71,8 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel()) {
             cost = ""
             selectedCategory = null
 
+            navController.navigate("expenses")
+
         }) {
             Text(text = "Add Expense")
         }
@@ -78,5 +82,5 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel()) {
 @Preview(showBackground = true)
 @Composable
 fun AddExpenseScreenPreview() {
-    AddExpenseScreen(viewModel = mockExpensesViewModel())
+    AddExpenseScreen(viewModel = mockExpensesViewModel(), navController = mockNavController())
 }

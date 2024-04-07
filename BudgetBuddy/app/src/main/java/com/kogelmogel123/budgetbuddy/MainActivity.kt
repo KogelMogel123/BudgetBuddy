@@ -99,7 +99,7 @@ class MainActivity : ComponentActivity() {
                             ExpensesScreen(navController = navController)
                         }
                         composable("addExpense") {
-                            AddExpenseScreen()
+                            AddExpenseScreen(navController = navController)
                         }
                     }
                 }
