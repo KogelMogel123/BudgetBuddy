@@ -14,10 +14,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.kogelmogel123.budgetbuddy.R
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 import com.kogelmogel123.budgetbuddy.ui.components.ExpenseCategorySelector
@@ -33,12 +35,11 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
     var selectedCategory by remember { mutableStateOf<ExpenseCategory?>(null) }
 
     Column {
-        Text(text = "Add Expense", style = MaterialTheme.typography.titleLarge)
-
+        
         OutlinedTextField(
             value = expenseName,
             onValueChange = { expenseName = it },
-            label = { Text("Expense name") },
+            label = { Text(stringResource(id = R.string.expenseName)) },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -55,7 +56,7 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
                     }
                 }
             },
-            label = { Text("Amount") },
+            label = { Text(stringResource(id = R.string.amount)) },
             modifier =Modifier.fillMaxWidth(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
         )
@@ -81,7 +82,7 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
             navController.navigate("expenses")
         },
             Modifier.padding(top = 16.dp).fillMaxWidth()){
-            Text(text = "Add Expense")
+            Text(text = stringResource(id = R.string.addExpense))
         }
     }
 }

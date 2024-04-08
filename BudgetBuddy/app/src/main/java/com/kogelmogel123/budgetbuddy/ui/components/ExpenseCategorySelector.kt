@@ -3,7 +3,9 @@ package com.kogelmogel123.budgetbuddy.ui.components
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.kogelmogel123.budgetbuddy.R
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 
 @Composable
@@ -15,7 +17,7 @@ fun ExpenseCategorySelector(selectedCategory: ExpenseCategory?, onCategorySelect
         OutlinedButton(
             onClick = { expanded = true }
         ) {
-            Text(text = selectedCategory?.name ?: "Select a category")
+            Text(text = selectedCategory?.name ?: stringResource(id = R.string.selectCategory))
         }
         DropdownMenu(
             expanded = expanded,

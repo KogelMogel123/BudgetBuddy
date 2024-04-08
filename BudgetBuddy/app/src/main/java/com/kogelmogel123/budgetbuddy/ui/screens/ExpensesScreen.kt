@@ -1,5 +1,6 @@
 package com.kogelmogel123.budgetbuddy.ui.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -14,12 +15,15 @@ import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
 import org.koin.androidx.compose.koinViewModel
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.kogelmogel123.budgetbuddy.R
 import com.kogelmogel123.budgetbuddy.ui.components.FloatingActionButtonComponent
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockExpensesViewModel
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController: NavController) {
 
@@ -31,7 +35,7 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController
             }
         ) { paddingValues ->
             Column(modifier = Modifier.padding(paddingValues)) {
-                Text(text = "Expenses", style = MaterialTheme.typography.titleLarge)
+                Text(text = stringResource(id = R.string.expenses), style = MaterialTheme.typography.titleLarge)
                 LazyColumn {
                     expenses?.let {
                         items(it) { expense ->

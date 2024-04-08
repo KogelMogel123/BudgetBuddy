@@ -1,10 +1,13 @@
 <resources>
     <string name="app_name">Budget Buddy</string>
     <string name="dashboard">Dashboard</string>
-    <string name="addExpenses">Add expenses</string>
+    <string name="addExpense">Add expense</string>
     <string name="scanReceipt">Scan receipt</string>
     <string name="settings">Settings</string>
     <string name="information">Information</string>
     <string name="expenses">Expenses</string>
     <string name="exit">Exit</string>
+    <string name="amount">Amount</string>
+    <string name="expenseName">Expense name</string>
+    <string name="selectCategory">Select a category</string>
 </resources>
