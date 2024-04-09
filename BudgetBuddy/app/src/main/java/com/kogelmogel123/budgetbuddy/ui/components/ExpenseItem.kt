@@ -28,7 +28,8 @@ fun ExpenseItem(expense: Expense, onEdit: () -> Unit, onDelete: () -> Unit) {
     Card(modifier = Modifier
         .padding(8.dp)
         .fillMaxWidth()
-        .clickable { expanded = true }) {
+        .clickable { expanded = true }
+    ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = expense.name, style = MaterialTheme.typography.titleMedium)
             Text(text = "${String.format("%.2f", expense.cost)} zł", style = MaterialTheme.typography.bodyMedium)
