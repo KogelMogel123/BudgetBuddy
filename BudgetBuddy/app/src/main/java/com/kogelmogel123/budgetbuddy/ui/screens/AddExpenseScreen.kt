@@ -35,7 +35,7 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
     var selectedCategory by remember { mutableStateOf<ExpenseCategory?>(null) }
 
     Column {
-        
+
         OutlinedTextField(
             value = expenseName,
             onValueChange = { expenseName = it },

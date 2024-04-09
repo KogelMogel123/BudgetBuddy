@@ -39,7 +39,9 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController
                 LazyColumn {
                     expenses?.let {
                         items(it) { expense ->
-                            ExpenseItem(expense)
+                            ExpenseItem(expense,
+                                onEdit = { /* Logika edycji dla wydatku */ },
+                                onDelete = { /* Logika usunięcia dla wydatku */ })
                         }
                     }
                 }
