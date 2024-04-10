@@ -9,6 +9,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -28,15 +29,17 @@ import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navController: NavController) {
-    var expenseName by remember { mutableStateOf("") }
-    var cost by remember { mutableStateOf("") }
-    var selectedCategory by remember { mutableStateOf<ExpenseCategory?>(null) }
+fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navController: NavController, expenseId: Int) {
+    val expense by viewModel.getExpenseById(expenseId).observeAsState()
+
+    var expenseName by remember { mutableStateOf(expense?.name) }
+    var cost by remember { mutableStateOf(expense?.cost.toString()) }
+    var selectedCategory by remember { mutableStateOf<ExpenseCategory?>(expense?.category) }
 
     Column {
 
         OutlinedTextField(
-            value = expenseName,
+            value = expenseName ?: "",
             onValueChange = { expenseName = it },
             label = { Text(stringResource(id = R.string.expenseName)) },
             modifier = Modifier.fillMaxWidth()
@@ -65,10 +68,10 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
         }
 
         Button(onClick = {
-            viewModel.addExpense(
+            viewModel.updateExpense(
                 Expense(
-                    0,
-                    expenseName,
+                    expenseId,
+                    expenseName ?: "",
                     cost.toDouble(),
                     selectedCategory ?: ExpenseCategory.OTHER,1
                 )
@@ -77,13 +80,13 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
             navController.navigate("expenses")
         },
             Modifier.padding(top = 16.dp).fillMaxWidth()){
-            Text(text = stringResource(id = R.string.addExpense))
+            Text(text = stringResource(id = R.string.editExpense))
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun AddExpenseScreenPreview() {
-    AddExpenseScreen(viewModel = mockExpensesViewModel(), navController = mockNavController())
+fun EditExpenseScreenPreview() {
+    EditExpenseScreen(viewModel = mockExpensesViewModel(), navController = mockNavController(), expenseId = 1)
 }

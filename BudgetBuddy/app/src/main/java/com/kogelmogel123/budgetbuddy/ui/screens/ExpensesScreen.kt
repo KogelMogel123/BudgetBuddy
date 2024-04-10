@@ -40,7 +40,7 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController
                     expenses?.let {
                         items(it) { expense ->
                             ExpenseItem(expense,
-                                onEdit = { /* Logika edycji dla wydatku */ },
+                                onEdit = { navController.navigate("editExpense/${expense.id}") },
                                 onDelete = { viewModel.deleteExpense(expense) })
                         }
                     }

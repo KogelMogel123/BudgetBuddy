@@ -17,6 +17,10 @@ class FakeExpensesRepository : ExpensesRepository {
         return expensesList
     }
 
+    override suspend fun getExpenseById(id: Int): Expense? {
+        return expensesList.value?.find { it.id == id }
+    }
+
     override suspend fun insertExpense(expense: Expense) {
     }
 

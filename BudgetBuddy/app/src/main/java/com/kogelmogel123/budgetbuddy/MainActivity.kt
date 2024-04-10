@@ -12,12 +12,15 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.kogelmogel123.budgetbuddy.di.appModule
 import com.kogelmogel123.budgetbuddy.ui.screens.AddExpenseScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.DashboardScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.EditExpenseScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ExpensesScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ScanReceiptScreen
 import kotlinx.coroutines.launch
@@ -100,6 +103,13 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("addExpense") {
                             AddExpenseScreen(navController = navController)
+                        }
+                        composable(
+                            route = "editExpense/{expenseId}",
+                            arguments = listOf(navArgument("expenseId") { type = NavType.IntType })
+                        ) { backStackEntry ->
+                            val expenseId = backStackEntry.arguments?.getInt("id") ?: -1
+                            EditExpenseScreen(navController = navController, expenseId = expenseId)
                         }
                     }
                 }

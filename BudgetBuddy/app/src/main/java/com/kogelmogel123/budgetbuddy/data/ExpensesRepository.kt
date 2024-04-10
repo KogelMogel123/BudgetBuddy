@@ -16,7 +16,7 @@ interface ExpensesRepository {
     /**
      * Retrieve an expense from the given data source that matches with the [id].
      */
-    //fun getExpenseStream(id: Int): Flow<Expense?>
+    suspend fun getExpenseById(id: Int): Expense?
 
     /**
      * Insert expense in the data source

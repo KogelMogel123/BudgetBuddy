@@ -12,9 +12,24 @@ class ExpensesViewModel (private val expensesRepository: ExpensesRepository) : V
 
     val expenses: LiveData<List<Expense>> = expensesRepository.getAllExpenses()
 
+    fun getExpenseById(id: Int): LiveData<Expense?> {
+        val result = MutableLiveData<Expense?>()
+        viewModelScope.launch {
+            val expense = expensesRepository.getExpenseById(id)
+            result.postValue(expense)
+        }
+        return result
+    }
+
     fun addExpense(expense: Expense) {
         viewModelScope.launch {
             expensesRepository.insertExpense(expense)
+        }
+    }
+
+    fun updateExpense(expense: Expense) {
+        viewModelScope.launch {
+            expensesRepository.updateExpense(expense)
         }
     }
 

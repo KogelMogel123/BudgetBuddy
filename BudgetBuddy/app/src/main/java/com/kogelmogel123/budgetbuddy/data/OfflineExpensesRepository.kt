@@ -6,7 +6,7 @@ import com.kogelmogel123.budgetbuddy.model.Expense
 class OfflineExpensesRepository(private val expenseDao: ExpenseDao) : ExpensesRepository {
     override fun getAllExpenses(): LiveData<List<Expense>> = expenseDao.getAll()
 
-    //override fun getItemStream(id: Int): Flow<Expense?> = expenseDao.getItem(id)
+    override suspend fun getExpenseById(id: Int): Expense? = expenseDao.getExpenseById(id)
 
     override suspend fun insertExpense(expense: Expense) = expenseDao.insert(expense)
 
