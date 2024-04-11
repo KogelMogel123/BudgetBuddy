@@ -3,6 +3,7 @@
     <string name="dashboard">Dashboard</string>
     <string name="addExpense">Add expense</string>
     <string name="editExpense">Edit expense</string>
+    <string name="deleteExpense">Delete expense</string>
     <string name="scanReceipt">Scan receipt</string>
     <string name="settings">Settings</string>
     <string name="information">Information</string>
