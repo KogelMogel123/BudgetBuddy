@@ -82,22 +82,6 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
             Modifier.padding(top = 16.dp).fillMaxWidth()){
             Text(text = stringResource(id = R.string.editExpense))
         }
-
-        Button(onClick = {
-            viewModel.deleteExpense(
-                Expense(
-                    expenseId,
-                    expenseName ?: "",
-                    cost.toDouble(),
-                    selectedCategory ?: ExpenseCategory.OTHER,1
-                )
-            )
-
-            navController.navigate("expenses")
-        },
-            Modifier.padding(top = 16.dp).fillMaxWidth()){
-            Text(text = stringResource(id = R.string.deleteExpense))
-        }
     }
 }
 
