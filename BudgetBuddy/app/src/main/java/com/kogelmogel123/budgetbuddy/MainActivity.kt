@@ -105,11 +105,11 @@ class MainActivity : ComponentActivity() {
                             AddExpenseScreen(navController = navController)
                         }
                         composable(
-                            route = "editExpense/{expenseId}",
-                            arguments = listOf(navArgument("expenseId") { type = NavType.IntType })
+                            route = "editExpense/{id}",
+                            arguments = listOf(navArgument("id") { type = NavType.IntType })
                         ) { backStackEntry ->
                             val expenseId = backStackEntry.arguments?.getInt("id") ?: -1
-                            EditExpenseScreen(navController = navController, expenseId = expenseId)
+                            EditExpenseScreen(navController = navController, id = expenseId)
                         }
                     }
                 }

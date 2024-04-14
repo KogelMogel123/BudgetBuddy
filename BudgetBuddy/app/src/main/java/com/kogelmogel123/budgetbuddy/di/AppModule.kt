@@ -1,7 +1,7 @@
 package com.kogelmogel123.budgetbuddy.di
 
 import com.kogelmogel123.budgetbuddy.data.BudgetBuddyDatabase
-import com.kogelmogel123.budgetbuddy.data.ExpensesRepository
+import com.kogelmogel123.budgetbuddy.data.IExpensesRepository
 import com.kogelmogel123.budgetbuddy.data.OfflineExpensesRepository
 import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
 import org.koin.android.ext.koin.androidContext
@@ -13,7 +13,7 @@ val appModule = module {
 
     single { get<BudgetBuddyDatabase>().expenseDao() }
 
-    single<ExpensesRepository> {
+    single<IExpensesRepository> {
         OfflineExpensesRepository(expenseDao = get())
     }
 
