@@ -11,7 +11,9 @@ import androidx.compose.material.Icon
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -90,21 +92,21 @@ fun DrawerBodyPreview() {
         items = listOf(
             MenuItem(
                 id = "1",
-                title = "Home",
-                contentDescription = "Home",
+                title = "Dashboard",
+                contentDescription = "Dashboard",
                 icon = Icons.Default.Home
             ),
             MenuItem(
                 id = "2",
-                title = "Expenses",
-                contentDescription = "Expenses",
-                icon = Icons.Default.Home
+                title = "ScanReceipt",
+                contentDescription = "ScanReceipt",
+                icon = Icons.Default.Search
             ),
             MenuItem(
                 id = "3",
-                title = "Settings",
-                contentDescription = "Settings",
-                icon = Icons.Default.Home
+                title = "Expenses",
+                contentDescription = "Expenses",
+                icon = Icons.Default.AccountBalance
             )
         ),
         onItemClick = {}
