@@ -54,7 +54,7 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
         OutlinedTextField(
             value = expenseName ?: "",
             onValueChange = { expenseName = it },
-            label = { Text(stringResource(id = R.string.expenseName)) },
+            label = { Text(stringResource(id = R.string.expense_name)) },
             modifier = Modifier.fillMaxWidth()
         )
 
@@ -95,7 +95,7 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
             Modifier
                 .padding(top = 16.dp)
                 .fillMaxWidth()){
-            Text(text = stringResource(id = R.string.editExpense))
+            Text(text = stringResource(id = R.string.edit_expense))
         }
     }
 }

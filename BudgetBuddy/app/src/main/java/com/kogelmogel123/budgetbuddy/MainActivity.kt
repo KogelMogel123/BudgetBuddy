@@ -70,7 +70,7 @@ class MainActivity : ComponentActivity() {
                                 ),
                                 MenuItem(
                                     id = "scanReceipt",
-                                    title = stringResource(id = R.string.scanReceipt),
+                                    title = stringResource(id = R.string.scan_receipt),
                                     contentDescription = "Go to scan receipt screen",
                                     icon = Icons.Default.Search
                                 ),

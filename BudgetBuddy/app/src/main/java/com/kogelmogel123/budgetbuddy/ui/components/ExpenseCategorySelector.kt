@@ -17,7 +17,7 @@ fun ExpenseCategorySelector(selectedCategory: ExpenseCategory?, onCategorySelect
         OutlinedButton(
             onClick = { expanded = true }
         ) {
-            Text(text = selectedCategory?.name ?: stringResource(id = R.string.selectCategory))
+            Text(text = selectedCategory?.name ?: stringResource(id = R.string.select_category))
         }
         DropdownMenu(
             expanded = expanded,
