@@ -14,6 +14,7 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - Android Studio
  - Jetpack Compose
  - Room
+ - CameraX
 
 ## MUST HAVE
  - Skanowanie paragonów
