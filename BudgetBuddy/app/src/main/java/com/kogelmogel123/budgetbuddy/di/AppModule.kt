@@ -3,6 +3,7 @@ package com.kogelmogel123.budgetbuddy.di
 import com.kogelmogel123.budgetbuddy.data.BudgetBuddyDatabase
 import com.kogelmogel123.budgetbuddy.data.IExpensesRepository
 import com.kogelmogel123.budgetbuddy.data.OfflineExpensesRepository
+import com.kogelmogel123.budgetbuddy.viewmodel.CameraScreenViewModel
 import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
 import com.kogelmogel123.budgetbuddy.viewmodel.ScanReceiptViewModel
 import org.koin.android.ext.koin.androidContext
@@ -20,4 +21,5 @@ val appModule = module {
 
     viewModel { ExpensesViewModel(get()) }
     viewModel { ScanReceiptViewModel() }
+    viewModel { CameraScreenViewModel() }
 }

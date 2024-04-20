@@ -1,10 +1,13 @@
-package com.kogelmogel123.budgetbuddy.ui.screens
+package com.kogelmogel123.budgetbuddy.ui.screens.camera
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Camera
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +27,9 @@ fun NoPermissionScreen(onRequestPermission: () -> Unit){
     ){
         Text(text = stringResource(id = R.string.camera_permission_denied), style = MaterialTheme.typography.bodyMedium)
         Button(onClick = onRequestPermission) {
-            Text(text = stringResource(id = R.string.request_camera_permission),
+            Icon(imageVector = Icons.Default.Camera, contentDescription = "Camera")
+            Text(
+                text = stringResource(id = R.string.request_camera_permission),
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.padding(12.dp))
         }

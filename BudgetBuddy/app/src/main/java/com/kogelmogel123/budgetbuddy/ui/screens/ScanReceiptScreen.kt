@@ -6,6 +6,8 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
+import com.kogelmogel123.budgetbuddy.ui.screens.camera.CameraScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.camera.NoPermissionScreen
 import com.kogelmogel123.budgetbuddy.viewmodel.ScanReceiptViewModel
 import org.koin.androidx.compose.koinViewModel
 
