@@ -4,12 +4,15 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.camera.view.CameraController
+import androidx.camera.view.LifecycleCameraController
 import com.kogelmogel123.budgetbuddy.ui.theme.BudgetBuddyTheme
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavType
@@ -46,6 +49,13 @@ class MainActivity : ComponentActivity() {
                 val scaffoldState = rememberScaffoldState()
                 val scope = rememberCoroutineScope()
                 val navController = rememberNavController()
+                val photoController = remember {
+                    LifecycleCameraController(applicationContext).apply {
+                        setEnabledUseCases(
+                            CameraController.IMAGE_CAPTURE
+                        )
+                    }
+                }
                 Scaffold(
                     scaffoldState = scaffoldState,
                     topBar = {
@@ -96,7 +106,7 @@ class MainActivity : ComponentActivity() {
                             DashboardScreen()
                         }
                         composable("scanReceipt") {
-                            ScanReceiptScreen()
+                            ScanReceiptScreen(photoController)
                         }
                         composable("expenses") {
                             ExpensesScreen(navController = navController)
