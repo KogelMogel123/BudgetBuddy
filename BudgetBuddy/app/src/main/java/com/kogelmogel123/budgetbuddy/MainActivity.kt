@@ -25,6 +25,7 @@ import com.kogelmogel123.budgetbuddy.ui.screens.AddExpenseScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.DashboardScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.EditExpenseScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ExpensesScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.ReceiptsImagesScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ScanReceiptScreen
 import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
@@ -90,6 +91,12 @@ class MainActivity : ComponentActivity() {
                                     contentDescription = "Go to expenses screen",
                                     icon = Icons.Default.AccountBalance
                                 ),
+                                MenuItem(
+                                    id = "receiptsImagesScreen",
+                                    title = stringResource(id = R.string.expenses),
+                                    contentDescription = "Go to Receipts Images Screen",
+                                    icon = Icons.Default.AccountBalance
+                                ),
                             ),
                             onItemClick = {menuItem ->
                                 println("Clicked on ${menuItem.title}")
@@ -110,6 +117,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("expenses") {
                             ExpensesScreen(navController = navController)
+                        }
+                        composable("receiptsImagesScreen") {
+                            ReceiptsImagesScreen()
                         }
                         composable("addExpense") {
                             AddExpenseScreen(navController = navController)
