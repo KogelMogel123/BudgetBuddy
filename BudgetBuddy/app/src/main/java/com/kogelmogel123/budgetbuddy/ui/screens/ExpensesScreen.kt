@@ -36,7 +36,7 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController
                 TripleFloatingActionButton(
                     onFirstButtonClick = { navController.navigate("addExpense") },
                     onSecondButtonClick = { navController.navigate("scanReceipt") },
-                    onThirdButtonClick = { navController.navigate("scanReceipt") },
+                    onThirdButtonClick = { navController.navigate("receiptsImagesScreen") },
                     imageVector = Icons.Filled.Add,
                     contentDescription = stringResource(id = R.string.add_expense),
                     imageVector2 = Icons.Filled.Search,

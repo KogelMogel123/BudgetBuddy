@@ -1,50 +1,62 @@
 package com.kogelmogel123.budgetbuddy.ui.screens
 
-import android.util.Log
+import android.net.Uri
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import coil.compose.rememberAsyncImagePainter
-import coil.request.ImageRequest
-import coil.size.Scale
 import com.kogelmogel123.budgetbuddy.viewmodel.ReceiptsImagesViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ReceiptsImagesScreen(viewModel: ReceiptsImagesViewModel = koinViewModel()) {
-    val imagesUriList by viewModel.imagesUriList.collectAsState()
-    val context = LocalContext.current
-
-    LaunchedEffect(key1 = true) {
-        viewModel.loadImagesFromReceiptsFolder(context)
+    var selectedImage by remember { mutableStateOf<Uri?>(null) }
+    val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) {
+        selectedImage = it
     }
 
-    LazyColumn {
-        items(imagesUriList) { imageUri ->
-            Image(
-                painter = rememberAsyncImagePainter(
+    MyContent {
+        launcher.launch("image/*")
+    }
+}
 
-                    ImageRequest.Builder(LocalContext.current)
-                    .data(data = imageUri)
-                    .listener(onError = { request, throwable ->
-                        Log.e("ImageLoadError", "Failed to load image {$throwable}")
-                        })
-                    .apply(block = fun ImageRequest.Builder.() {
-                        scale(Scale.FILL)
-                    }).build()
-                ),
-                contentDescription = null,
-                modifier = Modifier.fillMaxWidth(),
-                contentScale = ContentScale.FillWidth
-            )
+@Composable
+fun MyContent(selectedImage: Uri? = null, onImageClick:() -> Unit)
+{
+    Scaffold(){
+        Column (modifier = Modifier
+            .fillMaxWidth()
+            .padding(it)
+        ){
+            if(selectedImage != null) {
+                Image(
+                    painter = rememberAsyncImagePainter(selectedImage),
+                    contentDescription = "Receipt Image",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onImageClick() },
+                    contentScale = ContentScale.Fit)
+            }
+            else{
+                OutlinedButton(onClick = onImageClick)
+                {
+                    Text(text = "Choose Image")
+                }
+            }
         }
     }
 }
