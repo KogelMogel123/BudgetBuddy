@@ -19,11 +19,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.rememberAsyncImagePainter
-import com.kogelmogel123.budgetbuddy.viewmodel.ReceiptsImagesViewModel
-import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ReceiptsImagesScreen(viewModel: ReceiptsImagesViewModel = koinViewModel()) {
+fun ReceiptsImagesScreen() {
     var selectedImage by remember { mutableStateOf<Uri?>(null) }
     val launcher = rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) {
         selectedImage = it

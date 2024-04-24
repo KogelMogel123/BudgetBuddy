@@ -53,6 +53,12 @@ fun CameraPreviewScreen() {
     }
 }
 
+@androidx.compose.ui.tooling.preview.Preview
+@Composable
+fun CameraPreviewScreenPreview() {
+    CameraPreviewScreen()
+}
+
 private fun captureImage(imageCapture: ImageCapture, context: Context) {
     val name = "CameraxImage.jpeg"
     val contentValues = ContentValues().apply {

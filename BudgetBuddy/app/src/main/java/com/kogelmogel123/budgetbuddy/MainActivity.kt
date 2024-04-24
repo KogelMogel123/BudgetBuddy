@@ -113,7 +113,7 @@ class MainActivity : ComponentActivity() {
                             DashboardScreen()
                         }
                         composable("scanReceipt") {
-                            ScanReceiptScreen(photoController)
+                            ScanReceiptScreen()
                         }
                         composable("expenses") {
                             ExpensesScreen(navController = navController)

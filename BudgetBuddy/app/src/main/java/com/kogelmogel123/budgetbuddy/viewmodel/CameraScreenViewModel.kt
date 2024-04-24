@@ -1,15 +1,49 @@
 package com.kogelmogel123.budgetbuddy.viewmodel
 
-import android.graphics.Bitmap
+import android.content.Context
+import android.media.MediaScannerConnection
+import android.net.Uri
+import android.util.Log
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import java.io.File
+import java.util.Calendar
+import java.util.concurrent.Executors
 
 class CameraScreenViewModel : ViewModel() {
-    private val _bitmaps = MutableStateFlow<List<Bitmap>>(emptyList())
-    val bitmaps = _bitmaps.asStateFlow()
+    fun takePhoto(
+        imageCapture: ImageCapture,
+        outputDir: File,
+        onImageCaptured: (Uri) -> Unit,
+        onError: (ImageCaptureException) -> Unit,
+        context: Context){
+        val executor = Executors.newSingleThreadExecutor()
+        val file = File(outputDir, "${ Calendar.getInstance().timeInMillis.toString()}.jpg")
 
-    fun onTakePhoto(bitmap: Bitmap) {
-        _bitmaps.value += bitmap
+        Log.d("Photo", "file: ${file?.path}")
+
+        val outputOpts = ImageCapture.OutputFileOptions.Builder(file).build()
+        val callback = object : ImageCapture.OnImageSavedCallback{
+            override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                outputFileResults.savedUri?.let { uri ->
+                    onImageCaptured(uri)
+                    Log.d("Photo", "Zapisano zdjęcie: $uri")
+
+                    // Skanowanie pliku, aby był widoczny w galerii
+                    MediaScannerConnection.scanFile(
+                        context,
+                        arrayOf(file.absolutePath),
+                        null
+                    ) { path, uri ->
+                        Log.d("Photo", "Zdjęcie dodane do galerii: $uri")
+                    }
+                }
+            }
+            override fun onError(exception: ImageCaptureException) {
+                onError(exception)
+            }
+        }
+        imageCapture.takePicture(outputOpts, executor, callback)
     }
 }
