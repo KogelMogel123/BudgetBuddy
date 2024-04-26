@@ -10,6 +10,7 @@ import com.kogelmogel123.budgetbuddy.ui.theme.BudgetBuddyTheme
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.remember
@@ -80,22 +81,22 @@ class MainActivity : ComponentActivity() {
                                     icon = Icons.Default.Home
                                 ),
                                 MenuItem(
-                                    id = "scanReceipt",
-                                    title = stringResource(id = R.string.scan_receipt),
-                                    contentDescription = "Go to scan receipt screen",
-                                    icon = Icons.Default.Search
-                                ),
-                                MenuItem(
                                     id = "expenses",
                                     title = stringResource(id = R.string.expenses),
                                     contentDescription = "Go to expenses screen",
                                     icon = Icons.Default.AccountBalance
                                 ),
                                 MenuItem(
+                                    id = "scanReceipt",
+                                    title = stringResource(id = R.string.scan_receipt),
+                                    contentDescription = "Go to scan receipt screen",
+                                    icon = Icons.Default.Search
+                                ),
+                                MenuItem(
                                     id = "receiptsImagesScreen",
-                                    title = stringResource(id = R.string.expenses),
-                                    contentDescription = "Go to Receipts Images Screen",
-                                    icon = Icons.Default.AccountBalance
+                                    title = stringResource(id = R.string.receipt_analysis),
+                                    contentDescription = "Go to receipt analysis screen",
+                                    icon = Icons.Default.AutoAwesome
                                 ),
                             ),
                             onItemClick = {menuItem ->

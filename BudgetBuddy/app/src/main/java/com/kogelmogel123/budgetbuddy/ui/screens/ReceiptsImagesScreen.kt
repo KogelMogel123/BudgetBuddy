@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 
 @Composable
@@ -58,9 +59,17 @@ fun MyContent(selectedImage: Uri? = null, onImageClick: () -> Unit) {
                         .clickable { onImageClick() },
                     contentScale = ContentScale.Fit
                 )
-                OutlinedButton(onClick = onImageClick)
+                Button(onClick = onImageClick)
                 {
                     Text(text = "Send photo for analysis")
+                }
+                OutlinedButton(onClick = onImageClick)
+                {
+                    Modifier
+                        .padding(top = 10.dp)
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                    Text(text = "Select another photo for analysis")
                 }
             } else {
                 Button(onClick = onImageClick)
