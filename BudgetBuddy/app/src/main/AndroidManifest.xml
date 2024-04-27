@@ -27,7 +27,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="test"
+            android:label="Budget Buddy"
             android:theme="@style/Theme.BudgetBuddy">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
