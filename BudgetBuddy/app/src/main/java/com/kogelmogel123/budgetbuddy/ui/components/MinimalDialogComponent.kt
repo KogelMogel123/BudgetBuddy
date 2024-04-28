@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 
 @Composable
-fun minimalDialog(dialogText: String, onDismissRequest: () -> Unit) {
+fun MinimalDialogComponent(dialogText: String, onDismissRequest: () -> Unit) {
     Dialog(onDismissRequest = { onDismissRequest() }) {
         Card(
             modifier = Modifier
@@ -39,6 +39,6 @@ fun minimalDialog(dialogText: String, onDismissRequest: () -> Unit) {
 
 @Preview
 @Composable
-fun minimalDialogPreview() {
-    minimalDialog("This is a minimal dialog", onDismissRequest = {})
+fun MinimalDialogComponentPreview() {
+    MinimalDialogComponent("This is a minimal dialog", onDismissRequest = {})
 }

@@ -1,5 +1,6 @@
 package com.kogelmogel123.budgetbuddy
 
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu

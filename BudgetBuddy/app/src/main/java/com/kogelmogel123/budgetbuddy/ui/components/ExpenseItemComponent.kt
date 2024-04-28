@@ -21,7 +21,7 @@ import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 
 @Composable
-fun ExpenseItem(expense: Expense, onEdit: () -> Unit, onDelete: () -> Unit) {
+fun ExpenseItemComponent(expense: Expense, onEdit: () -> Unit, onDelete: () -> Unit) {
 
     var expanded by remember { mutableStateOf(false) }
 
@@ -60,9 +60,9 @@ fun ExpenseItem(expense: Expense, onEdit: () -> Unit, onDelete: () -> Unit) {
 
 @Preview
 @Composable
-private fun PreviewExpenseItem() {
-    var expense = Expense(1, "test", 1.00, ExpenseCategory.OTHER, 1)
+private fun ExpenseItemComponentPreview() {
+    val expense = Expense(1, "test", 1.00, ExpenseCategory.OTHER, 1)
     androidx.compose.material.MaterialTheme {
-        ExpenseItem(expense, {}, {});
+        ExpenseItemComponent(expense, {}, {});
     }
 }

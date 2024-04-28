@@ -1,6 +1,7 @@
 package com.kogelmogel123.budgetbuddy.ui.components
 
 import androidx.compose.foundation.layout.Column
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.res.stringResource
@@ -9,7 +10,7 @@ import com.kogelmogel123.budgetbuddy.R
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 
 @Composable
-fun ExpenseCategorySelector(selectedCategory: ExpenseCategory?, onCategorySelected: (ExpenseCategory) -> Unit) {
+fun ExpenseCategorySelectorComponent(selectedCategory: ExpenseCategory?, onCategorySelected: (ExpenseCategory) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
     val categories = ExpenseCategory.values()
 
@@ -39,11 +40,11 @@ fun ExpenseCategorySelector(selectedCategory: ExpenseCategory?, onCategorySelect
 
 @Preview(showBackground = true)
 @Composable
-fun PreviewExpenseCategorySelector() {
+fun ExpenseCategorySelectorComponentPreview() {
     var selectedCategory by remember { mutableStateOf<ExpenseCategory?>(null) }
 
     MaterialTheme {
-        ExpenseCategorySelector(selectedCategory = selectedCategory) { category ->
+        ExpenseCategorySelectorComponent(selectedCategory = selectedCategory) { category ->
             selectedCategory = category
         }
     }

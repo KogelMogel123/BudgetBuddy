@@ -28,13 +28,15 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
+import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 @Composable
-fun CameraPreviewScreen() {
+fun CameraPreviewScreen(navController: NavController) {
     val lensFacing = CameraSelector.LENS_FACING_BACK
     val lifecycleOwner = LocalLifecycleOwner.current
     val context = LocalContext.current
@@ -56,10 +58,12 @@ fun CameraPreviewScreen() {
         AndroidView({ previewView }, modifier = Modifier.fillMaxSize())
         SnackbarHost(hostState = snackbarHostState)
         Button(onClick = {
-            captureImage(imageCapture, context, snackbarHostState, coroutineScope) },
+            captureImage(imageCapture, context, snackbarHostState, coroutineScope, navController)
+            //navController.navigate("receiptsImagesScreen")
+                         },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 80.dp)
+                .padding(bottom = 80.dp),
         ) {
             Text(text = "Capture Image")
         }
@@ -69,10 +73,10 @@ fun CameraPreviewScreen() {
 @androidx.compose.ui.tooling.preview.Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun CameraPreviewScreenPreview() {
-    CameraPreviewScreen()
+    CameraPreviewScreen(navController = mockNavController())
 }
 
-private fun captureImage(imageCapture: ImageCapture, context: Context, snackbarHostState: SnackbarHostState, coroutineScope: CoroutineScope) {
+private fun captureImage(imageCapture: ImageCapture, context: Context, snackbarHostState: SnackbarHostState, coroutineScope: CoroutineScope, navController: NavController) {
     val name = "Receipt.jpeg"
     val contentValues = ContentValues().apply {
         put(MediaStore.MediaColumns.DISPLAY_NAME, name)
@@ -96,6 +100,8 @@ private fun captureImage(imageCapture: ImageCapture, context: Context, snackbarH
                 println("Successs")
                 coroutineScope.launch {
                     snackbarHostState.showSnackbar("Image captured successfully")
+                    //val savedUri = outputFileResults.savedUri.toString()
+                    //navController.navigate("receiptsImagesScreen/${savedUri}")
                 }
             }
 

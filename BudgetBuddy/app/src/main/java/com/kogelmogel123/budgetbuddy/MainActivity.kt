@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.camera.view.CameraController
 import androidx.camera.view.LifecycleCameraController
 import com.kogelmogel123.budgetbuddy.ui.theme.BudgetBuddyTheme
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
@@ -28,6 +29,7 @@ import com.kogelmogel123.budgetbuddy.ui.screens.EditExpenseScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ExpensesScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ReceiptsImagesScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ScanReceiptScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.camera.CameraPreviewScreen
 import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -114,7 +116,7 @@ class MainActivity : ComponentActivity() {
                             DashboardScreen()
                         }
                         composable("scanReceipt") {
-                            ScanReceiptScreen()
+                            ScanReceiptScreen(navController = navController)
                         }
                         composable("expenses") {
                             ExpensesScreen(navController = navController)
@@ -125,12 +127,23 @@ class MainActivity : ComponentActivity() {
                         composable("addExpense") {
                             AddExpenseScreen(navController = navController)
                         }
+                        /*
+                        composable(
+                            route = "receiptsImagesScreen/{selectedImageUriString}",
+                            arguments = listOf(navArgument("selectedImageUriString") { type = NavType.StringType })
+                        ) { backStackEntry ->
+                            val selectedImageUriString = backStackEntry.arguments?.getString("selectedImageUriString")
+                            ReceiptsImagesScreen(selectedImageUriString = selectedImageUriString)
+                        }*/
                         composable(
                             route = "editExpense/{id}",
                             arguments = listOf(navArgument("id") { type = NavType.IntType })
                         ) { backStackEntry ->
                             val expenseId = backStackEntry.arguments?.getInt("id") ?: -1
                             EditExpenseScreen(navController = navController, id = expenseId)
+                        }
+                        composable("cameraPreviewScreen") {
+                            CameraPreviewScreen(navController = navController)
                         }
                     }
                 }

@@ -16,7 +16,6 @@ import android.net.Uri
 import android.util.Log
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.UseCaseGroup
-import androidx.camera.view.LifecycleCameraController
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.wrapContentSize

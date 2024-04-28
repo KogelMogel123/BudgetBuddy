@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -21,7 +22,7 @@ import androidx.navigation.NavController
 import com.kogelmogel123.budgetbuddy.R
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
-import com.kogelmogel123.budgetbuddy.ui.components.ExpenseCategorySelector
+import com.kogelmogel123.budgetbuddy.ui.components.ExpenseCategorySelectorComponent
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockExpensesViewModel
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
 import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
@@ -60,7 +61,7 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
         )
 
-        ExpenseCategorySelector(selectedCategory = selectedCategory) { category ->
+        ExpenseCategorySelectorComponent(selectedCategory = selectedCategory) { category ->
             selectedCategory = category
         }
 

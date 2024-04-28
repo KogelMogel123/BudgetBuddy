@@ -12,7 +12,6 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import com.kogelmogel123.budgetbuddy.ui.components.ExpenseItem
 import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
 import org.koin.androidx.compose.koinViewModel
 import androidx.compose.runtime.livedata.observeAsState
@@ -21,6 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.kogelmogel123.budgetbuddy.R
+import com.kogelmogel123.budgetbuddy.ui.components.ExpenseItemComponent
 import com.kogelmogel123.budgetbuddy.ui.components.TripleFloatingActionButton
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockExpensesViewModel
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
@@ -50,7 +50,7 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController
                 LazyColumn {
                     expenses?.let {
                         items(it) { expense ->
-                            ExpenseItem(expense,
+                            ExpenseItemComponent(expense,
                                 onEdit = { navController.navigate("editExpense/${expense.id}") },
                                 onDelete = { viewModel.deleteExpense(expense) })
                         }

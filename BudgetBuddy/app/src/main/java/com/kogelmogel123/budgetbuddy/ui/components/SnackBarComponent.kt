@@ -12,11 +12,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun snackBarComponent(){
+fun SnackBarComponent(){
     val scope = rememberCoroutineScope()
     val snackbarHostState = remember { SnackbarHostState() }
     Scaffold(
@@ -37,4 +38,10 @@ fun snackBarComponent(){
     ) {  contentPadding ->
         // Screen content
     }
+}
+
+@Preview
+@Composable
+fun SnackBarComponentPreview() {
+    SnackBarComponent()
 }

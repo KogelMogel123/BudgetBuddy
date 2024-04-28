@@ -28,8 +28,14 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 
 @Composable
-fun ReceiptsImagesScreen() {
-    var selectedImage by remember { mutableStateOf<Uri?>(null) }
+fun ReceiptsImagesScreen(selectedImageUriString: String? = null) {
+    var selectedImageUri: Uri? = null
+    if(selectedImageUriString != null)
+    {
+        selectedImageUri = Uri.parse(selectedImageUriString)
+    }
+
+    var selectedImage by remember { mutableStateOf<Uri?>(selectedImageUri) }
     val launcher =
         rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) {
             selectedImage = it
@@ -61,7 +67,7 @@ fun MyContent(selectedImage: Uri? = null, onImageClick: () -> Unit) {
                 )
                 Button(onClick = onImageClick)
                 {
-                    Text(text = "Send photo for analysis")
+                    Text(text = "Analyze the receipt")
                 }
                 OutlinedButton(onClick = onImageClick)
                 {
@@ -69,7 +75,7 @@ fun MyContent(selectedImage: Uri? = null, onImageClick: () -> Unit) {
                         .padding(top = 10.dp)
                         .fillMaxWidth()
                         .fillMaxHeight()
-                    Text(text = "Select another photo for analysis")
+                    Text(text = "Select another receipt for analysis")
                 }
             } else {
                 Button(onClick = onImageClick)
@@ -77,7 +83,7 @@ fun MyContent(selectedImage: Uri? = null, onImageClick: () -> Unit) {
                     Modifier
                         .fillMaxWidth()
                         .fillMaxHeight()
-                    Text(text = "Select a photo for analysis")
+                    Text(text = "Select a receipt for analysis")
                 }
             }
         }
@@ -87,13 +93,13 @@ fun MyContent(selectedImage: Uri? = null, onImageClick: () -> Unit) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun MyContentPreview() {
-    var selectedImage: Uri? = null
+    val selectedImage: Uri? = null
     MyContent(selectedImage, {})
 }
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun MyContentPreview2() {
-    var selectedImage: Uri = Uri.parse("")
+    val selectedImage: Uri = Uri.parse("")
     MyContent(selectedImage, {})
 }
