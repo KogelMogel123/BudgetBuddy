@@ -115,6 +115,9 @@ class MainActivity : ComponentActivity() {
                         composable("addExpense") {
                             AddExpenseScreen(navController = navController)
                         }
+                        composable("receiptsImagesScreen") {
+                            ReceiptsImagesScreen()
+                        }
                         composable(
                             route = "receiptsImagesScreen/{selectedImageEncodedUri}",
                             arguments = listOf(navArgument("selectedImageEncodedUri") { type = NavType.StringType })
