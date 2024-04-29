@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.camera.view.CameraController
-import androidx.camera.view.LifecycleCameraController
 import com.kogelmogel123.budgetbuddy.ui.theme.BudgetBuddyTheme
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.*
@@ -14,7 +12,6 @@ import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavType
@@ -53,13 +50,7 @@ class MainActivity : ComponentActivity() {
                 val scaffoldState = rememberScaffoldState()
                 val scope = rememberCoroutineScope()
                 val navController = rememberNavController()
-                val photoController = remember {
-                    LifecycleCameraController(applicationContext).apply {
-                        setEnabledUseCases(
-                            CameraController.IMAGE_CAPTURE
-                        )
-                    }
-                }
+
                 Scaffold(
                     scaffoldState = scaffoldState,
                     topBar = {
@@ -121,20 +112,16 @@ class MainActivity : ComponentActivity() {
                         composable("expenses") {
                             ExpensesScreen(navController = navController)
                         }
-                        composable("receiptsImagesScreen") {
-                            ReceiptsImagesScreen()
-                        }
                         composable("addExpense") {
                             AddExpenseScreen(navController = navController)
                         }
-                        /*
                         composable(
-                            route = "receiptsImagesScreen/{selectedImageUriString}",
-                            arguments = listOf(navArgument("selectedImageUriString") { type = NavType.StringType })
+                            route = "receiptsImagesScreen/{selectedImageEncodedUri}",
+                            arguments = listOf(navArgument("selectedImageEncodedUri") { type = NavType.StringType })
                         ) { backStackEntry ->
-                            val selectedImageUriString = backStackEntry.arguments?.getString("selectedImageUriString")
-                            ReceiptsImagesScreen(selectedImageUriString = selectedImageUriString)
-                        }*/
+                            val selectedImageEncodedUri = backStackEntry.arguments?.getString("selectedImageEncodedUri")
+                            ReceiptsImagesScreen(selectedImageEncodedUri = selectedImageEncodedUri)
+                        }
                         composable(
                             route = "editExpense/{id}",
                             arguments = listOf(navArgument("id") { type = NavType.IntType })

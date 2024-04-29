@@ -32,6 +32,8 @@ import androidx.navigation.NavController
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
@@ -59,7 +61,6 @@ fun CameraPreviewScreen(navController: NavController) {
         SnackbarHost(hostState = snackbarHostState)
         Button(onClick = {
             captureImage(imageCapture, context, snackbarHostState, coroutineScope, navController)
-            //navController.navigate("receiptsImagesScreen")
                          },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
@@ -99,9 +100,9 @@ private fun captureImage(imageCapture: ImageCapture, context: Context, snackbarH
             override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                 println("Successs")
                 coroutineScope.launch {
-                    snackbarHostState.showSnackbar("Image captured successfully")
-                    //val savedUri = outputFileResults.savedUri.toString()
-                    //navController.navigate("receiptsImagesScreen/${savedUri}")
+                    val savedUri = outputFileResults.savedUri.toString()
+                    val encodedUri = URLEncoder.encode(savedUri, StandardCharsets.UTF_8.toString())
+                    navController.navigate("receiptsImagesScreen/${encodedUri}")
                 }
             }
 

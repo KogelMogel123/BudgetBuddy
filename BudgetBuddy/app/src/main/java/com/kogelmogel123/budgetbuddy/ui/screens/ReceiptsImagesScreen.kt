@@ -26,13 +26,16 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
+import java.net.URLDecoder
 
 @Composable
-fun ReceiptsImagesScreen(selectedImageUriString: String? = null) {
+fun ReceiptsImagesScreen(selectedImageEncodedUri: String? = null) {
     var selectedImageUri: Uri? = null
-    if(selectedImageUriString != null)
+
+    if(selectedImageEncodedUri != null)
     {
-        selectedImageUri = Uri.parse(selectedImageUriString)
+        val selectedImageDecodedUri = URLDecoder.decode(selectedImageEncodedUri, "UTF-8")
+        selectedImageUri = Uri.parse(selectedImageDecodedUri)
     }
 
     var selectedImage by remember { mutableStateOf<Uri?>(selectedImageUri) }
