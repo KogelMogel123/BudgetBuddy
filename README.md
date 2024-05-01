@@ -15,25 +15,26 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - Jetpack Compose
  - Room
  - CameraX
+ - Material Design 3
 
 ## MUST HAVE
- - Skanowanie paragonów
- - Rozpoznawanie Paragonów (Komunikacja z AI)
- - Kategoryzacja zakupów
- - Możliwość wpisania zakupów bez paragonu 
- - Podstawowy interfejs użytkownika
+ - [x] Podstawowy interfejs użytkownika
+ - [x] Możliwość wpisania zakupów bez paragonu
+ - [x] Robienie zdjęcia z poziomu aplikacji
+ - [ ] Kategoryzacja zakupów
+ - [ ] Rozpoznawanie Paragonów (Komunikacja z AI)
 
 ## SHOULD HAVE
- - Możliwość przesyłania zdjęć paragonów z galerii
- - Możliwość stawiania celów budżetowych
- - Lokalna baza danych
+ - [x] Możliwość wybierania zdjęć paragonów z galerii
+ - [x] Lokalna baza danych
 
 ## COULD HAVE
+ - Możliwość stawiania celów budżetowych
  - Statystyki celów
  - Statystyki wydatków
- - Statystyki cen produktów w czasie
 
 ## WON'T HAVE
+ - Statystyki cen produktów w czasie
  - Postawienie API
  - Komunikacja z API
  - Baza danych
