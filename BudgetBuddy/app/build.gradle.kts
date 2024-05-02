@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -14,6 +16,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+        archivesName.set("BudgetBuddy")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
