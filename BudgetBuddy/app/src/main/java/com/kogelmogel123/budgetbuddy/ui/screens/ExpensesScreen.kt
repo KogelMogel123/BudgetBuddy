@@ -38,11 +38,11 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController
                     onSecondButtonClick = { navController.navigate("scanReceipt") },
                     onThirdButtonClick = { navController.navigate("receiptsImagesScreen") },
                     imageVector = Icons.Filled.Add,
-                    contentDescription = stringResource(id = R.string.add_expense),
+                    contentDescription = stringResource(id = R.string.add_expense_screen),
                     imageVector2 = Icons.Filled.Search,
-                    contentDescription2 = stringResource(id = R.string.scan_receipt),
+                    contentDescription2 = stringResource(id = R.string.scan_receipt_screen),
                     imageVector3 = Icons.Filled.Image,
-                    contentDescription3 = stringResource(id = R.string.scan_receipt)
+                    contentDescription3 = stringResource(id = R.string.scan_receipt_screen)
                 )
             }
         ) { paddingValues ->

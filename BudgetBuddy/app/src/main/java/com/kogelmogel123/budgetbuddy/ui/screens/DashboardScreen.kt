@@ -9,7 +9,7 @@ import com.kogelmogel123.budgetbuddy.R
 
 @Composable
 fun DashboardScreen() {
-    Text(text = stringResource(id = R.string.dashboard), style = MaterialTheme.typography.titleLarge)
+    Text(text = stringResource(id = R.string.dashboard_screen), style = MaterialTheme.typography.titleLarge)
 }
 
 @Preview

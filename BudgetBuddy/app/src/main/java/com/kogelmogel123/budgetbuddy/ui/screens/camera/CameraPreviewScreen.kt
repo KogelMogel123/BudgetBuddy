@@ -25,10 +25,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
+import com.kogelmogel123.budgetbuddy.R
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -66,7 +68,7 @@ fun CameraPreviewScreen(navController: NavController) {
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 80.dp),
         ) {
-            Text(text = "Capture Image")
+            Text(text = stringResource(id = R.string.capture_image))
         }
     }
 }

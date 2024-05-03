@@ -39,7 +39,7 @@ fun DrawerHeader() {
 
         Image(
             painter = painterResource(id = R.drawable.buddy),
-            contentDescription = stringResource(id = R.string.information),
+            contentDescription = "",//stringResource(id = R.string.information),
             contentScale = ContentScale.Fit,
             modifier = imageModifier
         )

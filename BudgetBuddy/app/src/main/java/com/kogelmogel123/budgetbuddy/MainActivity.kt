@@ -69,25 +69,25 @@ class MainActivity : ComponentActivity() {
                             items = listOf(
                                 MenuItem(
                                     id = "dashboard",
-                                    title = stringResource(id = R.string.dashboard),
+                                    title = stringResource(id = R.string.dashboard_screen),
                                     contentDescription = "Go to dashboard screen",
                                     icon = Icons.Default.Home
                                 ),
                                 MenuItem(
                                     id = "expenses",
-                                    title = stringResource(id = R.string.expenses),
+                                    title = stringResource(id = R.string.expenses_screen),
                                     contentDescription = "Go to expenses screen",
                                     icon = Icons.Default.AccountBalance
                                 ),
                                 MenuItem(
                                     id = "scanReceipt",
-                                    title = stringResource(id = R.string.scan_receipt),
+                                    title = stringResource(id = R.string.scan_receipt_screen),
                                     contentDescription = "Go to scan receipt screen",
                                     icon = Icons.Default.Search
                                 ),
                                 MenuItem(
                                     id = "receiptsImagesScreen",
-                                    title = stringResource(id = R.string.receipt_analysis),
+                                    title = stringResource(id = R.string.receipt_analysis_screen),
                                     contentDescription = "Go to receipt analysis screen",
                                     icon = Icons.Default.AutoAwesome
                                 ),

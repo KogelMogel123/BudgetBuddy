@@ -93,7 +93,7 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
             Modifier
                 .padding(top = 16.dp)
                 .fillMaxWidth()){
-            Text(text = stringResource(id = R.string.edit_expense))
+            Text(text = stringResource(id = R.string.edit_expense_screen))
         }
     }
 }

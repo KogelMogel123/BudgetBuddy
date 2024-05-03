@@ -78,7 +78,7 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
             navController.navigate("expenses")
         },
             Modifier.padding(top = 16.dp).fillMaxWidth()){
-            Text(text = stringResource(id = R.string.add_expense))
+            Text(text = stringResource(id = R.string.add_expense_screen))
         }
     }
 }

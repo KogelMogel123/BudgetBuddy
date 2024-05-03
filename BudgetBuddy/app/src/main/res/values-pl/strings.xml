@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Budget Buddy</string>
+    <string name="exit">Wyjście</string>
+    <string name="dashboard_screen">Pulpit</string>
+    <string name="add_expense_screen">Dodaj wydatek</string>
+    <string name="edit_expense_screen">Edytuj wydatek</string>
+    <string name="delete_expense_screen">Usuń wydatek</string>
+    <string name="scan_receipt_screen">Skanuj paragon</string>
+    <string name="expenses_screen">Wydatki</string>
+    <string name="receipt_analysis_screen">Analiza paragonu</string>
+    <string name="amount">Kwota</string>
+    <string name="expense_name">Nazwa wydatku</string>
+    <string name="select_category">Wybierz kategorię</string>
+    <string name="camera_permission_denied">Prosimy o pozwolenie na korzystanie z kamery. Kamera jest używana do podstawowych funkcji aplikacji.</string>
+    <string name="request_camera_permission">Udziel pozwolenia</string>
+    <string name="capture_image">Zrób zdjęcie</string>
+    <string name="select_receipt_for_analysis">Wybierz paragon do analizy</string>
+    <string name="select_another_receipt_for_analysis">Wybierz inny paragon do analizy</string>
+</resources>

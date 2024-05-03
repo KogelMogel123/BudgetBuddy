@@ -1,18 +1,19 @@
 <resources>
     <string name="app_name">Budget Buddy</string>
-    <string name="dashboard">Dashboard</string>
-    <string name="add_expense">Add expense</string>
-    <string name="edit_expense">Edit expense</string>
-    <string name="delete_expense">Delete expense</string>
-    <string name="scan_receipt">Scan receipt</string>
-    <string name="settings">Settings</string>
-    <string name="information">Information</string>
-    <string name="expenses">Expenses</string>
-    <string name="receipt_analysis">Receipt analysis</string>
     <string name="exit">Exit</string>
+    <string name="dashboard_screen">Dashboard</string>
+    <string name="add_expense_screen">Add expense</string>
+    <string name="edit_expense_screen">Edit expense</string>
+    <string name="delete_expense_screen">Delete expense</string>
+    <string name="scan_receipt_screen">Scan receipt</string>
+    <string name="expenses_screen">Expenses</string>
+    <string name="receipt_analysis_screen">Receipt analysis</string>
     <string name="amount">Amount</string>
     <string name="expense_name">Expense name</string>
     <string name="select_category">Select a category</string>
     <string name="camera_permission_denied">We request permission to use the camera. The camera is used for the fundamental functionality of the application.</string>
     <string name="request_camera_permission">Grant permission</string>
+    <string name="capture_image">Capture Image</string>
+    <string name="select_another_receipt_for_analysis">Select another receipt for analysis</string>
+    <string name="select_receipt_for_analysis">Select a receipt for analysis</string>
 </resources>
