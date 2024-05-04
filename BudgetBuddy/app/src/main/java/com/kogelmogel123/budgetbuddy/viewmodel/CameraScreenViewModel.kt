@@ -21,14 +21,14 @@ class CameraScreenViewModel : ViewModel() {
         val executor = Executors.newSingleThreadExecutor()
         val file = File(outputDir, "${ Calendar.getInstance().timeInMillis.toString()}.jpg")
 
-        Log.d("Photo", "file: ${file?.path}")
+        Log.d("Photo", "file: ${file.path}")
 
         val outputOpts = ImageCapture.OutputFileOptions.Builder(file).build()
         val callback = object : ImageCapture.OnImageSavedCallback{
             override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                 outputFileResults.savedUri?.let { uri ->
                     onImageCaptured(uri)
-                    Log.d("Photo", "Zapisano zdjęcie: $uri")
+                    Log.d("Photo", "Saved photo: $uri")
 
                     // Skanowanie pliku, aby był widoczny w galerii
                     MediaScannerConnection.scanFile(
@@ -36,7 +36,7 @@ class CameraScreenViewModel : ViewModel() {
                         arrayOf(file.absolutePath),
                         null
                     ) { path, uri ->
-                        Log.d("Photo", "Zdjęcie dodane do galerii: $uri")
+                        Log.d("Photo", "Add photo to gallery: $uri")
                     }
                 }
             }

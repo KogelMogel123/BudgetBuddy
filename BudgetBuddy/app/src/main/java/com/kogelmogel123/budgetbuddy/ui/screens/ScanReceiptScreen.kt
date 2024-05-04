@@ -13,7 +13,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun ScanReceiptScreen(viewModel: CameraScreenViewModel = koinViewModel(), navController: NavController) {
+fun ScanReceiptScreen(navController: NavController) {
     val cameraPermissionState: PermissionState = rememberPermissionState(permission = android.Manifest.permission.CAMERA)
 
     CheckCameraPermission(cameraPermissionState.status.isGranted, navController, onRequestPermission = {

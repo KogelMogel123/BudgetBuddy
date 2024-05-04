@@ -28,17 +28,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.kogelmogel123.budgetbuddy.R
-import java.net.URLDecoder
+import com.kogelmogel123.budgetbuddy.viewmodel.ReceiptAnalysisScreenViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ReceiptsImagesScreen(selectedImageEncodedUri: String? = null) {
-    var selectedImageUri: Uri? = null
-
-    if(selectedImageEncodedUri != null)
-    {
-        val selectedImageDecodedUri = URLDecoder.decode(selectedImageEncodedUri, "UTF-8")
-        selectedImageUri = Uri.parse(selectedImageDecodedUri)
-    }
+fun ReceiptsImagesScreen(viewModel: ReceiptAnalysisScreenViewModel = koinViewModel(), selectedImageEncodedUri: String? = null) {
+    val selectedImageUri = viewModel.decodeUri(selectedImageEncodedUri)
 
     var selectedImage by remember { mutableStateOf<Uri?>(selectedImageUri) }
     val launcher =
@@ -99,12 +94,12 @@ fun MyContent(selectedImage: Uri? = null, onImageClick: () -> Unit) {
 @Composable
 fun MyContentPreview() {
     val selectedImage: Uri? = null
-    MyContent(selectedImage, {})
+    MyContent(selectedImage) {}
 }
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun MyContentPreview2() {
     val selectedImage: Uri = Uri.parse("")
-    MyContent(selectedImage, {})
+    MyContent(selectedImage) {}
 }

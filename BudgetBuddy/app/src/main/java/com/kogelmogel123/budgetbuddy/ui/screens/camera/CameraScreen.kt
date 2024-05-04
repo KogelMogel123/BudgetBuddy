@@ -25,6 +25,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -55,12 +56,21 @@ private fun CameraView(viewModel: CameraScreenViewModel, imageCapture: ImageCapt
         mutableStateOf<Uri?>(null)
     }
 
-    var lensFacing by rememberSaveable {
-        mutableStateOf(CameraSelector.LENS_FACING_BACK)
+    val lensFacing by rememberSaveable {
+        mutableIntStateOf(CameraSelector.LENS_FACING_BACK)
     }
 
-    val outputDir = File(context.getExternalFilesDir(null)?.path)
-    Log.d("Photo", "outputDir: $outputDir")
+    val externalFilesDir = context.getExternalFilesDir(null)
+
+    if(externalFilesDir != null) {
+        Log.d("Photo", "outputDir: $externalFilesDir.path")
+    }
+    else{
+        Log.d("Photo", "outputDir is NULL")
+        return
+    }
+
+    val outputDir = File(externalFilesDir.path)
 
     //Init camera
     LaunchedEffect(key1 = lensFacing) {
@@ -95,9 +105,10 @@ private fun CameraView(viewModel: CameraScreenViewModel, imageCapture: ImageCapt
                 ) {
                 Icon(imageVector = Icons.Default.Camera, contentDescription = "Camera")
             }
-            Log.d("Photo", "uri: $uri")
+
             if(uri != null){
-                var test = AsyncImage(model = uri, contentDescription = null, modifier = Modifier.wrapContentSize())
+                Log.d("Photo", "uri: $uri")
+                AsyncImage(model = uri, contentDescription = null, modifier = Modifier.wrapContentSize())
             }
         }
     }
