@@ -24,7 +24,7 @@ import com.kogelmogel123.budgetbuddy.ui.screens.AddExpenseScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.DashboardScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.EditExpenseScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ExpensesScreen
-import com.kogelmogel123.budgetbuddy.ui.screens.ReceiptsImagesScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.ReceiptsAnalysisScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ScanReceiptScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.camera.CameraPreviewScreen
 import kotlinx.coroutines.launch
@@ -86,7 +86,7 @@ class MainActivity : ComponentActivity() {
                                     icon = Icons.Default.Search
                                 ),
                                 MenuItem(
-                                    id = "receiptsImagesScreen",
+                                    id = "ReceiptsAnalysisScreen",
                                     title = stringResource(id = R.string.receipt_analysis_screen),
                                     contentDescription = "Go to receipt analysis screen",
                                     icon = Icons.Default.AutoAwesome
@@ -115,15 +115,15 @@ class MainActivity : ComponentActivity() {
                         composable("addExpense") {
                             AddExpenseScreen(navController = navController)
                         }
-                        composable("receiptsImagesScreen") {
-                            ReceiptsImagesScreen()
+                        composable("receiptsAnalysisScreen") {
+                            ReceiptsAnalysisScreen()
                         }
                         composable(
-                            route = "receiptsImagesScreen/{selectedImageEncodedUri}",
+                            route = "receiptsAnalysisScreen/{selectedImageEncodedUri}",
                             arguments = listOf(navArgument("selectedImageEncodedUri") { type = NavType.StringType })
                         ) { backStackEntry ->
                             val selectedImageEncodedUri = backStackEntry.arguments?.getString("selectedImageEncodedUri")
-                            ReceiptsImagesScreen(selectedImageEncodedUri = selectedImageEncodedUri)
+                            ReceiptsAnalysisScreen(selectedImageEncodedUri = selectedImageEncodedUri)
                         }
                         composable(
                             route = "editExpense/{id}",

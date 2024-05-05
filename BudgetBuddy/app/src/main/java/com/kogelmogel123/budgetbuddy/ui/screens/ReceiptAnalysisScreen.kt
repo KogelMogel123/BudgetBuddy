@@ -32,7 +32,7 @@ import com.kogelmogel123.budgetbuddy.viewmodel.ReceiptAnalysisScreenViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ReceiptsImagesScreen(viewModel: ReceiptAnalysisScreenViewModel = koinViewModel(), selectedImageEncodedUri: String? = null) {
+fun ReceiptsAnalysisScreen(viewModel: ReceiptAnalysisScreenViewModel = koinViewModel(), selectedImageEncodedUri: String? = null) {
     val selectedImageUri = viewModel.decodeUri(selectedImageEncodedUri)
 
     var selectedImage by remember { mutableStateOf<Uri?>(selectedImageUri) }

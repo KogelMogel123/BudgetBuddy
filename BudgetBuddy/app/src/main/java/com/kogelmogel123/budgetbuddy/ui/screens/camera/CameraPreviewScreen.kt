@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.os.Build
 import android.provider.MediaStore
+import android.util.Log
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCaptureException
@@ -80,7 +81,8 @@ fun CameraPreviewScreenPreview() {
 }
 
 private fun captureImage(imageCapture: ImageCapture, context: Context, snackbarHostState: SnackbarHostState, coroutineScope: CoroutineScope, navController: NavController) {
-    val name = "Receipt.jpeg"
+    val timeStamp = System.currentTimeMillis()
+    val name = "Receipt_$timeStamp.jpeg"
     val contentValues = ContentValues().apply {
         put(MediaStore.MediaColumns.DISPLAY_NAME, name)
         put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
@@ -98,17 +100,16 @@ private fun captureImage(imageCapture: ImageCapture, context: Context, snackbarH
         ContextCompat.getMainExecutor(context),
         object : ImageCapture.OnImageSavedCallback {
             override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                println("Successs")
                 coroutineScope.launch {
                     val savedUri = outputFileResults.savedUri.toString()
                     val encodedUri = URLEncoder.encode(savedUri, StandardCharsets.UTF_8.toString())
-                    navController.navigate("receiptsImagesScreen/${encodedUri}")
+                    navController.navigate("receiptsAnalysisScreen/${encodedUri}")
                 }
             }
 
             override fun onError(exception: ImageCaptureException) {
-                println("Failed $exception")
                 coroutineScope.launch {
+                    Log.d("Photo", "Error: ${exception.cause}")
                     snackbarHostState.showSnackbar("Error capturing image")
                 }
             }
