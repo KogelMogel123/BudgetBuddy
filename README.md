@@ -20,6 +20,7 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
 ## MUST HAVE
  - [x] Podstawowy interfejs użytkownika
  - [x] Możliwość wpisania zakupów bez paragonu
+ - [x] Możliwość edycji/usuwania wydatków
  - [x] Robienie zdjęcia z poziomu aplikacji
  - [x] Kategoryzacja zakupów
  - [ ] Rozpoznawanie Paragonów (Komunikacja z AI)
