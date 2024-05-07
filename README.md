@@ -21,12 +21,14 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Podstawowy interfejs użytkownika
  - [x] Możliwość wpisania zakupów bez paragonu
  - [x] Robienie zdjęcia z poziomu aplikacji
- - [ ] Kategoryzacja zakupów
+ - [x] Kategoryzacja zakupów
  - [ ] Rozpoznawanie Paragonów (Komunikacja z AI)
+ - [ ] Zapis przetworzonego paragonu na wpisy wydatków do bazy
 
 ## SHOULD HAVE
  - [x] Możliwość wybierania zdjęć paragonów z galerii
  - [x] Lokalna baza danych
+ - [x] Tłumaczenie interfejsu angielski/polski w zależności od systemu użytkownika
 
 ## COULD HAVE
  - Możliwość stawiania celów budżetowych
