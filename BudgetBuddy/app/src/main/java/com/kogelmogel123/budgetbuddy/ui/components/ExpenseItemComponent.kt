@@ -15,6 +15,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kogelmogel123.budgetbuddy.model.Expense
@@ -22,8 +23,8 @@ import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 
 @Composable
 fun ExpenseItemComponent(expense: Expense, onEdit: () -> Unit, onDelete: () -> Unit) {
-
     var expanded by remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     Card(modifier = Modifier
         .padding(8.dp)
@@ -33,7 +34,7 @@ fun ExpenseItemComponent(expense: Expense, onEdit: () -> Unit, onDelete: () -> U
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = expense.name, style = MaterialTheme.typography.titleMedium)
             Text(text = "${String.format("%.2f", expense.cost)} zł", style = MaterialTheme.typography.bodyMedium)
-            Text(text = "${expense.category}", style = MaterialTheme.typography.bodySmall)
+            Text(text = "${expense.category.getLocalizedName(context)}", style = MaterialTheme.typography.bodySmall)
         }
     }
 

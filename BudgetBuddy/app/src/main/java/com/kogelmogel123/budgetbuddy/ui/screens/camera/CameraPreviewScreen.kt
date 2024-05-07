@@ -2,7 +2,6 @@ package com.kogelmogel123.budgetbuddy.ui.screens.camera
 
 import android.content.ContentValues
 import android.content.Context
-import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
 import android.view.Surface
