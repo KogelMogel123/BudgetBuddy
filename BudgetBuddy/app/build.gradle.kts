@@ -11,6 +11,12 @@ android {
     compileSdk = 34
 
     defaultConfig {
+        buildConfigField(
+            "String",
+            "TEST_API_ENDPOINT",
+            "\"https://hook.eu2.make.com\""
+        )
+
         applicationId = "com.kogelmogel123.budgetbuddy"
         minSdk = 29
         targetSdk = 34
@@ -43,6 +49,7 @@ android {
     buildFeatures {
         compose = true
         viewBinding = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.10"
@@ -113,4 +120,6 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:2.6.1")
     ksp("androidx.room:room-compiler:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
+
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
 }

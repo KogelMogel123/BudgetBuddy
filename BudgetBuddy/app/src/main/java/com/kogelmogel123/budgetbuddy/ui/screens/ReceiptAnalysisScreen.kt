@@ -1,6 +1,7 @@
 package com.kogelmogel123.budgetbuddy.ui.screens
 
 import android.net.Uri
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -23,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -65,10 +67,7 @@ fun MyContent(selectedImage: Uri? = null, onImageClick: () -> Unit) {
                         .clickable { onImageClick() },
                     contentScale = ContentScale.Fit
                 )
-                Button(onClick = onImageClick)
-                {
-                    Text(text = "Analyze the receipt")
-                }
+                UploadButton(viewModel = koinViewModel(), selectedImage)
                 OutlinedButton(onClick = onImageClick)
                 {
                     Modifier
@@ -87,6 +86,26 @@ fun MyContent(selectedImage: Uri? = null, onImageClick: () -> Unit) {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun UploadButton(viewModel: ReceiptAnalysisScreenViewModel, selectedImage: Uri?) {
+    val context = LocalContext.current
+    Button(
+        onClick = {
+            viewModel.uploadImage(
+                context,
+                selectedImage,
+                onSuccess = { response -> Log.d("Upload", "Success: $response") },
+                onError = { error -> Log.e("Upload", "Error: $error") }
+            )
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Text(stringResource(id = R.string.analyze_the_receipt))
     }
 }
 

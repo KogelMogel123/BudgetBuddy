@@ -15,6 +15,7 @@
     <string name="camera_permission_denied">Prosimy o pozwolenie na korzystanie z kamery. Kamera jest używana do podstawowych funkcji aplikacji.</string>
     <string name="request_camera_permission">Udziel pozwolenia</string>
     <string name="capture_image">Zrób zdjęcie</string>
+    <string name="analyze_the_receipt">Analizuj wybrany paragon</string>
     <string name="select_receipt_for_analysis">Wybierz paragon do analizy</string>
     <string name="select_another_receipt_for_analysis">Wybierz inny paragon do analizy</string>
     <string name="category_food">Żywność</string>

@@ -14,6 +14,7 @@
     <string name="camera_permission_denied">We request permission to use the camera. The camera is used for the fundamental functionality of the application.</string>
     <string name="request_camera_permission">Grant permission</string>
     <string name="capture_image">Capture Image</string>
+    <string name="analyze_the_receipt">Analyze the receipt</string>
     <string name="select_another_receipt_for_analysis">Select another receipt for analysis</string>
     <string name="select_receipt_for_analysis">Select a receipt for analysis</string>
     <string name="category_food">Food</string>
