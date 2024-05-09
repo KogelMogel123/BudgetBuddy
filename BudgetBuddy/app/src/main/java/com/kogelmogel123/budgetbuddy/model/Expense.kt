@@ -18,7 +18,4 @@ data class Expense(
 
     @ColumnInfo(name = "category")
     val category: ExpenseCategory = ExpenseCategory.OTHER,
-
-    @ColumnInfo(name = "purchase_id")
-    val purchaseId : Int
 )

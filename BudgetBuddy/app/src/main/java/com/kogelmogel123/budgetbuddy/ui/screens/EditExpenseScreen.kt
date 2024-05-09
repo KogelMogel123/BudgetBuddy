@@ -84,7 +84,7 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
                     id,
                     expenseName ?: "",
                     cost.toDouble(),
-                    selectedCategory ?: ExpenseCategory.OTHER,1
+                    selectedCategory ?: ExpenseCategory.OTHER
                 )
             )
 

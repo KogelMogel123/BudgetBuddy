@@ -70,8 +70,7 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
                     0,
                     expenseName,
                     cost.toDouble(),
-                    selectedCategory ?: ExpenseCategory.OTHER,
-                    1
+                    selectedCategory ?: ExpenseCategory.OTHER
                 )
             )
             navController.navigate("expenses")

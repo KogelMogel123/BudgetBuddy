@@ -62,7 +62,7 @@ fun ExpenseItemComponent(expense: Expense, onEdit: () -> Unit, onDelete: () -> U
 @Preview
 @Composable
 private fun ExpenseItemComponentPreview() {
-    val expense = Expense(1, "test", 1.00, ExpenseCategory.OTHER, 1)
+    val expense = Expense(1, "test", 1.00, ExpenseCategory.OTHER)
     androidx.compose.material.MaterialTheme {
         ExpenseItemComponent(expense, {}, {});
     }

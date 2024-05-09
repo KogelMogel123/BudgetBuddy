@@ -10,13 +10,13 @@ import kotlinx.coroutines.flow.flow
 
 class FakeExpensesRepository : IExpensesRepository {
     private val expensesList = MutableLiveData<List<Expense>>(listOf(
-        Expense(1, "Test Expense 1", 20.10, ExpenseCategory.FOOD,1),
-        Expense(2, "Test Expense 2", 15.5, ExpenseCategory.ENTERTAINMENT,2),
-        Expense(3, "Test Expense 3", 0.99, ExpenseCategory.CLOTHING,3)
+        Expense(1, "Test Expense 1", 20.10, ExpenseCategory.FOOD),
+        Expense(2, "Test Expense 2", 15.5, ExpenseCategory.ENTERTAINMENT),
+        Expense(3, "Test Expense 3", 0.99, ExpenseCategory.CLOTHING)
     ))
 
     private val expensesFlow = flow {
-        emit(Expense(1, "Test Expense 1", 20.10, ExpenseCategory.FOOD,1))
+        emit(Expense(1, "Test Expense 1", 20.10, ExpenseCategory.FOOD))
     }
 
     override fun getAllExpenses(): LiveData<List<Expense>> {
