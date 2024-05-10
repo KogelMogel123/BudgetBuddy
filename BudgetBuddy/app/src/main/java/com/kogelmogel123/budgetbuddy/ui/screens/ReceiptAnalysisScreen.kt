@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -30,26 +31,35 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.kogelmogel123.budgetbuddy.R
+import com.kogelmogel123.budgetbuddy.ui.components.MinimalDialogComponent
 import com.kogelmogel123.budgetbuddy.viewmodel.ReceiptAnalysisScreenViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun ReceiptsAnalysisScreen(viewModel: ReceiptAnalysisScreenViewModel = koinViewModel(), selectedImageEncodedUri: String? = null) {
     val selectedImageUri = viewModel.decodeUri(selectedImageEncodedUri)
-
     var selectedImage by remember { mutableStateOf<Uri?>(selectedImageUri) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
+    val isLoading = viewModel.isLoading.value
+
     val launcher =
         rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) {
             selectedImage = it
         }
 
-    MyContent(selectedImage) {
+    if (errorMessage != null) {
+        MinimalDialogComponent(dialogText = errorMessage!!, onDismissRequest = { errorMessage = null })
+    }
+
+    MyContent(selectedImage, isLoading, {
         launcher.launch("image/*")
+    }) {
+        errorMessage = it
     }
 }
 
 @Composable
-fun MyContent(selectedImage: Uri? = null, onImageClick: () -> Unit) {
+fun MyContent(selectedImage: Uri? = null, isLoading: Boolean = false, onImageClick: () -> Unit, onError: (String) -> Unit) {
     Scaffold() { paddingValues ->
         Column(
             modifier = Modifier
@@ -67,8 +77,9 @@ fun MyContent(selectedImage: Uri? = null, onImageClick: () -> Unit) {
                         .clickable { onImageClick() },
                     contentScale = ContentScale.Fit
                 )
-                UploadButton(viewModel = koinViewModel(), selectedImage)
-                OutlinedButton(onClick = onImageClick)
+                UploadButton(viewModel = koinViewModel(), selectedImage, isLoading, onError)
+                OutlinedButton(onClick = onImageClick,
+                    enabled = !isLoading)
                 {
                     Modifier
                         .padding(top = 10.dp)
@@ -90,22 +101,27 @@ fun MyContent(selectedImage: Uri? = null, onImageClick: () -> Unit) {
 }
 
 @Composable
-fun UploadButton(viewModel: ReceiptAnalysisScreenViewModel, selectedImage: Uri?) {
+fun UploadButton(viewModel: ReceiptAnalysisScreenViewModel, selectedImage: Uri?, isLoading: Boolean = false, onErrorMessage: (String) -> Unit) {
     val context = LocalContext.current
-    Button(
-        onClick = {
-            viewModel.uploadImage(
-                context,
-                selectedImage,
-                onSuccess = { response -> Log.d("Upload", "Success: $response") },
-                onError = { error -> Log.e("Upload", "Error: $error") }
-            )
-        },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
-    ) {
-        Text(stringResource(id = R.string.analyze_the_receipt))
+
+    Column {
+        if (isLoading) {
+            CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
+        }
+        Button(
+            enabled = !isLoading,
+            onClick = {
+                viewModel.uploadImage(context, selectedImage, onSuccess = { Log.d("Upload", "Success: $it") },
+                    onError = { error ->
+                        Log.e("Upload", "Error: $error")
+                        onErrorMessage("$error")
+                    }
+                )
+            },
+            modifier = Modifier.fillMaxWidth().padding(8.dp)
+        ) {
+            Text(stringResource(id = R.string.analyze_the_receipt))
+        }
     }
 }
 
@@ -113,12 +129,12 @@ fun UploadButton(viewModel: ReceiptAnalysisScreenViewModel, selectedImage: Uri?)
 @Composable
 fun MyContentPreview() {
     val selectedImage: Uri? = null
-    MyContent(selectedImage) {}
+    MyContent(selectedImage, false, {}) {}
 }
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun MyContentPreview2() {
     val selectedImage: Uri = Uri.parse("")
-    MyContent(selectedImage) {}
+    MyContent(selectedImage, false, {}) {}
 }

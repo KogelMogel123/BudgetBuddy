@@ -3,9 +3,12 @@ package com.kogelmogel123.budgetbuddy.viewmodel
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kogelmogel123.budgetbuddy.BuildConfig
+import com.kogelmogel123.budgetbuddy.model.Expense
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -20,6 +23,12 @@ import java.net.URLDecoder
 
 class ReceiptAnalysisScreenViewModel: ViewModel() {
     private val client = OkHttpClient()
+    var isLoading = mutableStateOf(false)
+
+    private fun setLoading(loading: Boolean) {
+        isLoading.value = loading
+    }
+
     fun decodeUri(selectedImageEncodedUri: String? = null): Uri?
     {
         var selectedImageUri: Uri? = null
@@ -51,6 +60,8 @@ class ReceiptAnalysisScreenViewModel: ViewModel() {
             return
         }
 
+        setLoading(true)
+
         viewModelScope.launch(Dispatchers.IO) {
             Log.d("Upload", "uri: $uri")
 
@@ -80,7 +91,7 @@ class ReceiptAnalysisScreenViewModel: ViewModel() {
                     if (response.isSuccessful) {
                         onSuccess(response.body?.string() ?: "No response from server")
                     } else {
-                        onError("Error uploading image: ${response.message}")
+                        onError("File analysis error: ${response.message}")
                     }
                 }
             }
@@ -90,6 +101,7 @@ class ReceiptAnalysisScreenViewModel: ViewModel() {
             }
             finally {
                 file?.delete()
+                setLoading(false)
             }
         }
     }

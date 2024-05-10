@@ -51,9 +51,9 @@ fun CameraPreviewScreen(navController: NavController) {
     val cameraxSelector = CameraSelector.Builder().requireLensFacing(lensFacing).build()
     val imageCapture = remember { ImageCapture.Builder()
         .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
-        .setJpegQuality(75)
+        .setJpegQuality(70)
         .setTargetRotation(Surface.ROTATION_0)
-        .setTargetResolution(Size(1200, 800))
+        .setTargetResolution(Size(1200, 900))
         .build() }
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
