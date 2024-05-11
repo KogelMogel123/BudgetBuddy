@@ -18,6 +18,7 @@
     <string name="analyze_the_receipt">Analizuj wybrany paragon</string>
     <string name="select_receipt_for_analysis">Wybierz paragon do analizy</string>
     <string name="select_another_receipt_for_analysis">Wybierz inny paragon do analizy</string>
+    <string name="take_a_photo_again">Zrób zdjęcie jeszcze raz</string>
     <string name="category_food">Żywność</string>
     <string name="category_transport">Transport</string>
     <string name="category_housing">Mieszkanie</string>

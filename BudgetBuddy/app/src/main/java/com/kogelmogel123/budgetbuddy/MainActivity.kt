@@ -116,14 +116,14 @@ class MainActivity : ComponentActivity() {
                             AddExpenseScreen(navController = navController)
                         }
                         composable("receiptsAnalysisScreen") {
-                            ReceiptsAnalysisScreen()
+                            ReceiptsAnalysisScreen(navController = navController)
                         }
                         composable(
                             route = "receiptsAnalysisScreen/{selectedImageEncodedUri}",
                             arguments = listOf(navArgument("selectedImageEncodedUri") { type = NavType.StringType })
                         ) { backStackEntry ->
                             val selectedImageEncodedUri = backStackEntry.arguments?.getString("selectedImageEncodedUri")
-                            ReceiptsAnalysisScreen(selectedImageEncodedUri = selectedImageEncodedUri)
+                            ReceiptsAnalysisScreen(selectedImageEncodedUri = selectedImageEncodedUri, navController = navController)
                         }
                         composable(
                             route = "editExpense/{id}",

@@ -29,14 +29,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.kogelmogel123.budgetbuddy.R
 import com.kogelmogel123.budgetbuddy.ui.components.MinimalDialogComponent
+import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
 import com.kogelmogel123.budgetbuddy.viewmodel.ReceiptAnalysisScreenViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun ReceiptsAnalysisScreen(viewModel: ReceiptAnalysisScreenViewModel = koinViewModel(), selectedImageEncodedUri: String? = null) {
+fun ReceiptsAnalysisScreen(viewModel: ReceiptAnalysisScreenViewModel = koinViewModel(), navController: NavController,
+                           selectedImageEncodedUri: String? = null) {
     val selectedImageUri = viewModel.decodeUri(selectedImageEncodedUri)
     var selectedImage by remember { mutableStateOf<Uri?>(selectedImageUri) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
@@ -51,7 +54,7 @@ fun ReceiptsAnalysisScreen(viewModel: ReceiptAnalysisScreenViewModel = koinViewM
         MinimalDialogComponent(dialogText = errorMessage!!, onDismissRequest = { errorMessage = null })
     }
 
-    MyContent(selectedImage, isLoading, {
+    MyContent(selectedImage, isLoading, navController, {
         launcher.launch("image/*")
     }) {
         errorMessage = it
@@ -59,7 +62,7 @@ fun ReceiptsAnalysisScreen(viewModel: ReceiptAnalysisScreenViewModel = koinViewM
 }
 
 @Composable
-fun MyContent(selectedImage: Uri? = null, isLoading: Boolean = false, onImageClick: () -> Unit, onError: (String) -> Unit) {
+fun MyContent(selectedImage: Uri? = null, isLoading: Boolean = false, navController: NavController, onImageClick: () -> Unit, onError: (String) -> Unit) {
     Scaffold() { paddingValues ->
         Column(
             modifier = Modifier
@@ -78,21 +81,31 @@ fun MyContent(selectedImage: Uri? = null, isLoading: Boolean = false, onImageCli
                     contentScale = ContentScale.Fit
                 )
                 UploadButton(viewModel = koinViewModel(), selectedImage, isLoading, onError)
-                OutlinedButton(onClick = onImageClick,
-                    enabled = !isLoading)
-                {
-                    Modifier
-                        .padding(top = 10.dp)
+                OutlinedButton(
+                    onClick = onImageClick,
+                    enabled = !isLoading,
+                    modifier = Modifier
                         .fillMaxWidth()
-                        .fillMaxHeight()
+                        .padding(top = 14.dp))
+                {
                     Text(text = stringResource(id = R.string.select_another_receipt_for_analysis))
                 }
-            } else {
-                Button(onClick = onImageClick)
-                {
-                    Modifier
+                OutlinedButton(
+                    onClick = { navController.navigate("scanReceipt") },
+                    enabled = !isLoading,
+                    modifier = Modifier
                         .fillMaxWidth()
-                        .fillMaxHeight()
+                        .padding(top = 14.dp))
+                {
+                    Text(text = stringResource(id = R.string.take_a_photo_again))
+                }
+            } else {
+                Button(
+                    onClick = onImageClick,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 14.dp))
+                {
                     Text(text = stringResource(id = R.string.select_receipt_for_analysis))
                 }
             }
@@ -118,7 +131,9 @@ fun UploadButton(viewModel: ReceiptAnalysisScreenViewModel, selectedImage: Uri?,
                     }
                 )
             },
-            modifier = Modifier.fillMaxWidth().padding(8.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 14.dp)
         ) {
             Text(stringResource(id = R.string.analyze_the_receipt))
         }
@@ -129,12 +144,5 @@ fun UploadButton(viewModel: ReceiptAnalysisScreenViewModel, selectedImage: Uri?,
 @Composable
 fun MyContentPreview() {
     val selectedImage: Uri? = null
-    MyContent(selectedImage, false, {}) {}
-}
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun MyContentPreview2() {
-    val selectedImage: Uri = Uri.parse("")
-    MyContent(selectedImage, false, {}) {}
+    MyContent(selectedImage, false, navController = mockNavController(), {}) {}
 }
