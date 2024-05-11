@@ -23,7 +23,7 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Możliwość edycji/usuwania wydatków
  - [x] Robienie zdjęcia z poziomu aplikacji
  - [x] Kategoryzacja zakupów
- - [ ] Rozpoznawanie Paragonów (Komunikacja z AI)
+ - [x] Rozpoznawanie Paragonów (Komunikacja z AI)
  - [ ] Zapis przetworzonego paragonu na wpisy wydatków do bazy
 
 ## SHOULD HAVE
