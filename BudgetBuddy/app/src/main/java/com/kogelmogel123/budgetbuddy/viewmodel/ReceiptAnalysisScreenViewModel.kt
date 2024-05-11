@@ -4,11 +4,9 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kogelmogel123.budgetbuddy.BuildConfig
-import com.kogelmogel123.budgetbuddy.model.Expense
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -40,18 +38,6 @@ class ReceiptAnalysisScreenViewModel: ViewModel() {
         }
 
         return selectedImageUri
-    }
-
-    fun decodeUriAndCopyFile(context: Context, uri: Uri): File {
-        val inputStream = context.contentResolver.openInputStream(uri)
-        val outputFile = File(context.cacheDir, "upload_image_${System.currentTimeMillis()}.jpg")
-        val outputStream = FileOutputStream(outputFile)
-
-        inputStream?.copyTo(outputStream)
-        inputStream?.close()
-        outputStream.close()
-
-        return outputFile
     }
 
     fun uploadImage(context: Context, uri: Uri?, onSuccess: (String) -> Unit, onError: (String) -> Unit) {
@@ -104,5 +90,17 @@ class ReceiptAnalysisScreenViewModel: ViewModel() {
                 setLoading(false)
             }
         }
+    }
+
+    private fun decodeUriAndCopyFile(context: Context, uri: Uri): File {
+        val inputStream = context.contentResolver.openInputStream(uri)
+        val outputFile = File(context.cacheDir, "upload_image_${System.currentTimeMillis()}.jpg")
+        val outputStream = FileOutputStream(outputFile)
+
+        inputStream?.copyTo(outputStream)
+        inputStream?.close()
+        outputStream.close()
+
+        return outputFile
     }
 }

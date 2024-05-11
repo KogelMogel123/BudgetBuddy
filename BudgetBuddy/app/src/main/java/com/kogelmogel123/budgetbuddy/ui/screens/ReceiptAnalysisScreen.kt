@@ -8,7 +8,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -127,7 +126,7 @@ fun UploadButton(viewModel: ReceiptAnalysisScreenViewModel, selectedImage: Uri?,
                 viewModel.uploadImage(context, selectedImage, onSuccess = { Log.d("Upload", "Success: $it") },
                     onError = { error ->
                         Log.e("Upload", "Error: $error")
-                        onErrorMessage("$error")
+                        onErrorMessage(error)
                     }
                 )
             },
