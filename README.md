@@ -24,7 +24,7 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Robienie zdjęcia z poziomu aplikacji
  - [x] Kategoryzacja zakupów
  - [x] Rozpoznawanie Paragonów (Komunikacja z AI)
- - [ ] Zapis przetworzonego paragonu na wpisy wydatków do bazy
+ - [x] Zapis przetworzonego paragonu na wpisy wydatków do bazy
 
 ## SHOULD HAVE
  - [x] Możliwość wybierania zdjęć paragonów z galerii
