@@ -21,5 +21,5 @@ val appModule = module {
 
     viewModel { ExpensesViewModel(get()) }
     viewModel { CameraScreenViewModel() }
-    viewModel { ReceiptAnalysisScreenViewModel() }
+    viewModel { ReceiptAnalysisScreenViewModel(get()) }
 }

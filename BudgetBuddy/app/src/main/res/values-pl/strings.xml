@@ -26,4 +26,5 @@
     <string name="category_clothing">Odzież</string>
     <string name="category_education">Edukacja</string>
     <string name="category_other">Inne</string>
+    <string name="total">Razem</string>
 </resources>

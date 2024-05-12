@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
+import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.kogelmogel123.budgetbuddy.data.IExpensesRepository
 import com.kogelmogel123.budgetbuddy.model.Expense
@@ -21,6 +22,9 @@ import kotlinx.coroutines.launch
 class ExpensesViewModel(private val expensesRepository: IExpensesRepository) : ViewModel() {
 
     val expenses: LiveData<List<Expense>> = expensesRepository.getAllExpenses()
+
+    fun getTotalCost(): LiveData<Double> = expensesRepository.getAllExpenses()
+        .map { expenses -> expenses.sumOf { it.cost } }
 
     fun getExpenseById(id: Int): LiveData<Expense> {
         return expensesRepository.getExpenseById(id)

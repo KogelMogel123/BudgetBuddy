@@ -20,6 +20,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 @Composable
 fun ExpenseItemComponent(expense: Expense, onEdit: () -> Unit, onDelete: () -> Unit) {
@@ -35,6 +38,7 @@ fun ExpenseItemComponent(expense: Expense, onEdit: () -> Unit, onDelete: () -> U
             Text(text = expense.name, style = MaterialTheme.typography.titleMedium)
             Text(text = "${String.format("%.2f", expense.cost)} zł", style = MaterialTheme.typography.bodyMedium)
             Text(text = "${expense.category.getLocalizedName(context)}", style = MaterialTheme.typography.bodySmall)
+            Text(text = formatDate(expense.dateAdded), style = MaterialTheme.typography.bodySmall)
         }
     }
 
@@ -59,10 +63,15 @@ fun ExpenseItemComponent(expense: Expense, onEdit: () -> Unit, onDelete: () -> U
     }
 }
 
+fun formatDate(date: Date): String {
+    val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    return formatter.format(date)
+}
+
 @Preview
 @Composable
 private fun ExpenseItemComponentPreview() {
-    val expense = Expense(1, "test", 1.00, ExpenseCategory.OTHER)
+    val expense = Expense(1, "test", 1.00, ExpenseCategory.OTHER, Date())
     androidx.compose.material.MaterialTheme {
         ExpenseItemComponent(expense, {}, {});
     }

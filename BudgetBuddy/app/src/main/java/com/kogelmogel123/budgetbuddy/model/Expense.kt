@@ -3,6 +3,7 @@ package com.kogelmogel123.budgetbuddy.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.Date
 
 @Entity
 data class Expense(
@@ -18,4 +19,7 @@ data class Expense(
 
     @ColumnInfo(name = "category")
     val category: ExpenseCategory = ExpenseCategory.OTHER,
+
+    @ColumnInfo(name = "creation_date")
+    val dateAdded: Date
 )

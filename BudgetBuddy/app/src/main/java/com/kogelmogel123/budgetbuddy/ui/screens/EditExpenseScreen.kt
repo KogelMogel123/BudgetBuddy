@@ -29,6 +29,7 @@ import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockExpensesViewModel
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
 import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
 import org.koin.androidx.compose.koinViewModel
+import java.util.Date
 
 @Composable
 fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navController: NavController, id: Int) {
@@ -84,11 +85,12 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
                     id,
                     expenseName ?: "",
                     cost.toDouble(),
-                    selectedCategory ?: ExpenseCategory.OTHER
+                    selectedCategory ?: ExpenseCategory.OTHER,
+                    Date()
                 )
             )
 
-            navController.navigate("expenses")
+            navController.navigate("expensesScreen")
         },
             Modifier
                 .padding(top = 16.dp)

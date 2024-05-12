@@ -34,6 +34,9 @@ import com.kogelmogel123.budgetbuddy.R
 import com.kogelmogel123.budgetbuddy.ui.components.MinimalDialogComponent
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
 import com.kogelmogel123.budgetbuddy.viewmodel.ReceiptAnalysisScreenViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -79,7 +82,7 @@ fun MyContent(selectedImage: Uri? = null, isLoading: Boolean = false, navControl
                         .clickable { onImageClick() },
                     contentScale = ContentScale.Fit
                 )
-                UploadButton(viewModel = koinViewModel(), selectedImage, isLoading, onError)
+                UploadButton(viewModel = koinViewModel(), selectedImage, isLoading, navController, onError)
                 OutlinedButton(
                     onClick = onImageClick,
                     enabled = !isLoading,
@@ -90,7 +93,7 @@ fun MyContent(selectedImage: Uri? = null, isLoading: Boolean = false, navControl
                     Text(text = stringResource(id = R.string.select_another_receipt_for_analysis))
                 }
                 OutlinedButton(
-                    onClick = { navController.navigate("scanReceipt") },
+                    onClick = { navController.navigate("scanReceiptScreen") },
                     enabled = !isLoading,
                     modifier = Modifier
                         .fillMaxWidth()
@@ -113,7 +116,7 @@ fun MyContent(selectedImage: Uri? = null, isLoading: Boolean = false, navControl
 }
 
 @Composable
-fun UploadButton(viewModel: ReceiptAnalysisScreenViewModel, selectedImage: Uri?, isLoading: Boolean = false, onErrorMessage: (String) -> Unit) {
+fun UploadButton(viewModel: ReceiptAnalysisScreenViewModel, selectedImage: Uri?, isLoading: Boolean = false, navController: NavController, onErrorMessage: (String) -> Unit) {
     val context = LocalContext.current
 
     Column {
@@ -123,7 +126,14 @@ fun UploadButton(viewModel: ReceiptAnalysisScreenViewModel, selectedImage: Uri?,
         Button(
             enabled = !isLoading,
             onClick = {
-                viewModel.uploadImage(context, selectedImage, onSuccess = { Log.d("Upload", "Success: $it") },
+                viewModel.uploadImage(context, selectedImage,
+                    onSuccess = {
+                        Log.d("Upload", "Success: $it")
+                        viewModel.handleReceiptAnalysisResult(it)
+                        CoroutineScope(Dispatchers.Main).launch {
+                            navController.navigate("expensesScreen")
+                        }
+                                },
                     onError = { error ->
                         Log.e("Upload", "Error: $error")
                         onErrorMessage(error)

@@ -68,19 +68,19 @@ class MainActivity : ComponentActivity() {
                         DrawerBody(
                             items = listOf(
                                 MenuItem(
-                                    id = "dashboard",
+                                    id = "dashboardScreen",
                                     title = stringResource(id = R.string.dashboard_screen),
                                     contentDescription = "Go to dashboard screen",
                                     icon = Icons.Default.Home
                                 ),
                                 MenuItem(
-                                    id = "expenses",
+                                    id = "expensesScreen",
                                     title = stringResource(id = R.string.expenses_screen),
                                     contentDescription = "Go to expenses screen",
                                     icon = Icons.Default.AccountBalance
                                 ),
                                 MenuItem(
-                                    id = "scanReceipt",
+                                    id = "scanReceiptScreen",
                                     title = stringResource(id = R.string.scan_receipt_screen),
                                     contentDescription = "Go to scan receipt screen",
                                     icon = Icons.Default.Search
@@ -102,17 +102,17 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 ) {
-                    NavHost(navController, startDestination = "dashboard") {
-                        composable("dashboard") {
+                    NavHost(navController, startDestination = "dashboardScreen") {
+                        composable("dashboardScreen") {
                             DashboardScreen()
                         }
-                        composable("scanReceipt") {
+                        composable("scanReceiptScreen") {
                             ScanReceiptScreen(navController = navController)
                         }
-                        composable("expenses") {
+                        composable("expensesScreen") {
                             ExpensesScreen(navController = navController)
                         }
-                        composable("addExpense") {
+                        composable("addExpenseScreen") {
                             AddExpenseScreen(navController = navController)
                         }
                         composable("receiptsAnalysisScreen") {
@@ -126,7 +126,7 @@ class MainActivity : ComponentActivity() {
                             ReceiptsAnalysisScreen(selectedImageEncodedUri = selectedImageEncodedUri, navController = navController)
                         }
                         composable(
-                            route = "editExpense/{id}",
+                            route = "editExpenseScreen/{id}",
                             arguments = listOf(navArgument("id") { type = NavType.IntType })
                         ) { backStackEntry ->
                             val expenseId = backStackEntry.arguments?.getInt("id") ?: -1

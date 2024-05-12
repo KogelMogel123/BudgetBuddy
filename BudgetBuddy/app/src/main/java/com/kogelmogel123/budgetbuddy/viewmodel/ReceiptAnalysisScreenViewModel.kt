@@ -6,7 +6,12 @@ import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.kogelmogel123.budgetbuddy.BuildConfig
+import com.kogelmogel123.budgetbuddy.data.IExpensesRepository
+import com.kogelmogel123.budgetbuddy.model.Expense
+import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -18,8 +23,9 @@ import okio.IOException
 import java.io.File
 import java.io.FileOutputStream
 import java.net.URLDecoder
+import java.util.Date
 
-class ReceiptAnalysisScreenViewModel: ViewModel() {
+class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRepository): ViewModel() {
     private val client = OkHttpClient()
     var isLoading = mutableStateOf(false)
 
@@ -92,6 +98,32 @@ class ReceiptAnalysisScreenViewModel: ViewModel() {
         }
     }
 
+    fun handleReceiptAnalysisResult(jsonResponse: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val expensesType = object : TypeToken<List<ExpenseData>>() {}.type
+                val expensesData: List<ExpenseData> = Gson().fromJson(jsonResponse, expensesType)
+                val expenses = expensesData.map { data ->
+                    Expense(
+                        name = data.name ?: "",
+                        cost = data.cost.toDouble() ?: 0.00,
+                        category = ExpenseCategory.values().find { it.name.equals(data.category, ignoreCase = true) } ?: ExpenseCategory.OTHER,
+                        dateAdded = Date()
+                    )
+                }
+                expenses.forEach { expense ->
+                    expensesRepository.insertExpense(expense)
+                }
+            } catch (e: Exception) {
+                Log.e("ReceiptAnalysis", "Error processing receipt analysis result", e)
+            }
+        }
+    }
+    data class ExpenseData(
+        val name: String,
+        val cost: String,
+        val category: String
+    )
     private fun decodeUriAndCopyFile(context: Context, uri: Uri): File {
         val inputStream = context.contentResolver.openInputStream(uri)
         val outputFile = File(context.cacheDir, "upload_image_${System.currentTimeMillis()}.jpg")

@@ -4,7 +4,7 @@ import android.content.Context
 import com.kogelmogel123.budgetbuddy.R
 
 enum class ExpenseCategory {
-    Groceries,
+    GROCERIES,
     TRANSPORT,
     HOUSING,
     ENTERTAINMENT,
@@ -14,7 +14,7 @@ enum class ExpenseCategory {
 
     fun getLocalizedName(context: Context): String {
         return when (this) {
-            Groceries -> context.getString(R.string.category_groceries)
+            GROCERIES -> context.getString(R.string.category_groceries)
             TRANSPORT -> context.getString(R.string.category_transport)
             HOUSING -> context.getString(R.string.category_housing)
             ENTERTAINMENT -> context.getString(R.string.category_entertainment)

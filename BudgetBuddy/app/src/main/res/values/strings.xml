@@ -25,4 +25,5 @@
     <string name="category_clothing">Clothing</string>
     <string name="category_education">Education</string>
     <string name="category_other">Other</string>
+    <string name="total">Total</string>
 </resources>

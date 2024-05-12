@@ -56,7 +56,7 @@ fun ExpenseCategorySelectorComponentPreview() {
 @Composable
 fun ExpenseCategorySelectorComponent2Preview() {
     var selectedCategory by remember { mutableStateOf<ExpenseCategory?>(null) }
-    selectedCategory = ExpenseCategory.FOOD
+    selectedCategory = ExpenseCategory.GROCERIES
 
     MaterialTheme {
         ExpenseCategorySelectorComponent(selectedCategory = selectedCategory) { category ->
