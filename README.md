@@ -32,8 +32,7 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Tłumaczenie interfejsu angielski/polski w zależności od systemu użytkownika
 
 ## COULD HAVE
- - Możliwość stawiania celów budżetowych
- - Statystyki celów
+ - Możliwość ustawiania budżetu
  - Statystyki wydatków
 
 ## WON'T HAVE
@@ -49,4 +48,4 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - Zapraszanie innych użytkowników (np. rodzina, partner/ka)
  - Współdzielenie paragonów/wydatków z innymi użytkownikami w ramach grup
  - Rozpoznawanie wzorców w wydatkach użytkownika związanych z porami roku czy świętami i dostarczanie przewidywań budżetowych
- - Notyfikacje dotyczące osiągnięcia celów finansowych
+ - Notyfikacje dotyczące osiągnięcia granicy budżetu finansowych
