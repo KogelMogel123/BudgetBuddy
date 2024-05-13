@@ -1,7 +1,9 @@
 package com.kogelmogel123.budgetbuddy.di
 
 import com.kogelmogel123.budgetbuddy.data.BudgetBuddyDatabase
+import com.kogelmogel123.budgetbuddy.data.IBudgetsRepository
 import com.kogelmogel123.budgetbuddy.data.IExpensesRepository
+import com.kogelmogel123.budgetbuddy.data.OfflineBudgetsRepository
 import com.kogelmogel123.budgetbuddy.data.OfflineExpensesRepository
 import com.kogelmogel123.budgetbuddy.viewmodel.CameraScreenViewModel
 import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
@@ -14,9 +16,14 @@ val appModule = module {
     single { BudgetBuddyDatabase.getDatabase(androidContext()) }
 
     single { get<BudgetBuddyDatabase>().expenseDao() }
+    single { get<BudgetBuddyDatabase>().budgetDao() }
 
     single<IExpensesRepository> {
         OfflineExpensesRepository(expenseDao = get())
+    }
+
+    single<IBudgetsRepository> {
+        OfflineBudgetsRepository(budgetDao = get())
     }
 
     viewModel { ExpensesViewModel(get()) }

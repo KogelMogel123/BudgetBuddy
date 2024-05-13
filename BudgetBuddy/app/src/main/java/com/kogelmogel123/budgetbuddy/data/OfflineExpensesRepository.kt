@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.kogelmogel123.budgetbuddy.model.Expense
 import kotlinx.coroutines.flow.Flow
 
-class OfflineExpensesRepository(private val expenseDao: ExpenseDao) : IExpensesRepository {
+class OfflineExpensesRepository(private val expenseDao: IExpenseDao) : IExpensesRepository {
     override fun getAllExpenses(): LiveData<List<Expense>> = expenseDao.getAll()
 
     override fun getExpenseById(id: Int): Flow<Expense> = expenseDao.getExpenseById(id)

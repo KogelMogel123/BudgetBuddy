@@ -61,12 +61,10 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController
                     .padding(10.dp)
             )
             LazyColumn {
-                expenses?.let {
-                    items(it) { expense ->
-                        ExpenseItemComponent(expense,
-                            onEdit = { navController.navigate("editExpenseScreen/${expense.id}") },
-                            onDelete = { viewModel.deleteExpense(expense) })
-                    }
+                items(expenses) { expense ->
+                    ExpenseItemComponent(expense,
+                        onEdit = { navController.navigate("editExpenseScreen/${expense.id}") },
+                        onDelete = { viewModel.deleteExpense(expense) })
                 }
             }
         }

@@ -69,8 +69,8 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
             viewModel.addExpense(
                 Expense(
                     0,
-                    expenseName,
-                    cost.toDouble(),
+                    expenseName ?: "",
+                    cost.toDouble() ?: 0.00,
                     selectedCategory ?: ExpenseCategory.OTHER,
                     Date()
                 )

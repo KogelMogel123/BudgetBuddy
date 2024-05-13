@@ -7,24 +7,23 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import com.kogelmogel123.budgetbuddy.model.Expense
+import com.kogelmogel123.budgetbuddy.model.Budget
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface ExpenseDao {
+interface IBudgetDao {
+    @Query("SELECT * FROM budget")
+    fun getAll(): LiveData<List<Budget>>
 
-    @Query("SELECT * FROM expense")
-    fun getAll(): LiveData<List<Expense>>
-
-    @Query("SELECT * FROM expense WHERE id = :id")
-    fun getExpenseById(id: Int): Flow<Expense>
+    @Query("SELECT * FROM budget WHERE id = :id")
+    fun getBudgetById(id: Int): Flow<Budget>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(expense: Expense)
+    suspend fun insert(budget: Budget)
 
     @Update
-    suspend fun update(expense: Expense)
+    suspend fun update(budget: Budget)
 
     @Delete
-    suspend fun delete(expense: Expense)
+    suspend fun delete(budget: Budget)
 }
