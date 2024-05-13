@@ -32,8 +32,8 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Tłumaczenie interfejsu angielski/polski w zależności od systemu użytkownika
 
 ## COULD HAVE
- - Możliwość ustawiania budżetu
- - Statystyki wydatków
+ - [ ] Możliwość ustawiania budżetu
+ - [ ] Statystyki wydatków
 
 ## WON'T HAVE
  - Statystyki cen produktów w czasie
