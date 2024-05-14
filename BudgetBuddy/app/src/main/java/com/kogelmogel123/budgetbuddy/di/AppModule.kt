@@ -5,6 +5,7 @@ import com.kogelmogel123.budgetbuddy.data.IBudgetsRepository
 import com.kogelmogel123.budgetbuddy.data.IExpensesRepository
 import com.kogelmogel123.budgetbuddy.data.OfflineBudgetsRepository
 import com.kogelmogel123.budgetbuddy.data.OfflineExpensesRepository
+import com.kogelmogel123.budgetbuddy.viewmodel.BudgetViewModel
 import com.kogelmogel123.budgetbuddy.viewmodel.CameraScreenViewModel
 import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
 import com.kogelmogel123.budgetbuddy.viewmodel.ReceiptAnalysisScreenViewModel
@@ -29,4 +30,5 @@ val appModule = module {
     viewModel { ExpensesViewModel(get()) }
     viewModel { CameraScreenViewModel() }
     viewModel { ReceiptAnalysisScreenViewModel(get()) }
+    viewModel { BudgetViewModel(get()) }
 }

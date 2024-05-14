@@ -111,9 +111,8 @@ dependencies {
     implementation("io.insert-koin:koin-android")
     implementation("io.insert-koin:koin-androidx-compose")
 
-    // VICO
-    implementation("com.patrykandpatrick.vico:compose:2.0.0-alpha.12")
-    implementation("com.patrykandpatrick.vico:compose-m3:2.0.0-alpha.12")
+    // ycharts
+    implementation("co.yml:ycharts:2.1.0")
 
     // Room
     implementation("androidx.room:room-runtime:2.6.1")

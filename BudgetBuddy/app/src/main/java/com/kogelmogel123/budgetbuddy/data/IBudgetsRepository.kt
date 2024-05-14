@@ -2,6 +2,7 @@ package com.kogelmogel123.budgetbuddy.data
 
 import androidx.lifecycle.LiveData
 import com.kogelmogel123.budgetbuddy.model.Budget
+import com.kogelmogel123.budgetbuddy.model.MonthEnum
 import kotlinx.coroutines.flow.Flow
 
 interface IBudgetsRepository {
@@ -14,6 +15,11 @@ interface IBudgetsRepository {
      * Retrieve an budget from the given data source that matches with the [id].
      */
     fun getBudgetById(id: Int): Flow<Budget>
+
+    /**
+     * Retrieve an budget from the given data source that matches with the [date].
+     */
+    fun getBudgetByDate(month: MonthEnum, year: Int): Flow<Budget>
 
     /**
      * Insert budget in the data source
