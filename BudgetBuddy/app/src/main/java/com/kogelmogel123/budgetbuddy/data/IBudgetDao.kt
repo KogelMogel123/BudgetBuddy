@@ -17,10 +17,10 @@ interface IBudgetDao {
     fun getAll(): LiveData<List<Budget>>
 
     @Query("SELECT * FROM budget WHERE id = :id")
-    fun getBudgetById(id: Int): Flow<Budget>
+    fun getById(id: Int): Flow<Budget>
 
     @Query("SELECT * FROM budget WHERE month = :month AND year = :year")
-    fun getBudgetByDate(month: MonthEnum, year: Int): Flow<Budget>
+    fun getByDate(month: MonthEnum, year: Int): Flow<Budget>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(budget: Budget)

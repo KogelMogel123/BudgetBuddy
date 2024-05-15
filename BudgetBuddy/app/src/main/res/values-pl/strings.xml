@@ -40,4 +40,5 @@
     <string name="month_october">Październik</string>
     <string name="month_november">Listopad</string>
     <string name="month_december">Grudzień</string>
+    <string name="expenses_in_the_current_month">Wydatki w aktualnym miesiącu:</string>
 </resources>

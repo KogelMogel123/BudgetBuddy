@@ -8,23 +8,23 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.kogelmogel123.budgetbuddy.ui.screens.camera.CameraPreviewScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.camera.NoPermissionScreen
-import com.kogelmogel123.budgetbuddy.viewmodel.CameraScreenViewModel
+import com.kogelmogel123.budgetbuddy.viewmodel.CameraViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun ScanReceiptScreen(navController: NavController) {
+fun ScanReceiptScreen(viewModel: CameraViewModel = koinViewModel(), navController: NavController) {
     val cameraPermissionState: PermissionState = rememberPermissionState(permission = android.Manifest.permission.CAMERA)
 
-    CheckCameraPermission(cameraPermissionState.status.isGranted, navController, onRequestPermission = {
+    CheckCameraPermission(cameraPermissionState.status.isGranted, viewModel, navController, onRequestPermission = {
         cameraPermissionState.launchPermissionRequest()
     })
 }
 
 @Composable
-private fun CheckCameraPermission(hasPermission: Boolean, navController: NavController, onRequestPermission: () -> Unit){
+private fun CheckCameraPermission(hasPermission: Boolean, viewModel: CameraViewModel, navController: NavController, onRequestPermission: () -> Unit){
     if(hasPermission){
-        CameraPreviewScreen(navController)
+        CameraPreviewScreen(viewModel, navController)
     } else {
         NoPermissionScreen(onRequestPermission)
     }

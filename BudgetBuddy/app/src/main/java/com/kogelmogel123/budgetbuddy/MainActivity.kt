@@ -1,17 +1,17 @@
 package com.kogelmogel123.budgetbuddy
 
+//noinspection UsingMaterialAndMaterial3Libraries
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.kogelmogel123.budgetbuddy.ui.theme.BudgetBuddyTheme
-//noinspection UsingMaterialAndMaterial3Libraries
-import androidx.compose.material.*
+import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavType
@@ -20,6 +20,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.kogelmogel123.budgetbuddy.di.appModule
+import com.kogelmogel123.budgetbuddy.ui.components.AppBar
+import com.kogelmogel123.budgetbuddy.ui.components.DrawerBody
+import com.kogelmogel123.budgetbuddy.ui.components.DrawerHeader
 import com.kogelmogel123.budgetbuddy.ui.screens.AddExpenseScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.DashboardScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.EditExpenseScreen
@@ -27,6 +30,7 @@ import com.kogelmogel123.budgetbuddy.ui.screens.ExpensesScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ReceiptsAnalysisScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ScanReceiptScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.camera.CameraPreviewScreen
+import com.kogelmogel123.budgetbuddy.ui.theme.BudgetBuddyTheme
 import kotlinx.coroutines.launch
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger

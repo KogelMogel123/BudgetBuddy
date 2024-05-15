@@ -21,20 +21,24 @@ class FakeExpensesRepository : IExpensesRepository {
         emit(Expense(1, "Test Expense 1", 20.10, ExpenseCategory.GROCERIES, Date()))
     }
 
-    override fun getAllExpenses(): LiveData<List<Expense>> {
+    override fun getAll(): LiveData<List<Expense>> {
         return expensesList
     }
 
-    override fun getExpenseById(id: Int): Flow<Expense> {
+    override fun getByStartEndDate(startDate: Date, endDate: Date): LiveData<List<Expense>> {
+        return expensesList
+    }
+
+    override fun getById(id: Int): Flow<Expense> {
         return expensesFlow
     }
 
-    override suspend fun insertExpense(expense: Expense) {
+    override suspend fun insert(expense: Expense) {
     }
 
-    override suspend fun deleteExpense(expense: Expense) {
+    override suspend fun delete(expense: Expense) {
     }
 
-    override suspend fun updateExpense(expense: Expense) {
+    override suspend fun update(expense: Expense) {
     }
 }

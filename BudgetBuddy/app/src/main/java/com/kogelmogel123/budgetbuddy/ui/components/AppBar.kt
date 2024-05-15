@@ -1,13 +1,17 @@
-package com.kogelmogel123.budgetbuddy
+package com.kogelmogel123.budgetbuddy.ui.components
 
-//noinspection UsingMaterialAndMaterial3Libraries
-import androidx.compose.material.*
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.kogelmogel123.budgetbuddy.R
 
 @Composable
 fun AppBar(

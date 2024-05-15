@@ -15,8 +15,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
-import org.koin.androidx.compose.koinViewModel
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -28,6 +26,8 @@ import com.kogelmogel123.budgetbuddy.ui.components.ExpenseItemComponent
 import com.kogelmogel123.budgetbuddy.ui.components.TripleFloatingActionButton
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockExpensesViewModel
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
+import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
@@ -60,6 +60,11 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController
                     .fillMaxWidth()
                     .padding(10.dp)
             )
+            Text(text = "${stringResource(id = R.string.expenses_in_the_current_month)}",
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp))
             LazyColumn {
                 items(expenses) { expense ->
                     ExpenseItemComponent(expense,

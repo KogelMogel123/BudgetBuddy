@@ -112,7 +112,7 @@ class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRe
                     )
                 }
                 expenses.forEach { expense ->
-                    expensesRepository.insertExpense(expense)
+                    expensesRepository.insert(expense)
                 }
             } catch (e: Exception) {
                 Log.e("ReceiptAnalysis", "Error processing receipt analysis result", e)

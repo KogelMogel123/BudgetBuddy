@@ -1,14 +1,10 @@
 package com.kogelmogel123.budgetbuddy.ui.screens.camera
 
-import android.content.ContentValues
 import android.content.Context
-import android.provider.MediaStore
-import android.util.Log
 import android.util.Size
 import android.view.Surface
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
@@ -34,15 +30,13 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import com.kogelmogel123.budgetbuddy.R
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
-import java.net.URLEncoder
-import java.nio.charset.StandardCharsets
+import com.kogelmogel123.budgetbuddy.viewmodel.CameraViewModel
+import org.koin.androidx.compose.koinViewModel
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
 @Composable
-fun CameraPreviewScreen(navController: NavController) {
+fun CameraPreviewScreen(viewModel: CameraViewModel = koinViewModel(), navController: NavController) {
     val lensFacing = CameraSelector.LENS_FACING_BACK
     val lifecycleOwner = LocalLifecycleOwner.current
     val context = LocalContext.current
@@ -69,7 +63,7 @@ fun CameraPreviewScreen(navController: NavController) {
         AndroidView({ previewView }, modifier = Modifier.fillMaxSize())
         SnackbarHost(hostState = snackbarHostState)
         Button(onClick = {
-            captureImage(imageCapture, context, snackbarHostState, coroutineScope, navController)
+            viewModel.captureImage(imageCapture, context, snackbarHostState, coroutineScope, navController)
                          },
             modifier = Modifier
                 .align(Alignment.BottomCenter)
@@ -84,43 +78,6 @@ fun CameraPreviewScreen(navController: NavController) {
 @Composable
 fun CameraPreviewScreenPreview() {
     CameraPreviewScreen(navController = mockNavController())
-}
-
-private fun captureImage(imageCapture: ImageCapture, context: Context, snackbarHostState: SnackbarHostState, coroutineScope: CoroutineScope, navController: NavController) {
-    val timeStamp = System.currentTimeMillis()
-    val name = "Receipt_$timeStamp.jpeg"
-    val contentValues = ContentValues().apply {
-        put(MediaStore.MediaColumns.DISPLAY_NAME, name)
-        put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
-        put(MediaStore.Images.Media.RELATIVE_PATH, "Pictures/Receipts")
-    }
-    val outputOptions = ImageCapture.OutputFileOptions
-        .Builder(
-            context.contentResolver,
-            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-            contentValues
-        )
-        .build()
-    imageCapture.takePicture(
-        outputOptions,
-        ContextCompat.getMainExecutor(context),
-        object : ImageCapture.OnImageSavedCallback {
-            override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                coroutineScope.launch {
-                    val savedUri = outputFileResults.savedUri.toString()
-                    val encodedUri = URLEncoder.encode(savedUri, StandardCharsets.UTF_8.toString())
-                    navController.navigate("receiptsAnalysisScreen/${encodedUri}")
-                }
-            }
-
-            override fun onError(exception: ImageCaptureException) {
-                coroutineScope.launch {
-                    Log.d("Photo", "Error: ${exception.cause}")
-                    snackbarHostState.showSnackbar("Error capturing image")
-                }
-            }
-
-        })
 }
 
 private suspend fun Context.getCameraProvider(): ProcessCameraProvider =

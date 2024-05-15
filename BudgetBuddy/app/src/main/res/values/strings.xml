@@ -39,4 +39,5 @@
     <string name="month_october">October</string>
     <string name="month_november">November</string>
     <string name="month_december">December</string>
+    <string name="expenses_in_the_current_month">Expenses in the current month:</string>
 </resources>

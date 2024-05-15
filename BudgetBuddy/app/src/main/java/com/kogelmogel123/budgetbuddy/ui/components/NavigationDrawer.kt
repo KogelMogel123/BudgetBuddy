@@ -1,14 +1,17 @@
-package com.kogelmogel123.budgetbuddy
+package com.kogelmogel123.budgetbuddy.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Icon
-//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
@@ -20,11 +23,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kogelmogel123.budgetbuddy.MenuItem
+import com.kogelmogel123.budgetbuddy.R
 
 @Composable
 fun DrawerHeader() {
@@ -39,7 +43,7 @@ fun DrawerHeader() {
 
         Image(
             painter = painterResource(id = R.drawable.buddy),
-            contentDescription = "",//stringResource(id = R.string.information),
+            contentDescription = "",
             contentScale = ContentScale.Fit,
             modifier = imageModifier
         )

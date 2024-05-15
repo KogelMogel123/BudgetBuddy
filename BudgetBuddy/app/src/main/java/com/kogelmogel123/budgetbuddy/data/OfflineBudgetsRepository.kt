@@ -6,15 +6,15 @@ import com.kogelmogel123.budgetbuddy.model.MonthEnum
 import kotlinx.coroutines.flow.Flow
 
 class OfflineBudgetsRepository(private val budgetDao: IBudgetDao) : IBudgetsRepository {
-    override fun getAllBudgets(): LiveData<List<Budget>> = budgetDao.getAll()
+    override fun getAll(): LiveData<List<Budget>> = budgetDao.getAll()
 
-    override fun getBudgetById(id: Int): Flow<Budget> = budgetDao.getBudgetById(id)
+    override fun getById(id: Int): Flow<Budget> = budgetDao.getById(id)
 
-    override fun getBudgetByDate(month: MonthEnum, year: Int): Flow<Budget> = budgetDao.getBudgetByDate(month, year)
+    override fun getByDate(month: MonthEnum, year: Int): Flow<Budget> = budgetDao.getByDate(month, year)
 
-    override suspend fun insertBudget(budget: Budget) = budgetDao.insert(budget)
+    override suspend fun insert(budget: Budget) = budgetDao.insert(budget)
 
-    override suspend fun deleteBudget(budget: Budget) = budgetDao.delete(budget)
+    override suspend fun delete(budget: Budget) = budgetDao.delete(budget)
 
-    override suspend fun updateBudget(budget: Budget) = budgetDao.update(budget)
+    override suspend fun update(budget: Budget) = budgetDao.update(budget)
 }

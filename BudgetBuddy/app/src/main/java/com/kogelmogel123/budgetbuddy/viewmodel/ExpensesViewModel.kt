@@ -1,54 +1,54 @@
 package com.kogelmogel123.budgetbuddy.viewmodel
 
 import android.util.Log
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.kogelmogel123.budgetbuddy.data.IExpensesRepository
+import com.kogelmogel123.budgetbuddy.helper.DateHelper
 import com.kogelmogel123.budgetbuddy.model.Expense
-import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import java.time.LocalDate
 
 class ExpensesViewModel(private val expensesRepository: IExpensesRepository) : ViewModel() {
+    val currentDate = LocalDate.now()
+    val dateRange = DateHelper.getMonthDateRange(currentDate.year, currentDate.month)
+    val expenses: LiveData<List<Expense>> = expensesRepository.getByStartEndDate(dateRange.first, dateRange.second)
 
-    val expenses: LiveData<List<Expense>> = expensesRepository.getAllExpenses()
-
-    fun getTotalCost(): LiveData<Double> = expensesRepository.getAllExpenses()
+    fun getTotalCost(): LiveData<Double> = expensesRepository.getAll()
         .map { expenses -> expenses.sumOf { it.cost } }
 
     fun getExpenseById(id: Int): LiveData<Expense> {
-        return expensesRepository.getExpenseById(id)
+        return expensesRepository.getById(id)
             .catch { e ->
                 Log.e("ExpensesViewModel", "Error fetching expense", e)
             }
             .asLiveData()
     }
 
+    fun getExpensesByCurrentMonth(): LiveData<List<Expense>> {
+        val dateRange = DateHelper.getMonthDateRange(currentDate.year, currentDate.month)
+        return expensesRepository.getByStartEndDate(dateRange.first, dateRange.second)
+    }
+
     fun addExpense(expense: Expense) {
         viewModelScope.launch {
-            expensesRepository.insertExpense(expense)
+            expensesRepository.insert(expense)
         }
     }
 
     fun updateExpense(expense: Expense) {
         viewModelScope.launch {
-            expensesRepository.updateExpense(expense)
+            expensesRepository.update(expense)
         }
     }
 
     fun deleteExpense(expense: Expense) {
         viewModelScope.launch {
-            expensesRepository.deleteExpense(expense)
+            expensesRepository.delete(expense)
         }
     }
 }

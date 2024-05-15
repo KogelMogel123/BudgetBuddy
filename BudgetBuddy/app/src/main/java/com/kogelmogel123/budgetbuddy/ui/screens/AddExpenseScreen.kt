@@ -69,15 +69,16 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
             viewModel.addExpense(
                 Expense(
                     0,
-                    expenseName ?: "",
-                    cost.toDouble() ?: 0.00,
+                    expenseName,
+                    cost.toDouble(),
                     selectedCategory ?: ExpenseCategory.OTHER,
                     Date()
                 )
             )
             navController.navigate("expensesScreen")
         },
-            Modifier.padding(top = 16.dp).fillMaxWidth()){
+            Modifier.padding(top = 16.dp).fillMaxWidth(),
+            enabled = expenseName.isNotBlank() && cost.isNotBlank() && selectedCategory != null){
             Text(text = stringResource(id = R.string.add_expense_screen))
         }
     }

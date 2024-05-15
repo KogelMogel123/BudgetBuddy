@@ -3,6 +3,7 @@ package com.kogelmogel123.budgetbuddy.data
 import androidx.lifecycle.LiveData
 import com.kogelmogel123.budgetbuddy.model.Expense
 import kotlinx.coroutines.flow.Flow
+import java.util.Date
 
 /**
  * Repository that provides insert, update, delete, and retrieve of [Expense] from a given data source.
@@ -11,25 +12,30 @@ interface IExpensesRepository {
     /**
      * Retrieve all the expenses from the given data source.
      */
-    fun getAllExpenses(): LiveData<List<Expense>>
+    fun getAll(): LiveData<List<Expense>>
+
+    /**
+     * Retrieves all expenses from the specified data source for dates from to.
+     */
+    fun getByStartEndDate(startDate: Date, endDate: Date): LiveData<List<Expense>>
 
     /**
      * Retrieve an expense from the given data source that matches with the [id].
      */
-    fun getExpenseById(id: Int): Flow<Expense>
+    fun getById(id: Int): Flow<Expense>
 
     /**
      * Insert expense in the data source
      */
-    suspend fun insertExpense(expense: Expense)
+    suspend fun insert(expense: Expense)
 
     /**
      * Delete expense from the data source
      */
-    suspend fun deleteExpense(expense: Expense)
+    suspend fun delete(expense: Expense)
 
     /**
      * Update expense in the data source
      */
-    suspend fun updateExpense(expense: Expense)
+    suspend fun update(expense: Expense)
 }
