@@ -15,26 +15,29 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kogelmogel123.budgetbuddy.R
-import com.kogelmogel123.budgetbuddy.model.MonthEnum
-import com.kogelmogel123.budgetbuddy.viewmodel.BudgetViewModel
-import org.koin.androidx.compose.koinViewModel
-import java.time.LocalDate
+import com.kogelmogel123.budgetbuddy.model.Budget
 import com.kogelmogel123.budgetbuddy.ui.components.SimpleDonutChart
+import com.kogelmogel123.budgetbuddy.viewmodel.DashboardScreenViewModel
+import org.koin.androidx.compose.koinViewModel
+import java.time.Month
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun DashboardScreen(viewModel: BudgetViewModel = koinViewModel()) {
+fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel()) {
     val context = LocalContext.current
-    val currentDate = LocalDate.now()
-    val budgetLiveData = viewModel.getBudgetByDate(MonthEnum.MAY, 2024)
-    val budget by budgetLiveData.observeAsState()
+    val budget by viewModel.budget.observeAsState(initial = Budget(0, Month.MAY, 2024, 0.00))
+    val expenses by viewModel.expenses.observeAsState(initial = emptyList())
+    val pieChartData = viewModel.getDonutChartData(context, expenses)
 
     Column{
-        SimpleDonutChart(context, viewModel)
-
-        Text(text = "${stringResource(id = R.string.budget_for)} ${budget?.month?.getLocalizedName(context) ?:currentDate.month}: ${budget?.amount ?: 0.00} zł",
-            style = MaterialTheme.typography.titleLarge,
-            modifier = Modifier.padding(top = 26.dp).fillMaxWidth())
+        if (pieChartData != null) {
+            SimpleDonutChart(context, pieChartData)
+            Text(text = "${stringResource(id = R.string.budget_for)} ${viewModel.currentDate.month}: ${budget?.amount ?: 0.00} zł",
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.padding(top = 26.dp).fillMaxWidth())
+        } else {
+            Text(R.string.loading_data.toString(), Modifier.padding(16.dp))
+        }
     }
 }
 

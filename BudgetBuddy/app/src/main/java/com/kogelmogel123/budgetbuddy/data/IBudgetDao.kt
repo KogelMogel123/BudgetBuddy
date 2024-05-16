@@ -8,8 +8,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.kogelmogel123.budgetbuddy.model.Budget
-import com.kogelmogel123.budgetbuddy.model.MonthEnum
 import kotlinx.coroutines.flow.Flow
+import java.time.Month
 
 @Dao
 interface IBudgetDao {
@@ -20,7 +20,7 @@ interface IBudgetDao {
     fun getById(id: Int): Flow<Budget>
 
     @Query("SELECT * FROM budget WHERE month = :month AND year = :year")
-    fun getByDate(month: MonthEnum, year: Int): Flow<Budget>
+    fun getByDate(month: Month, year: Int): Flow<Budget>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(budget: Budget)

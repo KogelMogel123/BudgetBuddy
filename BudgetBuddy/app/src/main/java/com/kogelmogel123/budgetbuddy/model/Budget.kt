@@ -3,6 +3,7 @@ package com.kogelmogel123.budgetbuddy.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.time.Month
 
 @Entity
 data class Budget(
@@ -11,7 +12,7 @@ data class Budget(
     val id: Int = 0,
 
     @ColumnInfo(name = "month")
-    val month: MonthEnum,
+    val month: Month,
 
     @ColumnInfo(name = "year")
     val year: Int = 2024,

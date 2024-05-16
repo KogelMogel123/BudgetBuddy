@@ -7,9 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material.ExperimentalMaterialApi
-//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.ModalBottomSheetValue
-//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -21,19 +19,18 @@ import co.yml.charts.common.components.Legends
 import co.yml.charts.common.utils.DataUtils
 import co.yml.charts.ui.piechart.charts.DonutPieChart
 import co.yml.charts.ui.piechart.models.PieChartConfig
+import co.yml.charts.ui.piechart.models.PieChartData
 import co.yml.charts.ui.piechart.utils.proportion
-import com.kogelmogel123.budgetbuddy.viewmodel.BudgetViewModel
 
 @ExperimentalMaterialApi
 @Composable
-fun SimpleDonutChart(context: Context, viewModel: BudgetViewModel) {
+fun SimpleDonutChart(context: Context, chartData: PieChartData) {
     val accessibilitySheetState =
         rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     val scope = rememberCoroutineScope()
-    val data = viewModel.getDonutChartData(context)
-    val sumOfValues = data.totalLength
+    val sumOfValues = chartData.totalLength
 
-    val proportions = data.slices.proportion(sumOfValues)
+    val proportions = chartData.slices.proportion(sumOfValues)
     val pieChartConfig =
         PieChartConfig(
             labelVisible = true,
@@ -55,12 +52,12 @@ fun SimpleDonutChart(context: Context, viewModel: BudgetViewModel) {
             .fillMaxWidth()
             .height(500.dp)
     ) {
-        Legends(legendsConfig = DataUtils.getLegendsConfigFromPieChartData(pieChartData = data, 3))
+        Legends(legendsConfig = DataUtils.getLegendsConfigFromPieChartData(pieChartData = chartData, 3))
         DonutPieChart(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(400.dp),
-            data,
+            chartData,
             pieChartConfig
         ) { slice ->
             Toast.makeText(context, slice.label, Toast.LENGTH_SHORT).show()
