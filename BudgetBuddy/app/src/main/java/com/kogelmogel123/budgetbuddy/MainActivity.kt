@@ -23,8 +23,10 @@ import com.kogelmogel123.budgetbuddy.di.appModule
 import com.kogelmogel123.budgetbuddy.ui.components.AppBar
 import com.kogelmogel123.budgetbuddy.ui.components.DrawerBody
 import com.kogelmogel123.budgetbuddy.ui.components.DrawerHeader
+import com.kogelmogel123.budgetbuddy.ui.screens.AddBudgetScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.AddExpenseScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.DashboardScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.EditBudgetScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.EditExpenseScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ExpensesScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.ReceiptsAnalysisScreen
@@ -108,7 +110,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     NavHost(navController, startDestination = "dashboardScreen") {
                         composable("dashboardScreen") {
-                            DashboardScreen()
+                            DashboardScreen(navController = navController)
                         }
                         composable("scanReceiptScreen") {
                             ScanReceiptScreen(navController = navController)
@@ -138,6 +140,16 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("cameraPreviewScreen") {
                             CameraPreviewScreen(navController = navController)
+                        }
+                        composable("addBudgetScreen") {
+                            AddBudgetScreen(navController = navController)
+                        }
+                        composable(
+                            route = "editBudgetScreen/{id}",
+                            arguments = listOf(navArgument("id") { type = NavType.IntType })
+                        ) { backStackEntry ->
+                            val budgetId = backStackEntry.arguments?.getInt("id") ?: -1
+                            EditBudgetScreen(navController = navController, id = budgetId)
                         }
                     }
                 }

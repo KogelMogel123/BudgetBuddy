@@ -25,7 +25,11 @@ class BudgetService(private val budgetsRepository: IBudgetsRepository): IBudgetS
             .asLiveData()
     }
 
-    override suspend fun addBudget(budget: Budget) {
-        budgetsRepository.insert(budget)
+    override suspend fun createBudget(month: Month, year: Int, amount: Double) {
+        budgetsRepository.insert(Budget(0, month, year, amount))
+    }
+
+    override suspend fun updateBudget(budget: Budget) {
+        budgetsRepository.update(budget)
     }
 }

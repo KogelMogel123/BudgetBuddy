@@ -42,4 +42,8 @@
     <string name="expenses_in_the_current_month">Expenses in the current month:</string>
     <string name="loading_data">Loading data</string>
     <string name="remaining_in_the_budget">Remaining in the budget</string>
+    <string name="no_set_budget_for_this_month">No set budget for this month</string>
+    <string name="set_a_budget">Set a budget</string>
+    <string name="modify_the_budget">Modify the budget</string>
+    <string name="budget_amount">Budget amount</string>
 </resources>

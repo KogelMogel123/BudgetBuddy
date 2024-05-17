@@ -43,4 +43,8 @@
     <string name="expenses_in_the_current_month">Wydatki w aktualnym miesiącu:</string>
     <string name="loading_data">Trwa ładowanie danych</string>
     <string name="remaining_in_the_budget">Pozostało w budżecie</string>
+    <string name="no_set_budget_for_this_month">Brak ustawionego budżetu na ten miesiąc</string>
+    <string name="set_a_budget">Ustaw budżet</string>
+    <string name="modify_the_budget">Zmodyfikuj budżet</string>
+    <string name="budget_amount">Kwota budżetu</string>
 </resources>

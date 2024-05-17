@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import co.yml.charts.common.model.PlotType
 import co.yml.charts.ui.piechart.models.PieChartData
 import com.kogelmogel123.budgetbuddy.model.Budget
@@ -12,7 +13,9 @@ import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 import com.kogelmogel123.budgetbuddy.service.IBudgetService
 import com.kogelmogel123.budgetbuddy.service.IExpenseService
+import kotlinx.coroutines.launch
 import java.time.LocalDate
+import java.time.Month
 
 class DashboardScreenViewModel(private val budgetService: IBudgetService, private val expenseService: IExpenseService) : ViewModel() {
     val currentDate = LocalDate.now()
@@ -38,6 +41,13 @@ class DashboardScreenViewModel(private val budgetService: IBudgetService, privat
         }
 
         return PieChartData(slices = slices, plotType = PlotType.Donut)
+    }
+
+    fun createBudget(month: Month, year: Int, amount: Double)
+    {
+        viewModelScope.launch {
+            budgetService.createBudget(month, year, amount)
+        }
     }
 
     private fun getColorForCategory(category: ExpenseCategory): Color {
