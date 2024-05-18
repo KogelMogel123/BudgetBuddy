@@ -51,3 +51,23 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - Współdzielenie paragonów/wydatków z innymi użytkownikami w ramach grup
  - Rozpoznawanie wzorców w wydatkach użytkownika związanych z porami roku czy świętami i dostarczanie przewidywań budżetowych
  - Notyfikacje dotyczące osiągnięcia granicy budżetu finansowych
+
+## Wygląd aplikacji
+Menu
+
+![Screenshot_20240518_142353_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/74e188cf-6c36-4a6f-babb-dd4b0a6419d9)
+
+Pulpit
+
+![Screenshot_20240518_141353_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/52436ab5-c08a-4bcc-9443-167810b3bd3a)
+
+Wydatki
+
+![Screenshot_20240518_141406_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/c7c4839b-a3b5-4ba9-80c1-2b43afbc8dce)
+
+Skanowanie paragonu
+
+![Screenshot_20240518_141911_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/1d70d89b-d77c-4718-95fa-dd6bb5196f1c)
+
+## Jak uruchomić aplikację
+TODO
