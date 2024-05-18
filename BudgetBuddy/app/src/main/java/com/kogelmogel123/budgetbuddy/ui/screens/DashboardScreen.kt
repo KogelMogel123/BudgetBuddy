@@ -3,6 +3,7 @@ package com.kogelmogel123.budgetbuddy.ui.screens
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material3.Button
@@ -94,6 +95,7 @@ fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navCo
                 progress = { spentPercentage.toFloat() },
                 modifier = Modifier
                     .fillMaxWidth()
+                    .height(26.dp)
                     .padding(horizontal = 14.dp, vertical = 8.dp),
             )
         }
