@@ -55,13 +55,13 @@ fun ExpensesScreen(viewModel: ExpensesViewModel = koinViewModel(), navController
         Column(modifier = Modifier.padding(paddingValues)) {
             Text(
                 text = "${stringResource(id = R.string.total)}: ${String.format("%.2f", totalCost)} zł",
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp)
             )
             Text(text = "${stringResource(id = R.string.expenses_in_the_current_month)}",
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp))

@@ -53,18 +53,13 @@ fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navCo
                     .padding(top = 26.dp, start = 14.dp)
                     .fillMaxWidth()
             ) {
-
                 if(budget == null) {
                     Text(text = stringResource(id = R.string.no_set_budget_for_this_month),
-                        style = MaterialTheme.typography.titleLarge,
-                        modifier = Modifier
-                            .padding(top = 26.dp, start = 14.dp)
-                            .fillMaxWidth())
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.weight(1f))
                     Button(
                         onClick = { navController.navigate("addBudgetScreen") },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 14.dp))
+                        modifier = Modifier.padding(start = 8.dp))
                     {
                         Text(text = stringResource(id = R.string.set_a_budget))
                     }
@@ -72,7 +67,7 @@ fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navCo
                 else{
                     Text(
                         text = "${stringResource(id = R.string.budget_for)} ${ DateHelper.getLocalizedName(context, viewModel.currentDate.month)}: ${String.format("%.2f", budget?.amount) ?: "0.00"} zł",
-                        style = MaterialTheme.typography.titleLarge,
+                        style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.weight(1f)
                     )
                     Button(
@@ -85,8 +80,8 @@ fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navCo
             }
 
             Text(
-                text = "${stringResource(id = R.string.left_in_the_budget)}: ${leftInTheBudget} zł",
-                style = MaterialTheme.typography.titleLarge,
+                text = "${stringResource(id = R.string.left_in_the_budget)}: ${leftInTheBudget ?: "0.00"} zł",
+                style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
                     .padding(top = 26.dp, start = 14.dp)
                     .fillMaxWidth()
