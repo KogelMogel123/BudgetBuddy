@@ -37,9 +37,6 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Możliwość ustawiania budżetu na aktualny miesiąc
  - [x] Statystyki wydatków (Wykres kołowy)
 
-## Działanie aplikacji
-TODO
-
 ## Wygląd aplikacji
 Ikona aplikacji
 
