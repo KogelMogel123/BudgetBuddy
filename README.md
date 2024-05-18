@@ -37,20 +37,8 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Możliwość ustawiania budżetu na aktualny miesiąc
  - [x] Statystyki wydatków (Wykres kołowy)
 
-## WON'T HAVE
- - Postawienie API
- - Komunikacja z API
- - Baza danych
- - Logowanie
- - Rejestracja
- - Ergonomiczny interfejs użytkownika
- - Personalizacja interfejsu użytkownika
- - Statystyki cen produktów w czasie
- - Tworzenie grup
- - Zapraszanie innych użytkowników (np. rodzina, partner/ka)
- - Współdzielenie paragonów/wydatków z innymi użytkownikami w ramach grup
- - Rozpoznawanie wzorców w wydatkach użytkownika związanych z porami roku czy świętami i dostarczanie przewidywań budżetowych
- - Notyfikacje dotyczące osiągnięcia granicy budżetu finansowych
+## Działanie aplikacji
+TODO
 
 ## Wygląd aplikacji
 Ikona aplikacji
@@ -75,3 +63,18 @@ Skanowanie paragonu
 
 ## Jak uruchomić aplikację
 TODO
+
+## Plany na przyszłość
+ - Postawienie API
+ - Komunikacja z API
+ - Baza danych
+ - Logowanie
+ - Rejestracja
+ - Ergonomiczny interfejs użytkownika
+ - Personalizacja interfejsu użytkownika
+ - Statystyki cen produktów w czasie
+ - Tworzenie grup
+ - Zapraszanie innych użytkowników (np. rodzina, partner/ka)
+ - Współdzielenie paragonów/wydatków z innymi użytkownikami w ramach grup
+ - Rozpoznawanie wzorców w wydatkach użytkownika związanych z porami roku czy świętami i dostarczanie przewidywań budżetowych
+ - Notyfikacje dotyczące osiągnięcia granicy budżetu finansowych
