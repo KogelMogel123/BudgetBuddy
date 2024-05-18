@@ -53,6 +53,10 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - Notyfikacje dotyczące osiągnięcia granicy budżetu finansowych
 
 ## Wygląd aplikacji
+Ikona aplikacji
+
+![Screenshot_20240518_144159_One UI Home](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/fb9bc326-6a35-40ea-b7e8-d32231364244)
+
 Menu
 
 ![Screenshot_20240518_142353_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/74e188cf-6c36-4a6f-babb-dd4b0a6419d9)
