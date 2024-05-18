@@ -13,9 +13,11 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - Kotlin
  - Android Studio
  - Jetpack Compose
+ - Koin
  - Room
  - CameraX
  - Material Design 3
+ - ycharts
 
 ## MUST HAVE
  - [x] Podstawowy interfejs użytkownika
@@ -32,11 +34,10 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Tłumaczenie interfejsu angielski/polski w zależności od systemu użytkownika
 
 ## COULD HAVE
- - [ ] Możliwość ustawiania budżetu
- - [ ] Statystyki wydatków
+ - [x] Możliwość ustawiania budżetu na aktualny miesiąc
+ - [x] Statystyki wydatków (Wykres kołowy)
 
 ## WON'T HAVE
- - Statystyki cen produktów w czasie
  - Postawienie API
  - Komunikacja z API
  - Baza danych
@@ -44,6 +45,7 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - Rejestracja
  - Ergonomiczny interfejs użytkownika
  - Personalizacja interfejsu użytkownika
+ - Statystyki cen produktów w czasie
  - Tworzenie grup
  - Zapraszanie innych użytkowników (np. rodzina, partner/ka)
  - Współdzielenie paragonów/wydatków z innymi użytkownikami w ramach grup
