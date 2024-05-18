@@ -27,7 +27,7 @@ import java.time.LocalDate
 fun AddBudgetScreen(viewModel: BudgetViewModel = koinViewModel(), navController: NavController) {
     var amount by remember { mutableStateOf("") }
 
-    Column {
+    Column(modifier = Modifier.padding(4.dp)) {
         OutlinedTextField(
             value = amount,
             onValueChange = { newValue ->
@@ -55,7 +55,7 @@ fun AddBudgetScreen(viewModel: BudgetViewModel = koinViewModel(), navController:
                     amount.toDouble()
                 )
             )
-            navController.navigate("dashboardScreen")
+            navController.popBackStack()
         },
             Modifier.padding(top = 16.dp).fillMaxWidth(),
             enabled = amount.isNotBlank()){ Text(text = stringResource(id = R.string.set_a_budget)) }

@@ -46,4 +46,5 @@
     <string name="set_a_budget">Set a budget</string>
     <string name="modify_the_budget">Modify the budget</string>
     <string name="budget_amount">Budget amount</string>
+    <string name="left_in_the_budget">Left in the budget</string>
 </resources>

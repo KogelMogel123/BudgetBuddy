@@ -48,7 +48,7 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
         }
     }
 
-    Column {
+    Column(modifier = Modifier.padding(4.dp)) {
 
         OutlinedTextField(
             value = expenseName ?: "",
@@ -90,7 +90,7 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
                 )
             )
 
-            navController.navigate("expensesScreen")
+            navController.popBackStack()
         },
             Modifier
                 .padding(top = 16.dp)

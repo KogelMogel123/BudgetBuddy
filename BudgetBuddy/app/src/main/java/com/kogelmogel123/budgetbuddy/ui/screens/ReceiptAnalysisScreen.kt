@@ -65,7 +65,7 @@ fun ReceiptsAnalysisScreen(viewModel: ReceiptAnalysisScreenViewModel = koinViewM
 
 @Composable
 fun MyContent(selectedImage: Uri? = null, isLoading: Boolean = false, navController: NavController, onImageClick: () -> Unit, onError: (String) -> Unit) {
-    Scaffold() { paddingValues ->
+    Scaffold(modifier = Modifier.padding(4.dp)) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()

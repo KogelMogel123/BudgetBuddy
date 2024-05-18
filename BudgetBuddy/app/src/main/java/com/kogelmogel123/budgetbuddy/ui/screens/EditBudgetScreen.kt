@@ -37,7 +37,7 @@ fun EditBudgetScreen(viewModel: BudgetViewModel = koinViewModel(), navController
         }
     }
 
-    Column {
+    Column(modifier = Modifier.padding(4.dp)) {
 
         OutlinedTextField(
             value = amount,
@@ -67,7 +67,7 @@ fun EditBudgetScreen(viewModel: BudgetViewModel = koinViewModel(), navController
                 )
             )
 
-            navController.navigate("dashboardScreen")
+            navController.popBackStack()
         },
             Modifier
                 .padding(top = 16.dp)

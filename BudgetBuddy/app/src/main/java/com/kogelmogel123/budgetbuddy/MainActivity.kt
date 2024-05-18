@@ -100,7 +100,15 @@ class MainActivity : ComponentActivity() {
                             ),
                             onItemClick = {menuItem ->
                                 println("Clicked on ${menuItem.title}")
-                                navController.navigate(menuItem.id)
+                                if (menuItem.id == "dashboardScreen") {
+                                    navController.navigate(menuItem.id) {
+                                        popUpTo(navController.graph.startDestinationId) {
+                                            inclusive = true
+                                        }
+                                    }
+                                } else {
+                                    navController.navigate(menuItem.id)
+                                }
                                 scope.launch {
                                     scaffoldState.drawerState.close()
                                 }

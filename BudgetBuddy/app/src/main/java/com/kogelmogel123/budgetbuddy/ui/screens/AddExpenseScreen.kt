@@ -35,7 +35,7 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
     var cost by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf<ExpenseCategory?>(null) }
 
-    Column {
+    Column(modifier = Modifier.padding(4.dp)) {
         OutlinedTextField(
             value = expenseName,
             onValueChange = { expenseName = it },
@@ -75,7 +75,7 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
                     Date()
                 )
             )
-            navController.navigate("expensesScreen")
+            navController.popBackStack()
         },
             Modifier.padding(top = 16.dp).fillMaxWidth(),
             enabled = expenseName.isNotBlank() && cost.isNotBlank() && selectedCategory != null){

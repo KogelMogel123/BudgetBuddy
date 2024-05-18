@@ -52,17 +52,26 @@ class DashboardScreenViewModel(private val budgetService: IBudgetService, privat
 
     private fun getColorForCategory(category: ExpenseCategory): Color {
         return when (category) {
-            ExpenseCategory.GROCERIES -> Color(0xFF5F0A87)
-            ExpenseCategory.TRANSPORT -> Color(0xFF20BF55)
-            ExpenseCategory.HOUSING -> Color(0xFFA40606)
-            ExpenseCategory.ENTERTAINMENT -> Color(0xFFF53844)
-            ExpenseCategory.CLOTHING -> Color(0xFFEC9F05)
-            ExpenseCategory.EDUCATION -> Color(0xFF009FFD)
-            ExpenseCategory.OTHER -> Color(0xFFBB1AD6)
+            ExpenseCategory.GROCERIES -> Color(0xFF28A745)
+            ExpenseCategory.TRANSPORT -> Color(0xFFB22222)
+            ExpenseCategory.HOUSING -> Color(0xFF6A0DAD)
+            ExpenseCategory.ENTERTAINMENT -> Color(0xFFFF8C00)
+            ExpenseCategory.CLOTHING -> Color(0xFF1E90FF)
+            ExpenseCategory.EDUCATION -> Color(0xFF7E3D0B)
+            ExpenseCategory.OTHER -> Color(0xFFFFF933)
         }
     }
 
     private fun sumExpensesByCategory(expenses: List<Expense>, category: ExpenseCategory): Double {
         return expenses.filter { it.category == category }.sumOf { it.cost }
         }
+
+    private fun sumCostExpenses(expenses: List<Expense>): Double {
+        return expenses.sumOf { it.cost }
+    }
+
+    fun calculateBudget(expenses: List<Expense>, budgetValue: Double) : Double {
+        val sumCost = sumCostExpenses(expenses)
+        return budgetValue - sumCost
+    }
 }

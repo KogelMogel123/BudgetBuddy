@@ -46,6 +46,7 @@ fun SimpleDonutChart(context: Context, chartData: PieChartData) {
             sumUnit = " zł",
             showSliceLabels = true,
             labelType = PieChartConfig.LabelType.VALUE,
+            isClickOnSliceEnabled = true
         )
     Column(
         modifier = Modifier

@@ -21,7 +21,7 @@ import com.kogelmogel123.budgetbuddy.R
 @Composable
 fun NoPermissionScreen(onRequestPermission: () -> Unit){
     Column (
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().padding(8.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
