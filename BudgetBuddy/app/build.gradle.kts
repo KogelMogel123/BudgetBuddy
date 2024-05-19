@@ -14,7 +14,7 @@ android {
         buildConfigField(
             "String",
             "TEST_API_ENDPOINT",
-            "\"https://hook.eu2.make.com\""
+            "\"https://localhost:5000/api/Analysis\""
         )
 
         applicationId = "com.kogelmogel123.budgetbuddy"
