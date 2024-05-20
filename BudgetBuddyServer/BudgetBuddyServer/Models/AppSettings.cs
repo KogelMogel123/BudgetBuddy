@@ -2,9 +2,10 @@
 {
     public class AppSettings
     {
+        public MakeConfiguration MakeConfiguration { get; set; }
     }
 
-    public class Make
+    public class MakeConfiguration
     {
         public string Url { get; set; }
     }
