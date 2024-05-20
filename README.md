@@ -36,6 +36,14 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
 ## COULD HAVE
  - [x] Możliwość ustawiania budżetu na aktualny miesiąc
  - [x] Statystyki wydatków (Wykres kołowy)
+ - [x] Napisanie API w .NET 8 do komunikacji pomiędzy aplikacją mobilną, a serwisem z AI
+ - [x] Walidacja pliku z paragonem (wielkość pliku, typ pliku)
+ - [x] Postawienie publicznego serwera z API
+ - [ ] Komunikacja aplikacji mobilnej z API
+ - [ ] Zabezpieczenie przed nadmiarowym użyciem serwisu AI
+
+## Architektura
+TODO
 
 ## Wygląd aplikacji
 Ikona aplikacji
@@ -62,8 +70,6 @@ Skanowanie paragonu
 TODO
 
 ## Plany na przyszłość
- - Postawienie API
- - Komunikacja z API
  - Baza danych
  - Logowanie
  - Rejestracja
