@@ -27,15 +27,15 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Kategoryzacja zakupów
  - [x] Rozpoznawanie Paragonów (Bezpośrednia komunikacja z serwisem AI, póki nie ma pośrednika w postaci API)
  - [x] Zapis przetworzonego paragonu na wpisy wydatków do bazy
+ - [x] Lokalna baza danych
 
 ## SHOULD HAVE
  - [x] Możliwość wybierania zdjęć paragonów z galerii
- - [x] Lokalna baza danych
+ - [x] Możliwość ustawiania budżetu na aktualny miesiąc
+ - [x] Statystyki wydatków (Wykres kołowy)
  - [x] Tłumaczenie interfejsu angielski/polski w zależności od systemu użytkownika
 
 ## COULD HAVE
- - [x] Możliwość ustawiania budżetu na aktualny miesiąc
- - [x] Statystyki wydatków (Wykres kołowy)
  - [x] Napisanie API w .NET 8 do komunikacji pomiędzy aplikacją mobilną, a serwisem z AI
  - [x] Walidacja pliku z paragonem (wielkość pliku, typ pliku)
  - [x] Postawienie publicznego serwera z API
