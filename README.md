@@ -8,6 +8,7 @@
 Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona w Kotlinie. Umożliwia użytkownikom skanowanie paragonów, automatyczne rozpoznawanie wydatków, zarządzanie budżetem, analizę wydatków. Celem projektu jest ułatwienie użytkownikom monitorowania ich wydatków i optymalizacja zarządzania finansami.
 
 > <p align="left">Aplikacja tworzona w ramach <a href="https://100commitow.pl">#100commitow</a>
+> <p align="left">Głownym celem jest nauka języka Kotlin oraz środowiska Android Studio
 
 ## Wykorzystane Technologie
  - Kotlin
@@ -43,7 +44,8 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [ ] Zabezpieczenie przed nadmiarowym użyciem serwisu AI
 
 ## Architektura
-TODO
+
+![arch](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/860848ee-319b-4531-8c00-84887a83d202)
 
 ## Wygląd aplikacji
 Ikona aplikacji
