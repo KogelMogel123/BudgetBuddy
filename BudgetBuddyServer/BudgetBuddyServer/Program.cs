@@ -1,5 +1,6 @@
 using BudgetBuddyServer.Services;
 using Microsoft.OpenApi.Models;
+using BudgetBuddyServer.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,9 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddCustomServices(builder.Configuration);
 
 var app = builder.Build();
+
+app.UseMiddleware<ApiKeyMiddleware>();
+app.UseMiddleware<UserMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

@@ -1,4 +1,5 @@
 ﻿using BudgetBuddyServer.Models;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace BudgetBuddyServer.Services
 {
@@ -13,6 +14,7 @@ namespace BudgetBuddyServer.Services
             services.Configure<AppSettings>(configuration.GetSection("AppSettings"));
 
             services.AddScoped<IMakeCommunicationService, MakeCommunicationService>();
+            services.AddSingleton<IMemoryCache, MemoryCache>();
         }
     }
 }
