@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+﻿using BudgetBuddyServer.Models;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 
 namespace BudgetBuddyServer.Middleware
 {
@@ -6,19 +8,18 @@ namespace BudgetBuddyServer.Middleware
     {
         private readonly RequestDelegate _next;
         private readonly IMemoryCache _cache;
-        private const string USER_HEADER_NAME = "User";
-        private const int REQUEST_LIMIT = 5;
-        private const int BLOCK_DURATION_MINUTES = 60;
+        private readonly AppSettings _appSettings;
 
-        public UserMiddleware(RequestDelegate next, IMemoryCache cache)
+        public UserMiddleware(RequestDelegate next, IMemoryCache cache, IOptions<AppSettings> appSettings)
         {
             _next = next;
             _cache = cache;
+            _appSettings = appSettings.Value;
         }
 
         public async Task InvokeAsync(HttpContext context)
         {
-            if (!context.Request.Headers.TryGetValue(USER_HEADER_NAME, out var user))
+            if (!context.Request.Headers.TryGetValue(_appSettings.ApiUsageSettings.UserHeaderName, out var user))
             {
                 context.Response.StatusCode = 401; // Unauthorized
                 await context.Response.WriteAsync("User was not provided.");
@@ -59,10 +60,10 @@ namespace BudgetBuddyServer.Middleware
 
             cacheEntry.Count++;
 
-            if (cacheEntry.Count >= REQUEST_LIMIT)
+            if (cacheEntry.Count >= _appSettings.ApiUsageSettings.RequestLimit)
             {
                 cacheEntry.IsBlocked = true;
-                _cache.Set(user, cacheEntry, TimeSpan.FromMinutes(BLOCK_DURATION_MINUTES));
+                _cache.Set(user, cacheEntry, TimeSpan.FromMinutes(_appSettings.ApiUsageSettings.BlockDurationMinutes));
             }
             else
             {

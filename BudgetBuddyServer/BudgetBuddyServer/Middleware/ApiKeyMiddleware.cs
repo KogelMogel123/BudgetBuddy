@@ -1,19 +1,22 @@
-﻿namespace BudgetBuddyServer.Middleware
+﻿using BudgetBuddyServer.Models;
+using Microsoft.Extensions.Options;
+
+namespace BudgetBuddyServer.Middleware
 {
     public class ApiKeyMiddleware
     {
         private readonly RequestDelegate _next;
-        private const string API_KEY_HEADER_NAME = "ApiKey";
-        private const string VALID_API_KEY = "1234567890";
+        private readonly AppSettings _appSettings;
 
-        public ApiKeyMiddleware(RequestDelegate next)
+        public ApiKeyMiddleware(RequestDelegate next, IOptions<AppSettings> appSettings)
         {
             _next = next;
+            _appSettings = appSettings.Value;
         }
 
         public async Task InvokeAsync(HttpContext context)
         {
-            if (!context.Request.Headers.TryGetValue(API_KEY_HEADER_NAME, out var extractedApiKey))
+            if (!context.Request.Headers.TryGetValue(_appSettings.ApiUsageSettings.ApiKeyHeaderName, out var extractedApiKey))
             {
                 context.Response.StatusCode = 401; // Unauthorized
                 await context.Response.WriteAsync("Api Key was not provided.");
@@ -32,7 +35,7 @@
 
         private bool IsValidApiKey(string apiKey)
         {
-            return apiKey == VALID_API_KEY;
+            return apiKey == _appSettings.ApiUsageSettings.ValidApiKey;
         }
     }
 }
