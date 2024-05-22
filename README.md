@@ -42,7 +42,6 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Postawienie publicznego serwera z API
  - [ ] Komunikacja aplikacji mobilnej z API
  - [ ] Zabezpieczenie przed nadmiarowym użyciem serwisu AI
- - [ ] Bezpośrednia komunikacja API z OpenAI
 
 ## Architektura
 
@@ -73,6 +72,7 @@ Skanowanie paragonu
 TODO
 
 ## Plany na przyszłość
+ - Bezpośrednia komunikacja API z OpenAI
  - Baza danych
  - Logowanie
  - Rejestracja
