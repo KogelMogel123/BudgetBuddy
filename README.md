@@ -40,8 +40,8 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Napisanie API w .NET 8 do komunikacji pomiędzy aplikacją mobilną, a serwisem z AI
  - [x] Walidacja pliku z paragonem (wielkość pliku, typ pliku)
  - [x] Postawienie publicznego serwera z API
+ - [x] Zabezpieczenie przed nadmiarowym użyciem serwisu AI
  - [ ] Komunikacja aplikacji mobilnej z API
- - [ ] Zabezpieczenie przed nadmiarowym użyciem serwisu AI
 
 ## Architektura
 
