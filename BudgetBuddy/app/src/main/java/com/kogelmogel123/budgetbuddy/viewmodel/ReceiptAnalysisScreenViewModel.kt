@@ -76,6 +76,8 @@ class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRe
 
                 val request = Request.Builder()
                     .url(BuildConfig.TEST_API_ENDPOINT)
+                    .addHeader("ApiKey", "")
+                    .addHeader("User", "")
                     .post(requestBody)
                     .build()
 
