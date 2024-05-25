@@ -13,8 +13,13 @@ android {
     defaultConfig {
         buildConfigField(
             "String",
-            "TEST_API_ENDPOINT",
-            "\"https://localhost:5000/api/Analysis\""
+            "API_ENDPOINT",
+            ""
+        )
+        buildConfigField(
+            "String",
+            "API_KEY",
+            ""
         )
 
         applicationId = "com.kogelmogel123.budgetbuddy"

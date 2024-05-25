@@ -36,15 +36,16 @@ namespace BudgetBuddyServer.Controllers
                 }
 
                 string responseBody = await response.Content.ReadAsStringAsync();
-                _logger.LogInformation(response?.StatusCode.ToString());
-                _logger.LogInformation(responseBody);
+                _logger.LogInformation($"StatusCode: {response.StatusCode}");
 
                 if (response.IsSuccessStatusCode)
                 {
-                    return Ok("OK");
+                    _logger.LogInformation(responseBody);
+                    return Ok(responseBody);
                 }
                 else
                 {
+                    _logger.LogError(responseBody);
                     return BadRequest(responseBody);
                 }
             }

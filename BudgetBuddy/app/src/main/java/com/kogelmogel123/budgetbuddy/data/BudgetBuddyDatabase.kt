@@ -7,12 +7,14 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.kogelmogel123.budgetbuddy.model.Budget
 import com.kogelmogel123.budgetbuddy.model.Expense
+import com.kogelmogel123.budgetbuddy.model.User
 
-@Database(entities = [Expense::class, Budget::class], version = 1, exportSchema = false)
+@Database(entities = [Expense::class, Budget::class, User::class], version = 1, exportSchema = false)
 @TypeConverters(DateTypeConverter::class)
 abstract class BudgetBuddyDatabase : RoomDatabase() {
     abstract fun expenseDao(): IExpenseDao
     abstract fun budgetDao(): IBudgetDao
+    abstract fun userDao(): IUserDao
 
     companion object {
         @Volatile

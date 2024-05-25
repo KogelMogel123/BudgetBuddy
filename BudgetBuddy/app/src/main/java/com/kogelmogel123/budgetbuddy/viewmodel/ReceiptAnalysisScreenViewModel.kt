@@ -12,6 +12,7 @@ import com.kogelmogel123.budgetbuddy.BuildConfig
 import com.kogelmogel123.budgetbuddy.data.IExpensesRepository
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
+import com.kogelmogel123.budgetbuddy.service.IUserService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -25,7 +26,7 @@ import java.io.FileOutputStream
 import java.net.URLDecoder
 import java.util.Date
 
-class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRepository): ViewModel() {
+class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRepository, private val userService: IUserService): ViewModel() {
     private val client = OkHttpClient()
     var isLoading = mutableStateOf(false)
 
@@ -74,10 +75,20 @@ class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRe
                     )
                     .build()
 
+                var me = userService.getMe().value
+
+                if(me == null)
+                {
+                    onError("User not found")
+                    file?.delete()
+                    setLoading(false)
+                    return@launch
+                }
+
                 val request = Request.Builder()
-                    .url(BuildConfig.TEST_API_ENDPOINT)
-                    .addHeader("ApiKey", "")
-                    .addHeader("User", "")
+                    .url(BuildConfig.API_ENDPOINT)
+                    .addHeader("ApiKey", BuildConfig.API_KEY)
+                    .addHeader("User", me.name)
                     .post(requestBody)
                     .build()
 
