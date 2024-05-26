@@ -11,24 +11,32 @@ import co.yml.charts.ui.piechart.models.PieChartData
 import com.kogelmogel123.budgetbuddy.model.Budget
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
+import com.kogelmogel123.budgetbuddy.model.User
 import com.kogelmogel123.budgetbuddy.service.IBudgetService
 import com.kogelmogel123.budgetbuddy.service.IExpenseService
+import com.kogelmogel123.budgetbuddy.service.IUserService
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.Month
 
-class DashboardScreenViewModel(private val budgetService: IBudgetService, private val expenseService: IExpenseService) : ViewModel() {
+class DashboardScreenViewModel(private val budgetService: IBudgetService, private val expenseService: IExpenseService, private val userService: IUserService) : ViewModel() {
     val currentDate = LocalDate.now()
 
     val expenses: LiveData<List<Expense>> = expenseService.getExpensesByLocalDate(currentDate).also {
         it.observeForever { data ->
-            Log.d("DashboardScreenViewModel", "Expenses data updated: ${data?.size} items")
+            Log.d("DashboardScreenViewModel", "Expenses: ${data?.size} items")
         }
     }
 
     val budget:LiveData<Budget> = budgetService.getBudgetByDate(currentDate.month, currentDate.year).also {
         it.observeForever { data ->
-            Log.d("DashboardScreenViewModel", "Budget data updated: ${data?.amount} zł")
+            Log.d("DashboardScreenViewModel", "Budget: ${data?.amount} zł")
+        }
+    }
+
+    val user: LiveData<User> = userService.getMe().also {
+        it.observeForever { data ->
+            Log.d("DashboardScreenViewModel", "User: ${data?.name}")
         }
     }
 

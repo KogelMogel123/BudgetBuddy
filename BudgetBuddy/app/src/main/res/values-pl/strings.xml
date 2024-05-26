@@ -48,4 +48,5 @@
     <string name="modify_the_budget">Zmodyfikuj budżet</string>
     <string name="budget_amount">Kwota budżetu</string>
     <string name="left_in_the_budget">Pozostało w budżecie</string>
+    <string name="user">Użytkownik</string>
 </resources>

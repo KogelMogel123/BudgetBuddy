@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
@@ -12,6 +13,7 @@ import com.kogelmogel123.budgetbuddy.BuildConfig
 import com.kogelmogel123.budgetbuddy.data.IExpensesRepository
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
+import com.kogelmogel123.budgetbuddy.model.User
 import com.kogelmogel123.budgetbuddy.service.IUserService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,6 +31,12 @@ import java.util.Date
 class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRepository, private val userService: IUserService): ViewModel() {
     private val client = OkHttpClient()
     var isLoading = mutableStateOf(false)
+
+    val user: LiveData<User> = userService.getMe().also {
+        it.observeForever { data ->
+            Log.d("DashboardScreenViewModel", "User: ${data?.name}")
+        }
+    }
 
     private fun setLoading(loading: Boolean) {
         isLoading.value = loading
@@ -75,9 +83,7 @@ class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRe
                     )
                     .build()
 
-                var me = userService.getMe().value
-
-                if(me == null)
+                if(user.value == null)
                 {
                     onError("User not found")
                     file?.delete()
@@ -88,7 +94,7 @@ class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRe
                 val request = Request.Builder()
                     .url(BuildConfig.API_ENDPOINT)
                     .addHeader("ApiKey", BuildConfig.API_KEY)
-                    .addHeader("User", me.name)
+                    .addHeader("User", user.value?.name ?: "")
                     .post(requestBody)
                     .build()
 
@@ -109,6 +115,10 @@ class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRe
                 setLoading(false)
             }
         }
+    }
+
+    private suspend fun getUser(): User? {
+        return userService.getMe().value
     }
 
     fun handleReceiptAnalysisResult(jsonResponse: String) {

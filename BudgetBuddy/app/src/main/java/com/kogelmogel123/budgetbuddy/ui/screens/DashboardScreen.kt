@@ -33,6 +33,7 @@ fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navCo
     val context = LocalContext.current
     val budget by viewModel.budget.observeAsState(initial = null)
     val expenses by viewModel.expenses.observeAsState(initial = emptyList())
+    val user by viewModel.user.observeAsState(initial = null)
     val pieChartData = viewModel.getDonutChartData(context, expenses)
     val leftInTheBudget = budget?.let { viewModel.calculateBudget(expenses, it.amount) }
     val spentPercentage = budget?.let {
@@ -93,6 +94,13 @@ fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navCo
                     .height(26.dp)
                     .padding(horizontal = 14.dp, vertical = 8.dp),
             )
+        Text(
+            text = "${stringResource(id = R.string.user)}: ${user?.name}",
+            style = MaterialTheme.typography.bodySmall,
+            modifier = Modifier
+                .padding(top = 26.dp, start = 14.dp)
+                .fillMaxWidth()
+        )
         }
 }
 

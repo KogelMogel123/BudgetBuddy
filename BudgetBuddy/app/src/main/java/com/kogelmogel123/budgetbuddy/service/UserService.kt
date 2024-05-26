@@ -18,10 +18,7 @@ class UserService(private val usersRepository: IUsersRepository) : IUserService 
         }
     }
 
-    override suspend fun getMe(): LiveData<User> {
-
-        initializeUser()
-
+    override fun getMe(): LiveData<User> {
         return usersRepository.getMe()
             .catch { e ->
                 Log.e("UserService", "Error fetching user", e)
