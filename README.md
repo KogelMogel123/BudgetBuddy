@@ -41,7 +41,7 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Walidacja pliku z paragonem (wielkość pliku, typ pliku)
  - [x] Postawienie publicznego serwera z API
  - [x] Zabezpieczenie przed nadmiarowym użyciem serwisu AI
- - [ ] Komunikacja aplikacji mobilnej z API
+ - [x] Komunikacja aplikacji mobilnej z API
 
 ## Architektura
 
