@@ -69,7 +69,9 @@ Skanowanie paragonu
 ![Screenshot_20240518_141911_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/1d70d89b-d77c-4718-95fa-dd6bb5196f1c)
 
 ## Jak uruchomić aplikację
-TODO
+1. Prosty sposób:
+  
+Wystarczy, że pobierzesz: BudgetBuddy.apk i zainstalujesz na telefonie.
 
 ## Plany na przyszłość
  - Bezpośrednia komunikacja API z OpenAI
