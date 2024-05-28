@@ -14,12 +14,12 @@ android {
         buildConfigField(
             "String",
             "API_ENDPOINT",
-            ""
+            "\"test\""
         )
         buildConfigField(
             "String",
             "API_KEY",
-            ""
+            "\"test\""
         )
 
         applicationId = "com.kogelmogel123.budgetbuddy"
