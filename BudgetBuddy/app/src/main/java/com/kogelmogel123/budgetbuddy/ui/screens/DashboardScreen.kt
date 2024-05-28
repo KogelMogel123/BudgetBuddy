@@ -81,7 +81,7 @@ fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navCo
             }
 
             Text(
-                text = "${stringResource(id = R.string.left_in_the_budget)}: ${leftInTheBudget ?: "0.00"} zł",
+                text = "${stringResource(id = R.string.left_in_the_budget)}: ${String.format("%.2f", leftInTheBudget) ?: "0.00"} zł",
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
                     .padding(top = 26.dp, start = 14.dp)
@@ -94,13 +94,6 @@ fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navCo
                     .height(26.dp)
                     .padding(horizontal = 14.dp, vertical = 8.dp),
             )
-        Text(
-            text = "${stringResource(id = R.string.user)}: ${user?.name}",
-            style = MaterialTheme.typography.bodySmall,
-            modifier = Modifier
-                .padding(top = 26.dp, start = 14.dp)
-                .fillMaxWidth()
-        )
         }
 }
 
