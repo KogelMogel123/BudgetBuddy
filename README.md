@@ -69,9 +69,76 @@ Skanowanie paragonu
 ![Screenshot_20240518_141911_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/1d70d89b-d77c-4718-95fa-dd6bb5196f1c)
 
 ## Jak uruchomić aplikację
-1. Prosty sposób:
+## Prosty sposób:
   
 Wystarczy, że pobierzesz: BudgetBuddy.apk i zainstalujesz na telefonie.
+
+## Postawienie własnego środowiska
+
+Poniżej znajdziesz kroki potrzebne do skonfigurowania i uruchomienia procesu aplikacji BudgetBuddy oraz BudgetBuddyServer. Skonfigurujemy również integrację z Make.com w celu odebrania zdjęcia paragonu i przesłania do ChatGPT.
+
+Krok 1: Rejestracja i konfiguracja konta na [Make.com](https://www.make.com)
+
+Przejdź na Make.com i zarejestruj konto.
+
+Konfiguracja scenariusza:
+
+Utwórz nowy scenariusz.
+
+Dodaj Custom Webhook do odbierania zdjęć i przekazywania zdjęcia
+
+![web1](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/3da98425-25b2-4d11-8de9-3e18304ae8be)
+
+Dodaj moduł OpenAI z Analyze Image (Vision)
+
+![web2](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/b471acb2-52d9-4f07-9157-42b5bcd485cc)
+
+Dodaj stadnardowy moduł Webhook response
+
+![webhook](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/8092f732-4c06-4f05-9fde-850ca59f0797)
+
+Krok 2: Pobranie i konfiguracja repozytorium
+
+Konfiguracja BudgetBuddyServer:
+
+Otwórz projekt BudgetBuddyServer w Visual Studio 2022.
+
+Otwórz plik appsettings.json i skonfiguruj sekcję AppSettings:
+
+    "AppSettings": {
+      "MakeConfiguration": {
+        "Url": "<MAKE_COM_ENDPOINT_URL>"
+      },
+      "ApiUsageSettings": {
+        "ApiKeyHeaderName": "ApiKey",
+        "UserHeaderName": "User",
+        "RequestLimit": 5,
+        "BlockDurationMinutes": 60,
+        "ValidApiKey": "<YOUR_API_KEY>"
+      }
+    }
+
+Zbuduj projekt.
+
+Konfiguracja BudgetBuddy:
+
+Otwórz projekt BudgetBuddy w Android Studio.
+
+Otwórz plik build.gradle.kts i skonfiguruj pola buildConfigField:
+
+    defaultConfig {
+        buildConfigField(
+            "String",
+            "API_ENDPOINT",
+            "\"<URL_ENDPOINTU_BUDGETBUDDY_SERVER>\""
+        )
+        buildConfigField(
+            "String",
+            "API_KEY",
+            "\"<TWOJ_KLUCZ_API>\""
+        )
+
+Zbuduj projekt.
 
 ## Plany na przyszłość
  - Bezpośrednia komunikacja API z OpenAI
