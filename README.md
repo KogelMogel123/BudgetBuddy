@@ -10,7 +10,7 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
 > <p align="left">Aplikacja tworzona w ramach <a href="https://100commitow.pl">#100commitow</a>
 > <p align="left">Głownym celem jest nauka języka Kotlin oraz środowiska Android Studio
 
-## Wykorzystane Technologie
+## Wykorzystane Technologie BudgetBuddy
  - Kotlin
  - Android Studio
  - Jetpack Compose
@@ -19,6 +19,11 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - CameraX
  - Material Design 3
  - ycharts
+
+## Wykorzystane Technologie BudgetBuddyServer
+ - C#
+ - .NET8
+ - Visual Studio 2022
 
 ## MUST HAVE
  - [x] Podstawowy interfejs użytkownika
@@ -92,6 +97,16 @@ Dodaj Custom Webhook do odbierania zdjęć i przekazywania zdjęcia
 Dodaj moduł OpenAI z Analyze Image (Vision)
 
 ![web2](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/b471acb2-52d9-4f07-9157-42b5bcd485cc)
+
+Prompt, który opracowałem, aby AI potrafiło zwrócić mi pożądany Response:
+
+Analyze the receipt, identifying each item as a specific type. Use only: “GROCERIES”, “TRANSPORT”, “HOUSING”, “ENTERTAINMENT”, “CLOTHING”, “EDUCATION”, “OTHER”. If a product does not fit into any category then add it to "OTHER."
+Then merge all items of the same group and add values. Return an unformatted JSON containing as few characters as possible. The JSON should contain the suggest expense name, category, cost of the grouped products for that category. Cost without currency.
+Instructions:
+- Answer as honestly as possible.
+- Return only JSON
+Example:
+[{"name": "Example1","cost": "10.00","category": "GROCERIES"},{"name": "Example2","cost": "7.00","category": "CLOTHING"}]
 
 Dodaj stadnardowy moduł Webhook response
 
