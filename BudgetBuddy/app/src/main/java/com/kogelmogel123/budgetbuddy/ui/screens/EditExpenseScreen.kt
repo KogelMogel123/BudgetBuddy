@@ -7,6 +7,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,6 +17,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,9 +38,11 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
     val expenseLiveData = viewModel.getExpenseById(id)
     val expense by expenseLiveData.observeAsState()
 
-    var expenseName by remember { mutableStateOf(expense?.name) }
+    var expenseName by remember { mutableStateOf(expense?.name ?: "") }
     var cost by remember { mutableStateOf(expense?.cost.toString()) }
     var selectedCategory by remember { mutableStateOf<ExpenseCategory?>(expense?.category) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
+    val context = LocalContext.current
 
     LaunchedEffect(expense) {
         expense?.let {
@@ -51,7 +55,7 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
     Column(modifier = Modifier.padding(4.dp)) {
 
         OutlinedTextField(
-            value = expenseName ?: "",
+            value = expenseName,
             onValueChange = { expenseName = it },
             label = { Text(stringResource(id = R.string.expense_name)) },
             modifier = Modifier.fillMaxWidth()
@@ -67,35 +71,48 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
 
                     if (dotIndex == -1 || processedValue.length - dotIndex - 1 <= 2) {
                         cost = processedValue
+                        errorMessage = null  // Clear error message when input is valid
                     }
                 }
             },
             label = { Text(stringResource(id = R.string.amount)) },
-            modifier =Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
+            modifier = Modifier.fillMaxWidth(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            isError = errorMessage != null
         )
+        if (errorMessage != null) {
+            Text(
+                text = errorMessage ?: "",
+                color = MaterialTheme.colorScheme.error,
+                modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+            )
+        }
 
         ExpenseCategorySelectorComponent(selectedCategory = selectedCategory) { category ->
             selectedCategory = category
         }
 
         Button(onClick = {
-            viewModel.updateExpense(
-                Expense(
-                    id,
-                    expenseName ?: "",
-                    cost.toDouble(),
-                    selectedCategory ?: ExpenseCategory.OTHER,
-                    Date()
+            val costValue = cost.toDoubleOrNull()
+            if (costValue != null) {
+                viewModel.updateExpense(
+                    Expense(
+                        id,
+                        expenseName,
+                        costValue,
+                        selectedCategory ?: ExpenseCategory.OTHER,
+                        Date()
+                    )
                 )
-            )
-
-            navController.popBackStack()
+                navController.popBackStack()
+            } else {
+                errorMessage = context.getString(R.string.invalid_amount_error)
+            }
         },
             Modifier
                 .padding(top = 16.dp)
                 .fillMaxWidth(),
-            enabled = cost.isNotBlank() && selectedCategory != null){
+            enabled = expenseName.isNotBlank() && cost.isNotBlank() && selectedCategory != null) {
             Text(text = stringResource(id = R.string.edit_expense_screen))
         }
     }

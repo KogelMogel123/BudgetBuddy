@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -15,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -30,6 +32,8 @@ fun EditBudgetScreen(viewModel: BudgetViewModel = koinViewModel(), navController
     val budgetLiveData = viewModel.getBudgetById(id)
     val budget by budgetLiveData.observeAsState()
     var amount by remember { mutableStateOf(budget?.amount.toString()) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
+    val context = LocalContext.current
 
     LaunchedEffect(budget) {
         budget?.let {
@@ -49,25 +53,38 @@ fun EditBudgetScreen(viewModel: BudgetViewModel = koinViewModel(), navController
 
                     if (dotIndex == -1 || processedValue.length - dotIndex - 1 <= 2) {
                         amount = processedValue
+                        errorMessage = null  // Clear error message when input is valid
                     }
                 }
             },
             label = { Text(stringResource(id = R.string.budget_amount)) },
             modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            isError = errorMessage != null
         )
+        if (errorMessage != null) {
+            Text(
+                text = errorMessage ?: "",
+                color = MaterialTheme.colorScheme.error,
+                modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+            )
+        }
 
         Button(onClick = {
-            viewModel.updateBudget(
-                Budget(
-                    id,
-                    LocalDate.now().month,
-                    LocalDate.now().year,
-                    amount.toDouble()
+            val amountValue = amount.toDoubleOrNull()
+            if (amountValue != null) {
+                viewModel.updateBudget(
+                    Budget(
+                        id,
+                        LocalDate.now().month,
+                        LocalDate.now().year,
+                        amountValue
+                    )
                 )
-            )
-
-            navController.popBackStack()
+                navController.popBackStack()
+            } else {
+                errorMessage = context.getString(R.string.invalid_amount_error)
+            }
         },
             Modifier
                 .padding(top = 16.dp)
