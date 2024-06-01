@@ -9,6 +9,7 @@
     <string name="scan_receipt_screen">Skanuj paragon</string>
     <string name="expenses_screen">Wydatki</string>
     <string name="receipt_analysis_screen">Analiza paragonu</string>
+    <string name="budgets_screen">Zestawienie budżetów</string>
     <string name="amount">Kwota</string>
     <string name="expense_name">Nazwa wydatku</string>
     <string name="select_category">Wybierz kategorię</string>

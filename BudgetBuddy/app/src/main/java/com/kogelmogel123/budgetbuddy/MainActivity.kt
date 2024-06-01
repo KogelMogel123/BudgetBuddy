@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.Scaffold
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBalance
+import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
@@ -25,6 +26,7 @@ import com.kogelmogel123.budgetbuddy.ui.components.DrawerBody
 import com.kogelmogel123.budgetbuddy.ui.components.DrawerHeader
 import com.kogelmogel123.budgetbuddy.ui.screens.AddBudgetScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.AddExpenseScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.BudgetsScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.DashboardScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.EditBudgetScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.EditExpenseScreen
@@ -97,6 +99,12 @@ class MainActivity : ComponentActivity() {
                                     contentDescription = "Go to receipt analysis screen",
                                     icon = Icons.Default.AutoAwesome
                                 ),
+                                MenuItem(
+                                    id = "BudgetsScreen",
+                                    title = stringResource(id = R.string.budgets_screen),
+                                    contentDescription = "Go to budgets screen",
+                                    icon = Icons.Default.AccountBalanceWallet
+                                ),
                             ),
                             onItemClick = {menuItem ->
                                 println("Clicked on ${menuItem.title}")
@@ -131,6 +139,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("receiptsAnalysisScreen") {
                             ReceiptsAnalysisScreen(navController = navController)
+                        }
+                        composable("budgetsScreen") {
+                            BudgetsScreen(navController = navController)
                         }
                         composable(
                             route = "receiptsAnalysisScreen/{selectedImageEncodedUri}",
