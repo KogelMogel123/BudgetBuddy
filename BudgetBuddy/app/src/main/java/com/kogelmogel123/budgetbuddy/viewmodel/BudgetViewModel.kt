@@ -9,6 +9,8 @@ import kotlinx.coroutines.launch
 import java.time.Month
 
 class BudgetViewModel(private val budgetService: IBudgetService) : ViewModel() {
+    val budgets: LiveData<List<Budget>> = budgetService.getBudgets()
+
     fun getBudgetById(id: Int): LiveData<Budget> {
         return budgetService.getBudgetById(id)
     }

@@ -67,7 +67,7 @@ fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navCo
                 }
                 else{
                     Text(
-                        text = "${stringResource(id = R.string.budget_for)} ${ DateHelper.getLocalizedName(context, viewModel.currentDate.month)}: ${String.format("%.2f", budget?.amount) ?: "0.00"} zł",
+                        text = "${stringResource(id = R.string.budget_for)} ${ DateHelper.getLocalizedName(context, viewModel.currentDate.month)}: ${String.format("%.2f", budget?.amount ?: 0.00) ?: "0.00"} zł",
                         style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.weight(1f)
                     )
@@ -81,7 +81,7 @@ fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navCo
             }
 
             Text(
-                text = "${stringResource(id = R.string.left_in_the_budget)}: ${String.format("%.2f", leftInTheBudget) ?: "0.00"} zł",
+                text = "${stringResource(id = R.string.left_in_the_budget)}: ${String.format("%.2f", leftInTheBudget ?: 0.00) ?: "0.00"} zł",
                 style = MaterialTheme.typography.titleMedium,
                 modifier = Modifier
                     .padding(top = 26.dp, start = 14.dp)

@@ -25,6 +25,10 @@ class BudgetService(private val budgetsRepository: IBudgetsRepository): IBudgetS
             .asLiveData()
     }
 
+    override fun getBudgets(): LiveData<List<Budget>> {
+        return budgetsRepository.getAll()
+    }
+
     override suspend fun createBudget(month: Month, year: Int, amount: Double) {
         budgetsRepository.insert(Budget(0, month, year, amount))
     }

@@ -14,6 +14,7 @@ class ExpenseService(private val expensesRepository: IExpensesRepository) : IExp
     override fun getAll(): LiveData<List<Expense>> {
         return expensesRepository.getAll()
     }
+    
     override fun getExpenseById(id: Int): LiveData<Expense> {
         return expensesRepository.getById(id)
             .catch { e ->
