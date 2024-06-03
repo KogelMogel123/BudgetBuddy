@@ -87,7 +87,8 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
                         expenseName,
                         costValue,
                         selectedCategory ?: ExpenseCategory.OTHER,
-                        Date()
+                        Date(),
+                        1//TODO
                     )
                 )
                 navController.popBackStack()

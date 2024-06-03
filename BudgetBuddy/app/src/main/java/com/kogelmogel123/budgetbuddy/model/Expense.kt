@@ -21,5 +21,8 @@ data class Expense(
     val category: ExpenseCategory = ExpenseCategory.OTHER,
 
     @ColumnInfo(name = "creation_date")
-    val dateAdded: Date
+    val dateAdded: Date,
+    
+    @ColumnInfo(name = "budget_id")
+    val budgetId: Int
 )

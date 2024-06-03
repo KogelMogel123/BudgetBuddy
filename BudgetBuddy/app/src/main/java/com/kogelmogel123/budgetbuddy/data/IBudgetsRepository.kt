@@ -2,6 +2,7 @@ package com.kogelmogel123.budgetbuddy.data
 
 import androidx.lifecycle.LiveData
 import com.kogelmogel123.budgetbuddy.model.Budget
+import com.kogelmogel123.budgetbuddy.model.BudgetWithExpenses
 import kotlinx.coroutines.flow.Flow
 import java.time.Month
 
@@ -35,4 +36,8 @@ interface IBudgetsRepository {
      * Update budget in the data source
      */
     suspend fun update(budget: Budget)
+
+    fun getIdByDate(month: Month, year: Int): Int
+
+    fun getBudgetWithExpenses() : LiveData<List<BudgetWithExpenses>>
 }

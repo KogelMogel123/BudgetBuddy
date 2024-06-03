@@ -107,7 +107,7 @@ fun formatDate(date: Date): String {
 @Preview
 @Composable
 private fun ExpenseItemComponentPreview() {
-    val expense = Expense(1, "test", 1.00, ExpenseCategory.OTHER, Date())
+    val expense = Expense(1, "test", 1.00, ExpenseCategory.OTHER, Date(), 1)
     androidx.compose.material.MaterialTheme {
         ExpenseItemComponent(expense, {}, {});
     }

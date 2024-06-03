@@ -15,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,6 +33,7 @@ import org.koin.androidx.compose.koinViewModel
 fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navController: NavController) {
     val context = LocalContext.current
     val budget by viewModel.budget.observeAsState(initial = null)
+    val budgetWithExpenses by viewModel.budgetWithExpenses.observeAsState(initial = null)
     val expenses by viewModel.expenses.observeAsState(initial = emptyList())
     val user by viewModel.user.observeAsState(initial = null)
     val pieChartData = viewModel.getDonutChartData(context, expenses)
@@ -89,6 +91,7 @@ fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navCo
             )
             LinearProgressIndicator(
                 progress = { spentPercentage.toFloat() },
+                color = Color(0xFF4CAF50),
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(26.dp)

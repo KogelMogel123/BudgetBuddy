@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import co.yml.charts.common.model.PlotType
 import co.yml.charts.ui.piechart.models.PieChartData
 import com.kogelmogel123.budgetbuddy.model.Budget
+import com.kogelmogel123.budgetbuddy.model.BudgetWithExpenses
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 import com.kogelmogel123.budgetbuddy.model.User
@@ -37,6 +38,12 @@ class DashboardScreenViewModel(private val budgetService: IBudgetService, privat
     val user: LiveData<User> = userService.getMe().also {
         it.observeForever { data ->
             Log.d("DashboardScreenViewModel", "User: ${data?.name}")
+        }
+    }
+
+    val budgetWithExpenses: LiveData<List<BudgetWithExpenses>> = budgetService.getBudgetWithExpenses().also {
+        it.observeForever { data ->
+            Log.d("DashboardScreenViewModel", "BudgetWithExpenses: ${data?.size} items")
         }
     }
 

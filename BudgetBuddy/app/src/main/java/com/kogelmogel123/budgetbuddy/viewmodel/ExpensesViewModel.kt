@@ -5,14 +5,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.kogelmogel123.budgetbuddy.model.Expense
+import com.kogelmogel123.budgetbuddy.service.IBudgetService
 import com.kogelmogel123.budgetbuddy.service.IExpenseService
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
-class ExpensesViewModel(private val expenseService: IExpenseService) : ViewModel() {
+class ExpensesViewModel(private val expenseService: IExpenseService, private val budgetService: IBudgetService) : ViewModel() {
     private val currentDate = LocalDate.now()
     val expenses: LiveData<List<Expense>> = expenseService.getExpensesByLocalDate(currentDate)
-    
+
     fun getTotalCost(): LiveData<Double> = expenses
         .map { expenses -> expenses.sumOf { it.cost } }
 

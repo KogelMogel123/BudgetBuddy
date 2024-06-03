@@ -131,7 +131,8 @@ class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRe
                         name = data.name ?: "",
                         cost = data.cost.toDouble() ?: 0.00,
                         category = ExpenseCategory.values().find { it.name.equals(data.category, ignoreCase = true) } ?: ExpenseCategory.OTHER,
-                        dateAdded = Date()
+                        dateAdded = Date(),
+                        budgetId = 1//TODO
                     )
                 }
                 expenses.forEach { expense ->

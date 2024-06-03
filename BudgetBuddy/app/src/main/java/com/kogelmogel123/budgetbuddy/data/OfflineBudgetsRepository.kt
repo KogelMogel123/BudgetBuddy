@@ -2,6 +2,7 @@ package com.kogelmogel123.budgetbuddy.data
 
 import androidx.lifecycle.LiveData
 import com.kogelmogel123.budgetbuddy.model.Budget
+import com.kogelmogel123.budgetbuddy.model.BudgetWithExpenses
 import kotlinx.coroutines.flow.Flow
 import java.time.Month
 
@@ -17,4 +18,6 @@ class OfflineBudgetsRepository(private val budgetDao: IBudgetDao) : IBudgetsRepo
     override suspend fun delete(budget: Budget) = budgetDao.delete(budget)
 
     override suspend fun update(budget: Budget) = budgetDao.update(budget)
+    override fun getIdByDate(month: Month, year: Int): Int = budgetDao.getIdByDate(month, year)
+    override fun getBudgetWithExpenses(): LiveData<List<BudgetWithExpenses>> = budgetDao.getBudgetWithExpenses()
 }

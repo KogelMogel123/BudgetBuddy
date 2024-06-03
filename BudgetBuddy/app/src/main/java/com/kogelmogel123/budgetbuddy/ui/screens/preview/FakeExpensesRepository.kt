@@ -11,14 +11,14 @@ import java.util.Date
 
 class FakeExpensesRepository : IExpensesRepository {
     private val expensesList = MutableLiveData<List<Expense>>(listOf(
-        Expense(1, "Test Expense 1", 20.10, ExpenseCategory.GROCERIES, Date()),
-        Expense(2, "Test Expense 2", 15.5, ExpenseCategory.ENTERTAINMENT, Date()),
-        Expense(3, "Test Expense 3", 0.99, ExpenseCategory.OTHER, Date()),
-        Expense(4, "Test Expense 3", 4.0, ExpenseCategory.HOUSING, Date())
+        Expense(1, "Test Expense 1", 20.10, ExpenseCategory.GROCERIES, Date(), 1),
+        Expense(2, "Test Expense 2", 15.5, ExpenseCategory.ENTERTAINMENT, Date(), 1),
+        Expense(3, "Test Expense 3", 0.99, ExpenseCategory.OTHER, Date(), 1),
+        Expense(4, "Test Expense 3", 4.0, ExpenseCategory.HOUSING, Date(), 1)
     ))
 
     private val expensesFlow = flow {
-        emit(Expense(1, "Test Expense 1", 20.10, ExpenseCategory.GROCERIES, Date()))
+        emit(Expense(1, "Test Expense 1", 20.10, ExpenseCategory.GROCERIES, Date(), 1))
     }
 
     override fun getAll(): LiveData<List<Expense>> {

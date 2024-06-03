@@ -6,8 +6,10 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.kogelmogel123.budgetbuddy.model.Budget
+import com.kogelmogel123.budgetbuddy.model.BudgetWithExpenses
 import kotlinx.coroutines.flow.Flow
 import java.time.Month
 
@@ -30,4 +32,11 @@ interface IBudgetDao {
 
     @Delete
     suspend fun delete(budget: Budget)
+
+    @Query("SELECT id FROM budget WHERE month = :month AND year = :year")
+    fun getIdByDate(month: Month, year: Int): Int
+
+    @Transaction
+    @Query("SELECT * FROM budget")
+    fun getBudgetWithExpenses(): LiveData<List<BudgetWithExpenses>>
 }

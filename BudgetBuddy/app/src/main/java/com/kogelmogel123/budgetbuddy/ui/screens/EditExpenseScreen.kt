@@ -101,7 +101,8 @@ fun EditExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControl
                         expenseName,
                         costValue,
                         selectedCategory ?: ExpenseCategory.OTHER,
-                        Date()
+                        Date(),
+                        expense?.budgetId ?: 1//TODO
                     )
                 )
                 navController.popBackStack()

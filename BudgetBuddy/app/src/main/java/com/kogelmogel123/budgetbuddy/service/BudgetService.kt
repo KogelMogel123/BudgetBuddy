@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.asLiveData
 import com.kogelmogel123.budgetbuddy.data.IBudgetsRepository
 import com.kogelmogel123.budgetbuddy.model.Budget
+import com.kogelmogel123.budgetbuddy.model.BudgetWithExpenses
 import kotlinx.coroutines.flow.catch
 import java.time.Month
 
@@ -35,5 +36,13 @@ class BudgetService(private val budgetsRepository: IBudgetsRepository): IBudgetS
 
     override suspend fun updateBudget(budget: Budget) {
         budgetsRepository.update(budget)
+    }
+
+    override fun getBudgetIdByDate(month: Month, year: Int): Int {
+        return budgetsRepository.getIdByDate(month, year)
+    }
+
+    override fun getBudgetWithExpenses(): LiveData<List<BudgetWithExpenses>> {
+        return budgetsRepository.getBudgetWithExpenses()
     }
 }
