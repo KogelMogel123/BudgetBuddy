@@ -33,9 +33,7 @@ import org.koin.androidx.compose.koinViewModel
 fun DashboardScreen(viewModel: DashboardScreenViewModel = koinViewModel(), navController: NavController) {
     val context = LocalContext.current
     val budget by viewModel.budget.observeAsState(initial = null)
-    val budgetWithExpenses by viewModel.budgetWithExpenses.observeAsState(initial = null)
     val expenses by viewModel.expenses.observeAsState(initial = emptyList())
-    val user by viewModel.user.observeAsState(initial = null)
     val pieChartData = viewModel.getDonutChartData(context, expenses)
     val leftInTheBudget = budget?.let { viewModel.calculateBudget(expenses, it.amount) }
     val spentPercentage = budget?.let {

@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -25,6 +26,7 @@ import com.kogelmogel123.budgetbuddy.R
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 import com.kogelmogel123.budgetbuddy.ui.components.ExpenseCategorySelectorComponent
+import com.kogelmogel123.budgetbuddy.ui.components.MinimalDialogComponent
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockExpensesViewModel
 import com.kogelmogel123.budgetbuddy.ui.screens.preview.mockNavController
 import com.kogelmogel123.budgetbuddy.viewmodel.ExpensesViewModel
@@ -33,11 +35,18 @@ import java.util.Date
 
 @Composable
 fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navController: NavController) {
+    val budget by viewModel.budgetForTheCurrentMonth.observeAsState(initial = null)
+
     var expenseName by remember { mutableStateOf("") }
     var cost by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf<ExpenseCategory?>(null) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
+    var dialogErrorMessage by remember { mutableStateOf<String?>(null) }
     val context = LocalContext.current
+
+    if (dialogErrorMessage != null) {
+        MinimalDialogComponent(dialogText = dialogErrorMessage!!, onDismissRequest = { dialogErrorMessage = null })
+    }
 
     Column(modifier = Modifier.padding(4.dp)) {
         OutlinedTextField(
@@ -80,6 +89,10 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
 
         Button(onClick = {
             val costValue = cost.toDoubleOrNull()
+            if(budget == null) {
+                dialogErrorMessage = context.getString(R.string.no_set_budget_for_this_month)
+                return@Button
+            }
             if (costValue != null) {
                 viewModel.addExpense(
                     Expense(
@@ -88,7 +101,7 @@ fun AddExpenseScreen(viewModel: ExpensesViewModel = koinViewModel(), navControll
                         costValue,
                         selectedCategory ?: ExpenseCategory.OTHER,
                         Date(),
-                        1//TODO
+                        viewModel.budgetForTheCurrentMonth.value!!.id
                     )
                 )
                 navController.popBackStack()

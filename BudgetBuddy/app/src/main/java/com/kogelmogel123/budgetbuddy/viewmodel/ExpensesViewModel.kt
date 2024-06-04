@@ -13,6 +13,7 @@ import java.time.LocalDate
 class ExpensesViewModel(private val expenseService: IExpenseService, private val budgetService: IBudgetService) : ViewModel() {
     private val currentDate = LocalDate.now()
     val expenses: LiveData<List<Expense>> = expenseService.getExpensesByLocalDate(currentDate)
+    val budgetForTheCurrentMonth = budgetService.getBudgetByDate(currentDate.month, currentDate.year)
 
     fun getTotalCost(): LiveData<Double> = expenses
         .map { expenses -> expenses.sumOf { it.cost } }

@@ -49,7 +49,7 @@ val appModule = module {
     factory<IUserService> { UserService(get()) }
 
     viewModel { ExpensesViewModel(get(), get()) }
-    viewModel { ReceiptAnalysisScreenViewModel(get(), get()) }
+    viewModel { ReceiptAnalysisScreenViewModel(get(), get(), get()) }
     viewModel { BudgetViewModel(get(), get()) }
     viewModel { CameraViewModel(get()) }
     viewModel { DashboardScreenViewModel(get(), get(), get()) }

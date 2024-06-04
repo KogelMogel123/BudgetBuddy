@@ -52,4 +52,7 @@
     <string name="user">Użytkownik</string>
     <string name="invalid_amount_error">Proszę wprowadzić poprawną kwotę.</string>
     <string name="spent_from_budget">Wydane z budżetu</string>
+    <string name="list_of_declared_budgets">Lista zadeklarowanych budżetów</string>
+    <string name="edit">Edytuj</string>
+    <string name="delete">Usuń</string>
 </resources>

@@ -14,6 +14,7 @@ import com.kogelmogel123.budgetbuddy.data.IExpensesRepository
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 import com.kogelmogel123.budgetbuddy.model.User
+import com.kogelmogel123.budgetbuddy.service.IBudgetService
 import com.kogelmogel123.budgetbuddy.service.IUserService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,9 +27,10 @@ import okio.IOException
 import java.io.File
 import java.io.FileOutputStream
 import java.net.URLDecoder
+import java.time.LocalDate
 import java.util.Date
 
-class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRepository, private val userService: IUserService): ViewModel() {
+class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRepository, private val userService: IUserService, private val budgetService: IBudgetService): ViewModel() {
     private val client = OkHttpClient()
     var isLoading = mutableStateOf(false)
 
@@ -37,6 +39,8 @@ class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRe
             Log.d("DashboardScreenViewModel", "User: ${data?.name}")
         }
     }
+    private val currentDate = LocalDate.now()
+    val budgetForTheCurrentMonth = budgetService.getBudgetByDate(currentDate.month, currentDate.year)
 
     private fun setLoading(loading: Boolean) {
         isLoading.value = loading
@@ -132,7 +136,7 @@ class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRe
                         cost = data.cost.toDouble() ?: 0.00,
                         category = ExpenseCategory.values().find { it.name.equals(data.category, ignoreCase = true) } ?: ExpenseCategory.OTHER,
                         dateAdded = Date(),
-                        budgetId = 1//TODO
+                        budgetId = budgetForTheCurrentMonth.value!!.id
                     )
                 }
                 expenses.forEach { expense ->
