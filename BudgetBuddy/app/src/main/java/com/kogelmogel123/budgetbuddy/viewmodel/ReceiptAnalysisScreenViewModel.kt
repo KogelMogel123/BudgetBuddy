@@ -11,6 +11,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.kogelmogel123.budgetbuddy.BuildConfig
 import com.kogelmogel123.budgetbuddy.data.IExpensesRepository
+import com.kogelmogel123.budgetbuddy.model.Budget
 import com.kogelmogel123.budgetbuddy.model.Expense
 import com.kogelmogel123.budgetbuddy.model.ExpenseCategory
 import com.kogelmogel123.budgetbuddy.model.User
@@ -40,7 +41,12 @@ class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRe
         }
     }
     private val currentDate = LocalDate.now()
-    val budgetForTheCurrentMonth = budgetService.getBudgetByDate(currentDate.month, currentDate.year)
+
+    val budgetForTheCurrentMonth: LiveData<Budget> = budgetService.getBudgetByDate(currentDate.month, currentDate.year).also {
+        it.observeForever { data ->
+            Log.d("DashboardScreenViewModel", "Budget: ${data?.month}")
+        }
+    }
 
     private fun setLoading(loading: Boolean) {
         isLoading.value = loading
