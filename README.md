@@ -61,7 +61,7 @@ Ikona aplikacji
 
 Menu
 
-![Screenshot_20240518_142353_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/74e188cf-6c36-4a6f-babb-dd4b0a6419d9)
+![Screenshot_20240604_150723_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/0a8da634-84ce-46ee-b546-8c2a11dc3b71)
 
 Pulpit
 
@@ -74,6 +74,10 @@ Wydatki
 Skanowanie paragonu
 
 ![Screenshot_20240518_141911_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/1d70d89b-d77c-4718-95fa-dd6bb5196f1c)
+
+Zestawienie budżetów (historia budżetów)
+
+![Screenshot_20240604_150740_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/5570badb-5beb-4e1c-af68-961962fcc5eb)
 
 ## Jak uruchomić aplikację
 ## Prosty sposób:
