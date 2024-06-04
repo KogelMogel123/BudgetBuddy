@@ -32,19 +32,24 @@ import java.time.LocalDate
 import java.util.Date
 
 class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRepository, private val userService: IUserService, private val budgetService: IBudgetService): ViewModel() {
-    private val client = OkHttpClient()
+    private val client = OkHttpClient.Builder()
+        .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+        .readTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+        .writeTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+        .build()
+
     var isLoading = mutableStateOf(false)
 
     val user: LiveData<User> = userService.getMe().also {
         it.observeForever { data ->
-            Log.d("DashboardScreenViewModel", "User: ${data?.name}")
+            Log.d("ReceiptAnalysisScreenViewModel", "User: ${data?.name}")
         }
     }
     private val currentDate = LocalDate.now()
 
     val budgetForTheCurrentMonth: LiveData<Budget> = budgetService.getBudgetByDate(currentDate.month, currentDate.year).also {
         it.observeForever { data ->
-            Log.d("DashboardScreenViewModel", "Budget: ${data?.month}")
+            Log.d("ReceiptAnalysisScreenViewModel", "Budget: ${data?.month}")
         }
     }
 
@@ -117,7 +122,8 @@ class ReceiptAnalysisScreenViewModel(private val expensesRepository: IExpensesRe
                 }
             }
             catch (e: IOException) {
-                onError("Cannot process image: ${e.message}")
+                Log.d("ReceiptAnalysisScreenViewModel", e.message ?: "Error uploading image")
+                onError("Cannot process image. Try later.")
                 return@launch
             }
             finally {
