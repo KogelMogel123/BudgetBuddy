@@ -54,4 +54,5 @@
     <string name="list_of_declared_budgets">List of declared budgets</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="negative_amount_error">The value must not be negative</string>
 </resources>

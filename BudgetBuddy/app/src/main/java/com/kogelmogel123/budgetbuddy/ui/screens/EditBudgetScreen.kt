@@ -72,7 +72,7 @@ fun EditBudgetScreen(viewModel: BudgetViewModel = koinViewModel(), navController
 
         Button(onClick = {
             val amountValue = amount.toDoubleOrNull()
-            if (amountValue != null) {
+            if (amountValue != null && amountValue >= 0) {
                 viewModel.updateBudget(
                     Budget(
                         id,
@@ -83,7 +83,11 @@ fun EditBudgetScreen(viewModel: BudgetViewModel = koinViewModel(), navController
                 )
                 navController.popBackStack()
             } else {
-                errorMessage = context.getString(R.string.invalid_amount_error)
+                errorMessage = if (amountValue == null) {
+                    context.getString(R.string.invalid_amount_error)
+                } else {
+                    context.getString(R.string.negative_amount_error)
+                }
             }
         },
             Modifier

@@ -55,4 +55,5 @@
     <string name="list_of_declared_budgets">Lista zadeklarowanych budżetów</string>
     <string name="edit">Edytuj</string>
     <string name="delete">Usuń</string>
+    <string name="negative_amount_error">Wartość nie może być ujemna.</string>
 </resources>
