@@ -77,7 +77,11 @@ Skanowanie paragonu
 
 Zestawienie budżetów (historia budżetów)
 
-![Screenshot_20240604_150740_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/5570badb-5beb-4e1c-af68-961962fcc5eb)
+![Screenshot_20240606_193928_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/3515449c-6a9d-4651-a1a1-9607822b27d2)
+
+Wylistowanie wydatków dla konkretnego budżetu w historii
+
+![Screenshot_20240606_193955_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/7cf56de3-07d4-403f-8c71-b7069397ed52)
 
 ## Jak uruchomić aplikację
 ## Prosty sposób:
