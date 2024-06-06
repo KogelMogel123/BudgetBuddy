@@ -48,7 +48,7 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
  - [x] Zabezpieczenie przed nadmiarowym użyciem serwisu AI
  - [x] Komunikacja aplikacji mobilnej z API
  - [x] Historia budżetów
- - [ ] Wylistowanie wydatków dla konkretnego budżetu w historii
+ - [x] Wylistowanie wydatków dla konkretnego budżetu w historii
 
 ## Architektura
 
