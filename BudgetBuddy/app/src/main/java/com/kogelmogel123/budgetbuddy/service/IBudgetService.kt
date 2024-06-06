@@ -12,5 +12,6 @@ interface IBudgetService {
     suspend fun createBudget(month: Month, year: Int, amount: Double)
     suspend fun updateBudget(budget: Budget)
     fun getBudgetIdByDate(month: Month, year: Int): Int
-    fun getBudgetWithExpenses(): LiveData<List<BudgetWithExpenses>>
+    fun getBudgetsWithExpenses(): LiveData<List<BudgetWithExpenses>>
+    fun getBudgetWithExpensesById(id: Int): LiveData<BudgetWithExpenses>
 }

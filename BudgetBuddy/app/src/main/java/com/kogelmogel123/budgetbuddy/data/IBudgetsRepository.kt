@@ -39,5 +39,7 @@ interface IBudgetsRepository {
 
     fun getIdByDate(month: Month, year: Int): Int
 
-    fun getBudgetWithExpenses() : LiveData<List<BudgetWithExpenses>>
+    fun getBudgetsWithExpenses() : LiveData<List<BudgetWithExpenses>>
+
+    fun getBudgetWithExpensesById(id: Int) : LiveData<BudgetWithExpenses>
 }

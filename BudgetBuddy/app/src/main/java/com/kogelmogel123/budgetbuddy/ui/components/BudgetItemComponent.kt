@@ -32,7 +32,7 @@ import com.kogelmogel123.budgetbuddy.model.BudgetWithExpenses
 import java.time.Month
 
 @Composable
-fun BudgetItemComponent(budgetWithExpenses: BudgetWithExpenses, totalExpenses: Double? = 0.0, spentPercentage: Double = 0.0, onEdit: () -> Unit){
+fun BudgetItemComponent(budgetWithExpenses: BudgetWithExpenses, totalExpenses: Double? = 0.0, spentPercentage: Double = 0.0, onEdit: () -> Unit, onShowExpenses: () -> Unit){
     val context = LocalContext.current
     var expanded by remember { mutableStateOf(false) }
 
@@ -72,6 +72,13 @@ fun BudgetItemComponent(budgetWithExpenses: BudgetWithExpenses, totalExpenses: D
                 expanded = false
             }
         )
+        DropdownMenuItem(
+            text = { Text("Pokaż") },
+            onClick = {
+                onShowExpenses()
+                expanded = false
+            }
+        )
     }
 }
 
@@ -83,6 +90,6 @@ private fun BudgetItemComponentPreview() {
         emptyList()
     )
     androidx.compose.material.MaterialTheme {
-        BudgetItemComponent(budgetWithExpenses, 2500.00, 1.0, {});
+        BudgetItemComponent(budgetWithExpenses, 2500.00, 1.0, {}, {});
     }
 }

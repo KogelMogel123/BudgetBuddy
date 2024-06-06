@@ -27,6 +27,7 @@ import com.kogelmogel123.budgetbuddy.ui.components.DrawerBody
 import com.kogelmogel123.budgetbuddy.ui.components.DrawerHeader
 import com.kogelmogel123.budgetbuddy.ui.screens.AddBudgetScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.AddExpenseScreen
+import com.kogelmogel123.budgetbuddy.ui.screens.BudgetWithExpensesScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.BudgetsScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.DashboardScreen
 import com.kogelmogel123.budgetbuddy.ui.screens.EditBudgetScreen
@@ -171,6 +172,13 @@ class MainActivity : ComponentActivity() {
                         ) { backStackEntry ->
                             val budgetId = backStackEntry.arguments?.getInt("id") ?: -1
                             EditBudgetScreen(navController = navController, id = budgetId)
+                        }
+                        composable(
+                            route = "budgetWithExpensesScreen/{id}",
+                            arguments = listOf(navArgument("id") { type = NavType.IntType })
+                        ) { backStackEntry ->
+                            val budgetId = backStackEntry.arguments?.getInt("id") ?: -1
+                            BudgetWithExpensesScreen(navController = navController, id = budgetId)
                         }
                     }
                 }

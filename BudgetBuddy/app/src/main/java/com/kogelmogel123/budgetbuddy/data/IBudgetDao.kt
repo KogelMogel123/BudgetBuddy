@@ -38,5 +38,9 @@ interface IBudgetDao {
 
     @Transaction
     @Query("SELECT * FROM budget")
-    fun getBudgetWithExpenses(): LiveData<List<BudgetWithExpenses>>
+    fun getBudgetsWithExpenses(): LiveData<List<BudgetWithExpenses>>
+
+    @Transaction
+    @Query("SELECT * FROM budget WHERE id = :id")
+    fun getBudgetWithExpensesById(id: Int): LiveData<BudgetWithExpenses>
 }

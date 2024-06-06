@@ -19,5 +19,6 @@ class OfflineBudgetsRepository(private val budgetDao: IBudgetDao) : IBudgetsRepo
 
     override suspend fun update(budget: Budget) = budgetDao.update(budget)
     override fun getIdByDate(month: Month, year: Int): Int = budgetDao.getIdByDate(month, year)
-    override fun getBudgetWithExpenses(): LiveData<List<BudgetWithExpenses>> = budgetDao.getBudgetWithExpenses()
+    override fun getBudgetsWithExpenses(): LiveData<List<BudgetWithExpenses>> = budgetDao.getBudgetsWithExpenses()
+    override fun getBudgetWithExpensesById(id: Int): LiveData<BudgetWithExpenses> = budgetDao.getBudgetWithExpensesById(id)
 }

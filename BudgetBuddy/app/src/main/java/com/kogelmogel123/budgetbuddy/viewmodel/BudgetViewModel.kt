@@ -12,12 +12,20 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 
 class BudgetViewModel(private val budgetService: IBudgetService, private val expenseService: IExpenseService) : ViewModel() {
-    val budgetsWithExpenses: LiveData<List<BudgetWithExpenses>> = budgetService.getBudgetWithExpenses()
+    val budgetsWithExpenses: LiveData<List<BudgetWithExpenses>> = budgetService.getBudgetsWithExpenses()
     val currentDate = LocalDate.now()
     val budget = budgetService.getBudgetByDate(currentDate.month, currentDate.year)
 
+    fun getTotalCost(expenses: List<Expense>): Double {
+        return expenses.map { it.cost }.sum()
+    }
+
     fun getBudgetById(id: Int): LiveData<Budget> {
         return budgetService.getBudgetById(id)
+    }
+
+    fun getBudgetWithExpensesById(id: Int): LiveData<BudgetWithExpenses> {
+        return budgetService.getBudgetWithExpensesById(id)
     }
 
     fun addBudget(budget: Budget) {

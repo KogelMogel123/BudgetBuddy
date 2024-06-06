@@ -35,7 +35,7 @@ class BudgetService(private val budgetsRepository: IBudgetsRepository): IBudgetS
     override fun getBudgetById(id: Int): LiveData<Budget> {
         return budgetsRepository.getById(id)
             .catch { e ->
-                Log.e("BudgetsViewModel", "Error fetching budget", e)
+                Log.e("BudgetService", "Error fetching budget", e)
             }
             .asLiveData()
     }
@@ -43,7 +43,7 @@ class BudgetService(private val budgetsRepository: IBudgetsRepository): IBudgetS
     override fun getBudgetByDate(month: Month, year: Int): LiveData<Budget> {
         return budgetsRepository.getByDate(month, year)
             .catch { e ->
-                Log.e("BudgetsViewModel", "Error fetching budget", e)
+                Log.e("BudgetService", "Error fetching budget", e)
             }
             .asLiveData()
     }
@@ -64,7 +64,11 @@ class BudgetService(private val budgetsRepository: IBudgetsRepository): IBudgetS
         return budgetsRepository.getIdByDate(month, year)
     }
 
-    override fun getBudgetWithExpenses(): LiveData<List<BudgetWithExpenses>> {
-        return budgetsRepository.getBudgetWithExpenses()
+    override fun getBudgetsWithExpenses(): LiveData<List<BudgetWithExpenses>> {
+        return budgetsRepository.getBudgetsWithExpenses()
+    }
+
+    override fun getBudgetWithExpensesById(id: Int): LiveData<BudgetWithExpenses> {
+        return budgetsRepository.getBudgetWithExpensesById(id)
     }
 }

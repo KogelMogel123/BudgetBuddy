@@ -42,7 +42,8 @@ fun BudgetsScreen(viewModel: BudgetViewModel = koinViewModel(), navController: N
                         if (it.amount > 0) spent / it.amount else 0.0
                     } ?: 0.0
                     BudgetItemComponent(budgetWithExpenses, leftInTheBudget, spentPercentage,
-                        onEdit = { navController.navigate("editBudgetScreen/${budgetWithExpenses.budget.id}") })
+                        onEdit = { navController.navigate("editBudgetScreen/${budgetWithExpenses.budget.id}") },
+                        onShowExpenses = { navController.navigate("budgetWithExpensesScreen/${budgetWithExpenses.budget.id}") })
                 }
             }
         }

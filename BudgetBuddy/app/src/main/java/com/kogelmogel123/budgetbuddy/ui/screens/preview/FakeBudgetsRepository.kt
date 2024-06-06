@@ -36,7 +36,11 @@ class FakeBudgetsRepository: IBudgetsRepository {
         TODO("Not yet implemented")
     }
 
-    override fun getBudgetWithExpenses(): LiveData<List<BudgetWithExpenses>> {
+    override fun getBudgetsWithExpenses(): LiveData<List<BudgetWithExpenses>> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getBudgetWithExpensesById(id: Int): LiveData<BudgetWithExpenses> {
         TODO("Not yet implemented")
     }
 }
