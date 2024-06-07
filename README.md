@@ -90,7 +90,7 @@ Wystarczy, że pobierzesz: BudgetBuddy.apk i zainstalujesz na telefonie.
 
 ## Postawienie własnego środowiska
 
-Poniżej znajdziesz kroki potrzebne do skonfigurowania i uruchomienia procesu aplikacji BudgetBuddy oraz BudgetBuddyServer. Skonfigurujemy również integrację z Make.com w celu odebrania zdjęcia paragonu i przesłania do ChatGPT.
+Poniżej znajdziesz kroki potrzebne do skonfigurowania i uruchomienia procesu aplikacji BudgetBuddy oraz BudgetBuddyServer. Skonfigurujemy również integrację z Make.com w celu odebrania zdjęcia paragonu i przesłania do gpt-4o.
 
 Krok 1: Rejestracja i konfiguracja konta na [Make.com](https://www.make.com)
 
