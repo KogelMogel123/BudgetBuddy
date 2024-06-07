@@ -56,4 +56,5 @@
     <string name="delete">Delete</string>
     <string name="negative_amount_error">The value must not be negative</string>
     <string name="expenses_in_the_month_of">Expenses in the month of</string>
+    <string name="view_the_list_of_expenses">View the list of expenses</string>
 </resources>

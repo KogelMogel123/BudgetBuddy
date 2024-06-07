@@ -73,7 +73,7 @@ fun BudgetItemComponent(budgetWithExpenses: BudgetWithExpenses, totalExpenses: D
             }
         )
         DropdownMenuItem(
-            text = { Text("Pokaż") },
+            text = { Text(stringResource(id = R.string.view_the_list_of_expenses)) },
             onClick = {
                 onShowExpenses()
                 expanded = false

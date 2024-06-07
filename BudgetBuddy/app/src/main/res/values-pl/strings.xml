@@ -57,4 +57,5 @@
     <string name="delete">Usuń</string>
     <string name="negative_amount_error">Wartość nie może być ujemna.</string>
     <string name="expenses_in_the_month_of">Wydatki w miesiącu</string>
+    <string name="view_the_list_of_expenses">Wyświetl listę wydatków</string>
 </resources>
