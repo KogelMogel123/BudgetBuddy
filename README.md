@@ -52,7 +52,7 @@ Aplikacja do zarządzania finansami osobistymi na platformie Android, stworzona 
 
 ## Architektura
 
-![arch](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/860848ee-319b-4531-8c00-84887a83d202)
+![arch](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/2edec9fa-a3bb-4c42-b2c8-65a867bf8053)
 
 ## Wygląd aplikacji
 Ikona aplikacji
