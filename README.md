@@ -83,6 +83,11 @@ Wylistowanie wydatków dla konkretnego budżetu w historii
 
 ![Screenshot_20240606_193955_Budget Buddy](https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/7cf56de3-07d4-403f-8c71-b7069397ed52)
 
+## WIDEO
+
+https://github.com/KogelMogel123/BudgetBuddy/assets/19485654/5e7edb4d-5001-4b7b-9750-89ba698d2add
+
+
 ## Jak uruchomić aplikację
 ## Prosty sposób:
   
