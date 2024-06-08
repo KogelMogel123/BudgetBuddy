@@ -150,6 +150,28 @@ Otwórz plik appsettings.json i skonfiguruj sekcję AppSettings:
 
 Zbuduj projekt.
 
+Jeżeli wdrażasz BudgetBuddyServer na serwer z linuxem pamiętaj o kilku istotnych poleceniach:
+
+-sudo apt-get install dotnet-sdk-8.0
+
+-sudo apt-get install dotnet-runtime-8.0
+
+-sudo apt-get install aspnetcore-runtime-8.0
+
+Jeżeli używasz nginx nie zapomnij edytować pliku /etc/nginx/sites-available/default:
+```
+   location / {
+       proxy_pass http://localhost:5000;
+       proxy_http_version 1.1;
+       proxy_set_header Upgrade $http_upgrade;
+       proxy_set_header Connection keep-alive;
+       proxy_set_header Host $host;
+       proxy_cache_bypass $http_upgrade;
+       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+       proxy_set_header X-Forwarded-Proto $scheme;
+   }
+```
+
 Konfiguracja BudgetBuddy:
 
 Otwórz projekt BudgetBuddy w Android Studio.
